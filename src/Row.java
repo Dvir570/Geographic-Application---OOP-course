@@ -11,7 +11,7 @@ public class Row {
 	ArrayList<WiFi> row;
 
 	public Row() {
-		this.row = new ArrayList<>();
+		this.row = new ArrayList<WiFi>();
 	}
 
 	/**

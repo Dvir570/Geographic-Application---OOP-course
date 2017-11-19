@@ -3,6 +3,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ *main class
+ */
 public class matala0 {
 
 	/**
@@ -67,6 +70,7 @@ public class matala0 {
 					"how do you want to filter wifi points?\nPRESS 1 to filter by place\nPRESS 2 to filter by time\nPRESS 3 to filter by ID");
 			numberOfFilter = scanner.next();
 		} while (!(numberOfFilter.equals("1") || numberOfFilter.equals("2") || numberOfFilter.equals("3")));
+		//ONEPLUS A3003
 		switch (numberOfFilter) {
 		case "1":
 			String lat, lon, alt, radius;
