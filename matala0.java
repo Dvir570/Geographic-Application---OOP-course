@@ -10,6 +10,7 @@ public class matala0 {
 	*/
 	public static boolean isDouble(String s) { //Stackoverflow
 		try {
+			
 			Double.parseDouble(s);
 		} catch (NumberFormatException e) {
 			return false;
