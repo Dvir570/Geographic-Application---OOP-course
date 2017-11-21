@@ -33,10 +33,7 @@ public class KML {
 
 	//ONEPLUS A3003
 	private String convertTimeFormat(String oldTimeFormat) {
-		//System.out.println(oldTimeFormat);
 		String[] dateTime = oldTimeFormat.split(" ");
-		//String[] date = dateTime[0].split("-");
-		//String[] time = dateTime[1].split(":");
 		System.out.println(dateTime[0] + 'T' + dateTime[1]);
 		return dateTime[0] + 'T' + dateTime[1];
 	}
