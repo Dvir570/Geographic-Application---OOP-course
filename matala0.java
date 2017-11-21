@@ -2,7 +2,7 @@
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.text.SimpleDateFormat;
 /**
  *main class
  */
@@ -51,16 +51,7 @@ public class matala0 {
 		Row rowWithAllwifis = new Row(csvFiles);
 		resultFile.insertRows(rowWithAllwifis.getRow());
 		resultFile.close();
-		/*// print:
-		System.out.println("---------------------- #" + 0 + " -----------------------------");
-		for (int i = 0; i < ResultFile.result.size(); i++) {
-			for (int j = 0; j < ResultFile.result.get(i).size(); j++) {
-				System.out.println("#" + (j + 1) + ":\t" + ResultFile.result.get(i).getWiFi(j));
-			}
-			System.out.println("---------------------- #" + (i + 1) + " -----------------------------");
-		}
-		// end of the print code*/
-
+		
 		// ************************part 3**************************
 		Scanner scanner = new Scanner(System.in);
 		DisplayMap dm = new DisplayMap();
@@ -89,6 +80,8 @@ public class matala0 {
 			System.out.println("the kml file has been created! :)");
 			break;
 		case "2":
+			//SimpleDateFormat sdf = new SimpleDateFormat("")
+			
 			System.out.println("enter year: ");
 			String year = scanner.next();
 			System.out.println("enter month: ");
