@@ -14,7 +14,7 @@ import java.util.Comparator;
 public class ResultFile {
 
 	static ArrayList<Row> result = new ArrayList<Row>();
-	PrintWriter pw;
+	private PrintWriter pw;
 
 	public ResultFile(String resultFilePath) {
 		try {
@@ -75,13 +75,16 @@ public class ResultFile {
 	 * @param wifis - ArrayList of all WiFi objects you have to group.
 	 */
 	private void rowsGroupByTimeModel(ArrayList<WiFi> wifis) {
-		// ArrayList<Row> results = new ArrayList<Row>(); //always result ok?
-
+		
+		
 		for (int i = 0; i < wifis.size(); i++) {
 			WiFi w = wifis.get(i);
 			if (!w.getType().equals("WIFI"))
-				wifis.remove(i);
+				wifis.remove(i--);
 		}
+		
+		if(wifis.size()==0)
+			return;
 
 		String tempTime = wifis.get(0).getTime();
 		String tempModel = wifis.get(0).getModel();
@@ -98,6 +101,7 @@ public class ResultFile {
 				newRow.add(wifis.get(i));
 			}
 		}
+		this.result.add(newRow);
 	}
 
 	/**
@@ -110,7 +114,9 @@ public class ResultFile {
 																					// https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
 				@Override
 				public int compare(WiFi w1, WiFi w2) {
-					return w1.getSignal().compareTo(w2.getSignal());
+					if(Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal())) return 1;
+					else if(Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal())) return -1;
+					return 0;
 				}
 			});
 			if (this.result.get(i).size() > 10)

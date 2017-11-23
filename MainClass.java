@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 /**
  *main class
  */
-public class matala0 {
+public class MainClass {
 
 	/**
-	* return true if String s is valid Double. else return false.
+	* @return true if String s is valid Double. else return false.
 	*/
-	public static boolean isDouble(String s) { //Stackoverflow
+	private static boolean isDouble(String s) { //Stackoverflow
 		try {
 			Double.parseDouble(s);
 		} catch (NumberFormatException e) {
@@ -24,9 +24,9 @@ public class matala0 {
 	}
 
 	/**
-	* return ArrayList of all .csv files in folder param.
+	* @return ArrayList of all .csv files in folder param.
 	*/
-	public static ArrayList<File> getCSVs(File folder) {
+	private static ArrayList<File> getCSVs(File folder) {
 		ArrayList<File> ans = new ArrayList<File>();
 
 		for (File currentF : folder.listFiles()) {
@@ -38,7 +38,9 @@ public class matala0 {
 
 		return ans;
 	}
-
+/**
+ * the main function 
+ */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		File folder = new File(

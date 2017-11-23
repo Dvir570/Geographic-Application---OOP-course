@@ -8,7 +8,7 @@ import java.util.ArrayList;
  *present row in the result.csv file
  */
 public class Row {
-	ArrayList<WiFi> row;
+	private ArrayList<WiFi> row;
 
 	public Row() {
 		this.row = new ArrayList<WiFi>();
@@ -49,7 +49,8 @@ public class Row {
 	 * @param row is ArrayList of WiFi
 	 */
 	public void setRow(ArrayList<WiFi> row) {
-		this.row = row;
+		if(row != null)
+			this.row = row;
 	}
 	
 	/**
@@ -64,7 +65,8 @@ public class Row {
 	 * @param newWiFi is a new WiFi object
 	 */
 	public void add(WiFi newWiFi) {
-		this.row.add(newWiFi);
+		if(newWiFi!=null)
+			this.row.add(newWiFi);
 	}
 
 	/**

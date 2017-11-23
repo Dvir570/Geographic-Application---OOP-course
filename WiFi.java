@@ -7,7 +7,11 @@ public class WiFi {
 
 	public WiFi() {
 	}
-
+	
+/**
+ * @param line represent the whole information of one line in the CSV file
+ * @param model device id
+ */
 	public WiFi(String line, String model) {
 		String[] temp = line.split(",");
 		this.model = model;
@@ -35,35 +39,35 @@ public class WiFi {
 	}
 
 	/**
-	 * @return lat
+	 * @return latitude
 	 */
 	public String getLat() {
 		return this.lat;
 	}
 
 	/**
-	 * @return lon
+	 * @return longtitude
 	 */
 	public String getLon() {
 		return this.lon;
 	}
 
 	/**
-	 * @return alt
+	 * @return altitude
 	 */
 	public String getAlt() {
 		return this.alt;
 	}
 
 	/**
-	 * @return model (ID of device)
+	 * @return model device id 
 	 */
 	public String getModel() {
 		return this.model;
 	}
 
 	/**
-	 * @return type
+	 * @return type of the net (wifi, bt ext )
 	 */
 	public String getType() {
 		return this.type;
@@ -84,28 +88,24 @@ public class WiFi {
 	}
 
 	/**
-	 * @return freq
+	 * @return frequency 
 	 */
 	public String getFreq() {
 		return this.freq;
 	}
 
 	/**
-	 * @return time
+	 * @return date time
 	 */
 	public String getTime() {
 		return this.time;
 	}
 
 	/**
-	 * @return signal
+	 * @return signal 
 	 */
 	public String getSignal() {
 		return this.signal;
 	}
 
-	public String toString() {
-		return model + "," + time + "," + lat + "," + lon + "," + alt + "," + mac + "," + ssid + "," + freq + ","
-				+ signal;
-	}
 }

@@ -6,9 +6,14 @@ import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 import de.micromata.opengis.kml.v_2_2_0.TimePrimitive;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
-
+/**
+ *responsible of writing the final kml file 
+ */
 public class KML {
-
+/**
+ * creating the kml and sending it to directory
+ * @param toDisplay
+ */
 	public void makeKML(ArrayList<WiFi> toDisplay) {
 		Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
@@ -31,10 +36,14 @@ public class KML {
 		}
 	}
 
-	//ONEPLUS A3003
+	
+	/**
+	 *converting the time format from yyyy\MM\dd hh:mm:ss to yyyy\MM\dd+T+hh:mm:ss{ google earth format}
+	 * @param oldTimeFormat date time in old format yyyy\MM\dd hh:mm:ss
+	 * @return the new format yyyy\MM\dd+T+hh:mm:ss
+	 */
 	private String convertTimeFormat(String oldTimeFormat) {
 		String[] dateTime = oldTimeFormat.split(" ");
-		System.out.println(dateTime[0] + 'T' + dateTime[1]);
 		return dateTime[0] + 'T' + dateTime[1];
 	}
 }
