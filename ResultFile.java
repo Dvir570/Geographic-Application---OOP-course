@@ -16,6 +16,9 @@ public class ResultFile {
 	static ArrayList<Row> result = new ArrayList<Row>();
 	private PrintWriter pw;
 
+	/**
+	 * @param resultFilePath path for file result
+	 */
 	public ResultFile(String resultFilePath) {
 		try {
 			FileWriter fw = new FileWriter(resultFilePath);
