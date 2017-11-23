@@ -1,5 +1,4 @@
 # Geographic-Application---OOP-course
 
 editors:
-Shmoel Shimoni
-Dvir Barzilay
+Shmoel Shimoni and Dvir Barzilay
