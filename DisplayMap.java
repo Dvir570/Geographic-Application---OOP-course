@@ -9,6 +9,7 @@ public class DisplayMap {
 		this.toDisplay = new ArrayList<WiFi>();
 	}
 
+	
 	/**
 	 * filter by place giving coordinates
 	 * @param lon longtitude
