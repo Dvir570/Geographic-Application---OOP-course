@@ -36,6 +36,23 @@ public class KML {
 		}
 	}
 
+	public void makeAVG1KML(ArrayList<AvgPoint> toDisplay) {
+		Kml kml = new Kml();
+		Document doc = kml.createAndSetDocument();
+		for (int i = 0; i < toDisplay.size(); i++) {
+			AvgPoint p= toDisplay.get(i);
+			
+			doc.createAndAddPlacemark().withName(p.getSSID()).withOpen(Boolean.TRUE)
+					.withDescription("mac: " + p.getMac())
+					.createAndSetPoint().addToCoordinates(p.getAvgLon(), p.getAvgLat(), p.getAvgAlt());
+		}
+		try {
+			kml.marshal(new File("src\\AvgPlacemarks.kml"));
+		} catch (IOException ex) {
+			System.out.print("Error reading file\n" + ex);
+			System.exit(2);
+		}
+	}
 	
 	/**
 	 *converting the time format from yyyy\MM\dd hh:mm:ss to yyyy\MM\dd+T+hh:mm:ss{ google earth format}

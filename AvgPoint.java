@@ -2,19 +2,27 @@ import java.util.ArrayList;
 
 public class AvgPoint {
 	private ArrayList<WiFi> commonMac;
-	private double avgLon;
-	private double avgLat;
-	private double avgAlt;
+	private double avgLon=0;
+	private double avgLat=0;
+	private double avgAlt=0;
+	private String mac;
+	private String SSID;
 
 	public AvgPoint(ArrayList<WiFi> commonMac) {
 		this.commonMac = commonMac;
+		if (this.commonMac.isEmpty())
+			return;
+		this.mac=commonMac.get(0).getMac();
+		this.SSID=commonMac.get(0).getSSID();
 		this.avgAlt = avgAlt();
 		this.avgLon = avgLon();
 		this.avgLat = avgLat();
 	}
 
+
+
 	private double avgAlt() {
-		double sumWeight = 0.000001;
+		double sumWeight = 0;
 		double sumWeightAlt = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
@@ -26,7 +34,7 @@ public class AvgPoint {
 	}
 
 	private double avgLon() {
-		double sumWeight = 0.000001;
+		double sumWeight = 0;
 		double sumWeightLon = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
@@ -39,7 +47,7 @@ public class AvgPoint {
 	}
 
 	private double avgLat() {
-		double sumWeight = 0.000001;
+		double sumWeight = 0;
 		double sumWeightLat = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
@@ -62,5 +70,11 @@ public class AvgPoint {
 		return this.avgAlt;
 	}
 	
-	
+	public String getSSID() {
+		return SSID;
+	}
+
+	public String getMac() {
+		return mac;
+	}
 }
