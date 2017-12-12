@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,38 +7,33 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
-* class that responsible about the result.csv file (ex2).
-*/
+ * class that responsible about the result.csv file (ex2).
+ */
 public class ResultFile {
 
 	static ArrayList<Row> result = new ArrayList<Row>();
-	private PrintWriter pw;
-
+	IOcsv writeResultFile;
 	/**
-	 * @param resultFilePath path for file result
+	 * @param resultFilePath
+	 *            path for file result
 	 */
 	public ResultFile(String resultFilePath) {
-		try {
-			FileWriter fw = new FileWriter(resultFilePath);
-			this.pw = new PrintWriter(fw);
+		writeResultFile = new IOcsv(resultFilePath);
 
-			// print headers:
-				pw.println("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
-						+ "SSID2,MAC2,Frequncy2,Signal2," + "SSID3,MAC3,Frequncy3,Signal3,"
-						+ "SSID4,MAC4,Frequncy4,Signal4," + "SSID5,MAC5,Frequncy5,Signal5,"
-						+ "SSID6,MAC6,Frequncy6,Signal6," + "SSID7,MAC7,Frequncy7,Signal7,"
-						+ "SSID8,MAC8,Frequncy8,Signal8," + "SSID9,MAC9,Frequncy9,Signal9,"
-						+ "SSID10,MAC10,Frequncy10,Signal10");
-			// end print headers
-		} catch (IOException ex) {
-			System.out.print("Error reading file\n" + ex);
-			System.exit(2);
-		}
+		// print headers:
+		writeResultFile.writeCsvLine("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
+				+ "SSID2,MAC2,Frequncy2,Signal2," + "SSID3,MAC3,Frequncy3,Signal3," + "SSID4,MAC4,Frequncy4,Signal4,"
+				+ "SSID5,MAC5,Frequncy5,Signal5," + "SSID6,MAC6,Frequncy6,Signal6," + "SSID7,MAC7,Frequncy7,Signal7,"
+				+ "SSID8,MAC8,Frequncy8,Signal8," + "SSID9,MAC9,Frequncy9,Signal9,"
+				+ "SSID10,MAC10,Frequncy10,Signal10");
+		// end print headers
 	}
 
 	/**
 	 * insert new rows to the result.csv file.
-	 * @param wifis - ArrayList of all WiFi objects you have to insert.
+	 * 
+	 * @param wifis
+	 *            - ArrayList of all WiFi objects you have to insert.
 	 */
 	public void insertRows(ArrayList<WiFi> wifis) {
 		rowsGroupByTimeModel(wifis);
@@ -67,26 +60,27 @@ public class ResultFile {
 																											// at
 																											// the
 																											// end
-			this.pw.println(str);
+			this.writeResultFile.writeCsvLine(str);
 
 		}
 	}
 
 	/**
-	 * group wifis into Row by time and model.
-	 * the function also remove all WiFi that is not from type "WIFI". 
-	 * @param wifis - ArrayList of all WiFi objects you have to group.
+	 * group wifis into Row by time and model. the function also remove all WiFi
+	 * that is not from type "WIFI".
+	 * 
+	 * @param wifis
+	 *            - ArrayList of all WiFi objects you have to group.
 	 */
 	private void rowsGroupByTimeModel(ArrayList<WiFi> wifis) {
-		
-		
+
 		for (int i = 0; i < wifis.size(); i++) {
 			WiFi w = wifis.get(i);
 			if (!w.getType().equals("WIFI"))
 				wifis.remove(i--);
 		}
-		
-		if(wifis.size()==0)
+
+		if (wifis.size() == 0)
 			return;
 
 		String tempTime = wifis.get(0).getTime();
@@ -108,7 +102,7 @@ public class ResultFile {
 	}
 
 	/**
-	 * sort groups of WiFi (Row objects) by signal and takes top 10. 
+	 * sort groups of WiFi (Row objects) by signal and takes top 10.
 	 */
 	private void top10fromAnyGroup() {
 		// top ten by signal:
@@ -117,8 +111,10 @@ public class ResultFile {
 																					// https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
 				@Override
 				public int compare(WiFi w1, WiFi w2) {
-					if(Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal())) return 1;
-					else if(Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal())) return -1;
+					if (Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal()))
+						return 1;
+					else if (Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal()))
+						return -1;
 					return 0;
 				}
 			});
@@ -129,7 +125,7 @@ public class ResultFile {
 	}
 
 	public void close() {
-		this.pw.close();
+		this.writeResultFile.close();
 	}
 
 }

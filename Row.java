@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- *present row in the result.csv file
+ * present row in the result.csv file
  */
 public class Row {
 	private ArrayList<WiFi> row;
@@ -16,79 +16,79 @@ public class Row {
 
 	/**
 	 * collect WiFi objects from any .csv file in csvFiles
-	 * @param csvFiles ArrayList of .csv files
+	 * 
+	 * @param csvFiles
+	 *            ArrayList of .csv files
 	 */
 	public Row(ArrayList<File> csvFiles) {
 		this.row = new ArrayList<WiFi>();
-		
+
 		for (int cf = 0; cf < csvFiles.size(); cf++) {
-			try {
-				FileReader fr = new FileReader(csvFiles.get(cf).getPath());
-				BufferedReader br = new BufferedReader(fr);
+			IOcsv readCsv = new IOcsv(csvFiles.get(cf).getPath());
 
-				String model = br.readLine().split(",")[2].split("=")[1];
-				String headersFile = br.readLine();
-				
-				String nextWiFi = br.readLine();
-				while (nextWiFi != null) {
-					this.row.add(new WiFi(nextWiFi, model));
-					nextWiFi = br.readLine();
-				}
+			String model = readCsv.readCsvLine().split(",")[2].split("=")[1];
+			String headersFile = readCsv.readCsvLine();
 
-				br.close();
-				fr.close();
-			} catch (IOException ex) {
-				System.out.print("Error reading file\n" + ex);
-				System.exit(2);
+			String nextWiFi = readCsv.readCsvLine();
+			while (nextWiFi != null) {
+				this.row.add(new WiFi(nextWiFi, model));
+				nextWiFi = readCsv.readCsvLine();
 			}
+
+			readCsv.close();
 		}
 	}
 
 	/**
 	 * set ArrayList of WiFi objects to the Row object
-	 * @param row is ArrayList of WiFi
+	 * 
+	 * @param row
+	 *            is ArrayList of WiFi
 	 */
 	public void setRow(ArrayList<WiFi> row) {
-		if(row != null)
+		if (row != null)
 			this.row = row;
 	}
-	
+
 	/**
-	 * @return ArrayList of WiFi object in  the row
+	 * @return ArrayList of WiFi object in the row
 	 */
-	public ArrayList<WiFi> getRow(){
+	public ArrayList<WiFi> getRow() {
 		return this.row;
 	}
 
 	/**
 	 * insert a new WiFi object to the row
-	 * @param newWiFi is a new WiFi object
+	 * 
+	 * @param newWiFi
+	 *            is a new WiFi object
 	 */
 	public void add(WiFi newWiFi) {
-		if(newWiFi!=null)
+		if (newWiFi != null)
 			this.row.add(newWiFi);
 	}
 
 	/**
 	 * 
-	 * @param index is the index of a specipic WiFi object
+	 * @param index
+	 *            is the index of a specipic WiFi object
 	 * @return a WiFi object in index
 	 */
-	public WiFi getWiFi(int index){
+	public WiFi getWiFi(int index) {
 		return this.row.get(index);
 	}
-	
+
 	/**
 	 * @return the count of WiFi objects we have in this row
 	 */
 	public int size() {
 		return this.row.size();
 	}
-	
+
 	/**
 	 * @return false if we have WiFi object in this row. else return true.
 	 */
-	public boolean isEmpty(){
+	public boolean isEmpty() {
 		return this.row.isEmpty();
 	}
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class AvgPoint {
+public class AvgMacPoint {
 	private ArrayList<WiFi> commonMac;
 	private double avgLon=0;
 	private double avgLat=0;
@@ -8,18 +8,18 @@ public class AvgPoint {
 	private String mac;
 	private String SSID;
 
-	public AvgPoint(ArrayList<WiFi> commonMac) {
+	public AvgMacPoint(ArrayList<WiFi> commonMac) {
 		this.commonMac = commonMac;
 		if (this.commonMac.isEmpty())
 			return;
 		this.mac=commonMac.get(0).getMac();
 		this.SSID=commonMac.get(0).getSSID();
+		
+		//ALGORITHM ONE
 		this.avgAlt = avgAlt();
 		this.avgLon = avgLon();
 		this.avgLat = avgLat();
 	}
-
-
 
 	private double avgAlt() {
 		double sumWeight = 0;
@@ -76,5 +76,10 @@ public class AvgPoint {
 
 	public String getMac() {
 		return mac;
+	}
+	
+	public String toString() {
+		return this.mac+","+this.SSID+","+this.commonMac.get(0).getFreq()+","+this.commonMac.get(0).getSignal()+","+this.avgAlt+","+
+				this.avgLon+","+this.avgAlt+","+this.commonMac.get(0).getTime()+",Approx. w-center algo1";
 	}
 }

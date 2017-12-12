@@ -18,8 +18,8 @@ public class DisplayMap {
 
 		ArrayList<Row> ar = new ArrayList<Row>();
 		Row r = new Row();
-		r.add(toDisplay.get(0));
 		ar.add(r);
+		r.add(toDisplay.get(0));		
 		for (int i = 1; i < toDisplay.size(); i++) {
 			for (int j = 0; j < ar.size(); j++) {
 
@@ -34,13 +34,13 @@ public class DisplayMap {
 			}
 		}
 		System.out.println(ar.size());
-		ArrayList<AvgPoint> avgPoints = new ArrayList<AvgPoint>();
+		ArrayList<AvgMacPoint> avgPoints = new ArrayList<AvgMacPoint>();
 		for (int i = 0; i < ar.size(); i++) {
-			avgPoints.add(new AvgPoint(ar.get(i).getRow()));
+			avgPoints.add(new AvgMacPoint(ar.get(i).getRow()));
 		}
 		
 		KML kml = new KML();
-		kml.makeAVG1KML(avgPoints);
+		kml.makeAVGKML(avgPoints);
 		// for (int i = 0; i < ar.size(); i++) {
 		// Collections.sort(ar.get(i).getRow(), new Comparator<WiFi>() { //
 		// StackOverflow:

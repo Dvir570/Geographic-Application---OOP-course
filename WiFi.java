@@ -1,4 +1,4 @@
-import java.text.SimpleDateFormat;
+
 /**
  *present a wifi we found.
  */
@@ -37,7 +37,25 @@ public class WiFi {
 				this.freq = "";
 		}
 	}
-
+public WiFi (String model,String mac,String ssid,String freq,String lat,String lon,String alt,String signal,String time) {
+	this.model = model;
+	this.freq= freq;
+	this.mac = mac;
+	this.ssid = ssid;
+	this.time = time;
+	this.lat = lat;
+	this.lon = lon;
+	this.alt = alt;
+	this.signal = signal;
+}
+public WiFi (String model, String mac,String ssid,String freq,String signal, String time) {
+	this.model = model;
+	this.freq= freq;
+	this.mac = mac;
+	this.ssid = ssid;
+	this.time = time;
+	this.signal = signal;
+}
 	/**
 	 * @return latitude
 	 */

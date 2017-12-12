@@ -36,11 +36,11 @@ public class KML {
 		}
 	}
 
-	public void makeAVG1KML(ArrayList<AvgPoint> toDisplay) {
+	public void makeAVGKML(ArrayList<AvgMacPoint> toDisplay) {
 		Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
 		for (int i = 0; i < toDisplay.size(); i++) {
-			AvgPoint p= toDisplay.get(i);
+			AvgMacPoint p= toDisplay.get(i);
 			
 			doc.createAndAddPlacemark().withName(p.getSSID()).withOpen(Boolean.TRUE)
 					.withDescription("mac: " + p.getMac())
