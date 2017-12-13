@@ -14,7 +14,7 @@ public class Algo1 {
 		String headersFile = readDB.readCsvLine();
 		String[] sRow;
 		String nextRow = readDB.readCsvLine();
-		while (nextRow != null) {
+		while (nextRow != null && !nextRow.equals("")) {
 			System.out.println(nextRow);
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
@@ -37,7 +37,6 @@ public class Algo1 {
 		r.add(DB.get(0));		
 		for (int i = 1; i < DB.size(); i++) {
 			for (int j = 0; j < ar.size(); j++) {
-
 				if (DB.get(i).getMac().equals(ar.get(j).getWiFi(0).getMac())) {
 					ar.get(j).add(DB.get(i));
 					break;
@@ -45,6 +44,7 @@ public class Algo1 {
 					r = new Row();
 					r.add(DB.get(i));
 					ar.add(r);
+					break;
 				}
 			}
 		}

@@ -26,7 +26,7 @@ public class AvgMacPoint {
 		double sumWeightAlt = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
-			weight = Math.pow(Integer.parseInt(commonMac.get(i).getSignal()), -2);
+			weight = Math.pow(Double.parseDouble(commonMac.get(i).getSignal()), -2.0);
 			sumWeight = sumWeight + weight;
 			sumWeightAlt = sumWeightAlt + (weight * Double.parseDouble(commonMac.get(i).getAlt()));
 		}
@@ -38,7 +38,7 @@ public class AvgMacPoint {
 		double sumWeightLon = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
-			weight = Math.pow(Integer.parseInt(commonMac.get(i).getSignal()), -2);
+			weight = Math.pow(Double.parseDouble(commonMac.get(i).getSignal()), -2.0);
 			sumWeight = sumWeight + weight;
 			sumWeightLon = sumWeightLon + (weight * Double.parseDouble(commonMac.get(i).getLon()));
 		}
@@ -51,7 +51,7 @@ public class AvgMacPoint {
 		double sumWeightLat = 0;
 		double weight = 0;
 		for (int i = 0; i < commonMac.size(); i++) {
-			weight = Math.pow(Integer.parseInt(commonMac.get(i).getSignal()), -2);
+			weight = Math.pow(Double.parseDouble(commonMac.get(i).getSignal()), -2.0);
 			sumWeight = sumWeight + weight;
 			sumWeightLat = sumWeightLat + (weight * Double.parseDouble(commonMac.get(i).getLat()));
 		}
@@ -79,7 +79,7 @@ public class AvgMacPoint {
 	}
 	
 	public String toString() {
-		return this.mac+","+this.SSID+","+this.commonMac.get(0).getFreq()+","+this.commonMac.get(0).getSignal()+","+this.avgAlt+","+
-				this.avgLon+","+this.avgAlt+","+this.commonMac.get(0).getTime()+",Approx. w-center algo1";
+		return this.mac+","+this.SSID+","+this.commonMac.get(0).getFreq()+","+this.commonMac.get(0).getSignal()+","+this.avgLon+","+
+				this.avgLat+","+this.avgAlt+","+this.commonMac.get(0).getTime()+",Approx. w-center algo1";
 	}
 }

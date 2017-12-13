@@ -55,7 +55,7 @@ public class MainClass {
 		resultFile.close();
 		
 		System.out.println("alg1");
-		Algo1 algo1  =new Algo1("src\\result.csv", "src\\alg1.csv");
+		Algo1 algo1  =new Algo1("C:\\Users\\dvir\\Desktop\\db.csv", "C:\\Users\\dvir\\Desktop\\finish.csv");
 		algo1.writeCsv();
 		System.out.println("alg1 finished");
 //		// ************************part 3**************************

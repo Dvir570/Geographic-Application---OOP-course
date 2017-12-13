@@ -13,7 +13,11 @@ public class Row {
 	public Row() {
 		this.row = new ArrayList<WiFi>();
 	}
-
+	
+	public Row(WiFi w) {
+		this.row = new ArrayList<WiFi>();
+		this.row.add(w);
+	}
 	/**
 	 * collect WiFi objects from any .csv file in csvFiles
 	 * 

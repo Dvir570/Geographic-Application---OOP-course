@@ -1,17 +1,19 @@
 
 /**
- *present a wifi we found.
+ * present a wifi we found.
  */
 public class WiFi {
 	private String type, mac, ssid, freq, lat, lon, alt, signal, model, time;
 
 	public WiFi() {
 	}
-	
-/**
- * @param line represent the whole information of one line in the CSV file
- * @param model device id
- */
+
+	/**
+	 * @param line
+	 *            represent the whole information of one line in the CSV file
+	 * @param model
+	 *            device id
+	 */
 	public WiFi(String line, String model) {
 		String[] temp = line.split(",");
 		this.model = model;
@@ -37,25 +39,29 @@ public class WiFi {
 				this.freq = "";
 		}
 	}
-public WiFi (String model,String mac,String ssid,String freq,String lat,String lon,String alt,String signal,String time) {
-	this.model = model;
-	this.freq= freq;
-	this.mac = mac;
-	this.ssid = ssid;
-	this.time = time;
-	this.lat = lat;
-	this.lon = lon;
-	this.alt = alt;
-	this.signal = signal;
-}
-public WiFi (String model, String mac,String ssid,String freq,String signal, String time) {
-	this.model = model;
-	this.freq= freq;
-	this.mac = mac;
-	this.ssid = ssid;
-	this.time = time;
-	this.signal = signal;
-}
+
+	public WiFi(String model, String mac, String ssid, String freq, String lat, String lon, String alt, String signal,
+			String time) {
+		this.model = model;
+		this.freq = freq;
+		this.mac = mac;
+		this.ssid = ssid;
+		this.time = time;
+		this.lat = lat;
+		this.lon = lon;
+		this.alt = alt;
+		this.signal = signal;
+	}
+
+	public WiFi(String model, String mac, String ssid, String freq, String signal, String time) {
+		this.model = model;
+		this.freq = freq;
+		this.mac = mac;
+		this.ssid = ssid;
+		this.time = time;
+		this.signal = signal;
+	}
+
 	/**
 	 * @return latitude
 	 */
@@ -78,7 +84,7 @@ public WiFi (String model, String mac,String ssid,String freq,String signal, Str
 	}
 
 	/**
-	 * @return model device id 
+	 * @return model device id
 	 */
 	public String getModel() {
 		return this.model;
@@ -106,7 +112,7 @@ public WiFi (String model, String mac,String ssid,String freq,String signal, Str
 	}
 
 	/**
-	 * @return frequency 
+	 * @return frequency
 	 */
 	public String getFreq() {
 		return this.freq;
@@ -120,10 +126,14 @@ public WiFi (String model, String mac,String ssid,String freq,String signal, Str
 	}
 
 	/**
-	 * @return signal 
+	 * @return signal
 	 */
 	public String getSignal() {
 		return this.signal;
+	}
+
+	public void setSignal(String signal) {
+		this.signal = signal;
 	}
 
 }
