@@ -4,6 +4,8 @@ import java.util.ArrayList;
  * present part of line in the DB(CSVS) for algo2 to calculate the value pi 
  */
 public class Data {
+
+
 	private static final int POWER = 2;
 	private static final double SIG_DIFF = 0.4;
 	private static final int DIFF_NO_SIG = 100;
@@ -37,5 +39,8 @@ public class Data {
 
 	public double getPi() {
 		return pi;
+	}
+	public ArrayList<WiFi> getWifis() {
+		return wifis;
 	}
 }
