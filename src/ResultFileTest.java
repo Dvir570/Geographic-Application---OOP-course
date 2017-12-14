@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class ResultFileTest {
-	ResultFile rf= new ResultFile("src\\result.csv");
+	ResultFile rf= new ResultFile("input files\\result.csv");
 	@Test
 	public void testResultFile(){
-		String src="src\\result.csv";
+		String src="input files\\result.csv";
 	
 		ResultFile rf= new ResultFile(src);
 		rf.close();

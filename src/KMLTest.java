@@ -23,10 +23,10 @@ public class KMLTest {
 		prekml.makeKML(toDisplay);
 		
 		/////result
-		String src="src\\placemarks.kml";
+		String src="output files\\placemarks.kml";
 		File f = new File(src);
 		assertTrue(f.exists());//check if the file exists
-		Kml kml = Kml.unmarshal(new File("src\\placemarks.kml"));
+		Kml kml = Kml.unmarshal(new File("output files\\placemarks.kml"));
 		Feature feature=kml.getFeature();
 		assertNotNull(feature);//check if the file isnot empty 
 		

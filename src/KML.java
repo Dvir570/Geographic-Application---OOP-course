@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
-import de.micromata.opengis.kml.v_2_2_0.TimePrimitive;
 import de.micromata.opengis.kml.v_2_2_0.TimeStamp;
 /**
  *responsible of writing the final kml file 
@@ -29,25 +28,7 @@ public class KML {
 							Double.parseDouble(w.getLat()), Double.parseDouble(w.getAlt()));
 		}
 		try {
-			kml.marshal(new File("src\\placemarks.kml"));
-		} catch (IOException ex) {
-			System.out.print("Error reading file\n" + ex);
-			System.exit(2);
-		}
-	}
-
-	public void makeAVGKML(ArrayList<AvgMacPoint> toDisplay) {
-		Kml kml = new Kml();
-		Document doc = kml.createAndSetDocument();
-		for (int i = 0; i < toDisplay.size(); i++) {
-			AvgMacPoint p= toDisplay.get(i);
-			
-			doc.createAndAddPlacemark().withName(p.getSSID()).withOpen(Boolean.TRUE)
-					.withDescription("mac: " + p.getMac())
-					.createAndSetPoint().addToCoordinates(p.getAvgLon(), p.getAvgLat(), p.getAvgAlt());
-		}
-		try {
-			kml.marshal(new File("src\\AvgPlacemarks.kml"));
+			kml.marshal(new File("output files\\placemarks.kml"));
 		} catch (IOException ex) {
 			System.out.print("Error reading file\n" + ex);
 			System.exit(2);

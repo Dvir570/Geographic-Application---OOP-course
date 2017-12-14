@@ -19,7 +19,7 @@ public class DisplayMap {
 		ArrayList<Row> ar = new ArrayList<Row>();
 		Row r = new Row();
 		ar.add(r);
-		r.add(toDisplay.get(0));		
+		r.add(toDisplay.get(0));
 		for (int i = 1; i < toDisplay.size(); i++) {
 			for (int j = 0; j < ar.size(); j++) {
 
@@ -33,34 +33,24 @@ public class DisplayMap {
 				}
 			}
 		}
-		System.out.println(ar.size());
-		ArrayList<AvgMacPoint> avgPoints = new ArrayList<AvgMacPoint>();
-		for (int i = 0; i < ar.size(); i++) {
-			avgPoints.add(new AvgMacPoint(ar.get(i).getRow()));
-		}
-		
-		KML kml = new KML();
-		kml.makeAVGKML(avgPoints);
-		// for (int i = 0; i < ar.size(); i++) {
-		// Collections.sort(ar.get(i).getRow(), new Comparator<WiFi>() { //
-		// StackOverflow:
-		// //
-		// https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
-		// @Override
-		// public int compare(WiFi w1, WiFi w2) {
-		// if (Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal()))
-		// return 1;
-		// else if (Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal()))
-		// return -1;
-		// return 0;
-		// }
-		// });
-		// toDisplay = new ArrayList<WiFi>();
-		// for (i = 0; i < ar.size(); i++) {
-		// toDisplay.add(ar.get(i).getWiFi(0));
-		// }
-		// }
+		System.out.println("number of points: "+ar.size());
 
+		toDisplay = new ArrayList<WiFi>();
+		for (int i = 0; i < ar.size(); i++) {
+			Collections.sort(ar.get(i).getRow(), new Comparator<WiFi>() { // StackOverflow://https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
+				@Override
+				public int compare(WiFi w1, WiFi w2) {
+					if (Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal()))
+						return 1;
+					else if (Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal()))
+						return -1;
+					return 0;
+				}
+			});
+			toDisplay.add(ar.get(i).getWiFi(0));
+		}
+		KML kml = new KML();
+		kml.makeKML(toDisplay);
 	}
 
 	/**
@@ -86,7 +76,6 @@ public class DisplayMap {
 					this.toDisplay.add(w);
 			}
 		}
-		System.out.println(toDisplay.size());
 		SortbyMac();
 	}
 
