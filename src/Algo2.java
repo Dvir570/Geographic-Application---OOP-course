@@ -7,8 +7,9 @@ public class Algo2 {
 	private HashMap<String, ArrayList<Row>> DB;
 	private ArrayList<Row> MISS;
 	private Set<Row> res;
-	
+	private ArrayList<AvgSamplePoint> avgPoints;
 	public Algo2(String pathDB, String pathMiss, int NumOfWifis, String PathOut) {
+		this.avgPoints = new ArrayList<AvgSamplePoint>();
 		IOcsv readDB = new IOcsv(pathDB);
 		this.DB = new HashMap<String, ArrayList<Row>>();
 		String headersFile = readDB.readCsvLine();
@@ -61,6 +62,31 @@ public class Algo2 {
 		}
 		readMISS.close();
 		
+		ArrayList<Row> temp;
+		ArrayList<Data> datas;
+		for (int i=0;i<MISS.size();i++) {
+			for(int j = 0;j<MISS.get(i).size();j++) {
+				if(DB.get(MISS.get(i).getWiFi(j).getMac()) != null) {
+					res.addAll(DB.get(MISS.get(i)));
+				}
+			}
+			temp = new ArrayList<Row>();
+			temp.addAll(res);
+			datas=new ArrayList<Data>();
+			for(int k = 0;k<temp.size();k++) {
+				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
+			}
+			avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
+			res.clear();
+		}
+		System.out.println("avgpoints size: "+avgPoints.size());
+		
+		IOcsv writeFinalAlgo2 = new IOcsv(PathOut);
+		for(int i =0;i<avgPoints.size();i++) {
+			writeFinalAlgo2.writeCsvLine(avgPoints.get(i).toString());
+		}
+		writeFinalAlgo2.close();
+		System.out.println("Algo2 done!");
 	}
 	
 	

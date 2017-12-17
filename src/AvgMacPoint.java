@@ -77,9 +77,4 @@ public class AvgMacPoint {
 	public String getMac() {
 		return mac;
 	}
-	
-	public String toString() {
-		return this.mac+","+this.SSID+","+this.commonMac.get(0).getFreq()+","+this.commonMac.get(0).getSignal()+","+this.avgLon+","+
-				this.avgLat+","+this.avgAlt+","+this.commonMac.get(0).getTime()+",Approx. w-center algo1";
-	}
 }

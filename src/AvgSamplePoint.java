@@ -7,8 +7,9 @@ public class AvgSamplePoint {
 	private double avgLat=0;
 	private double avgAlt=0;
 	private ArrayList<Data> datas;
-
-	public AvgSamplePoint(ArrayList<Data> datas, int numOfDatas) {
+	private ArrayList<WiFi> input;
+	public AvgSamplePoint(ArrayList<Data> datas, int numOfDatas, ArrayList<WiFi> input) {
+		this.input = input;
 		this.datas = datas;
 		Collections.sort(this.datas, new Comparator<Data>() {
 
@@ -46,6 +47,17 @@ public class AvgSamplePoint {
 
 	public double getAvgAlt() {
 		return avgAlt;
+	}
+
+	@Override
+	public String toString() {
+		String s="";
+		WiFi w = input.get(0);
+		s+= w.getTime()+","+w.getModel()+","+avgLat+","+avgLon+","+avgAlt+input.size();
+		for(int i=0;i<input.size();i++) {
+			s+=","+input.get(i).getMac()+","+input.get(i).getSSID()+","+input.get(i).getFreq()+","+input.get(i).getSignal();
+		}
+		return s;
 	}
 	
 	
