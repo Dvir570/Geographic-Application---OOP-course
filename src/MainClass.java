@@ -43,11 +43,14 @@ public class MainClass {
  */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		File folder = new File(
+//				"input files\\Wiggle WIFI");
 		File folder = new File(
-				"input files\\Wiggle WIFI");
+				"C:\\Users\\dvir\\Desktop\\input");
 		ArrayList<File> csvFiles = getCSVs(folder);
 
-		final String resultFilePath = "output files\\result.csv";
+//		final String resultFilePath = "output files\\result.csv";
+		final String resultFilePath = "C:\\Users\\dvir\\Desktop\\result.csv";
 		ResultFile resultFile = new ResultFile(resultFilePath);
 
 		Row rowWithAllwifis = new Row(csvFiles);
@@ -112,9 +115,11 @@ public class MainClass {
 //		}
 //		scanner.close();
 		
-//		System.out.println("alg1");
-//		Algo1 algo1  =new Algo1("C:\\Users\\dvir\\Desktop\\db.csv", "C:\\Users\\dvir\\Desktop\\finish.csv");
-//		algo1.writeCsv();
-//		System.out.println("alg1 finished");
+		System.out.println("alg1");
+		Algo1 algo1  =new Algo1("C:\\Users\\dvir\\Desktop\\result.csv", "C:\\Users\\dvir\\Desktop\\finish.csv");
+		algo1.writeCsv();
+		System.out.println("alg1 finished");
+		
+		//Algo2 algo2 = new Algo2("input files\\Algo2\\DB.csv", "input files\\Algo2\\noGPS.csv", 5, "output files\\result of algo2.csv");
 	}
 }
