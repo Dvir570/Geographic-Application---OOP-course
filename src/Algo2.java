@@ -20,7 +20,7 @@ public class Algo2 {
 		String headersFile = readDB.readCsvLine();
 		String[] sRow;
 		String nextRow = readDB.readCsvLine();
-		while (nextRow != null) {
+		while (!(nextRow!=null && nextRow.equals(""))) {
 			System.out.println(nextRow);
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
@@ -81,7 +81,7 @@ public class Algo2 {
 			for(int k = 0;k<temp.size();k++) {
 				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
 			}
-			if(!datas.isEmpty())
+			//if(!datas.isEmpty())
 				avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
 			res.clear();
 		}
