@@ -9,8 +9,10 @@ public class Algo2 {
 	private ArrayList<Row> MISS;
 	private Set<Row> res;
 	private ArrayList<AvgSamplePoint> avgPoints;
+	private String pathOut;
 	
-	public Algo2(String pathDB, String pathMiss, int NumOfWifis, String PathOut) {
+	public Algo2(String pathDB, String pathMiss, int numOfWifis, String pathOut) {
+		this.pathOut = pathOut;
 		this.res = new HashSet<Row>();
 		this.avgPoints = new ArrayList<AvgSamplePoint>();
 		IOcsv readDB = new IOcsv(pathDB);
@@ -84,14 +86,14 @@ public class Algo2 {
 			res.clear();
 		}
 		System.out.println("avgpoints size: "+avgPoints.size());
-		
-		IOcsv writeFinalAlgo2 = new IOcsv(PathOut);
+	}
+	
+	public void writeCsv() {
+		IOcsv writeFinalAlgo2 = new IOcsv(pathOut);
 		for(int i =0;i<avgPoints.size();i++) {
 			writeFinalAlgo2.writeCsvLine(avgPoints.get(i).toString());
 		}
 		writeFinalAlgo2.close();
 	}
-	
-	
 
 }
