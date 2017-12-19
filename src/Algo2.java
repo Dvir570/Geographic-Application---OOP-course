@@ -37,11 +37,11 @@ public class Algo2 {
 						DB.get(mac).add(r);
 						flag = true;
 					}
-					if (!flag) {
-						ArrayList<Row> ar = new ArrayList<Row>();
-						ar.add(r);
-						DB.put(mac, ar);
-					}
+				}
+				if (!flag) {
+					ArrayList<Row> ar = new ArrayList<Row>();
+					ar.add(r);
+					DB.put(r.getWiFi(i).getMac(), ar);
 				}
 			}
 			nextRow = readDB.readCsvLine();
