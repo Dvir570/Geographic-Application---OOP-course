@@ -18,20 +18,20 @@ public class Data {
 
 	public Data(ArrayList<WiFi> wifis, ArrayList<WiFi> input) {
 		this.wifis = wifis;
-		int[] diff = new int[wifis.size()];
-		double[] w = new double[wifis.size()];
-		for (int i = 0; i < wifis.size(); i++) {
-			if (wifis.get(i).getSignal() == null || Integer.parseInt(wifis.get(i).getSignal()) < (-120)) {
+		int[] diff = new int[Math.min(input.size(), wifis.size())];
+		double[] w = new double[Math.min(input.size(), wifis.size())];
+		for (int i = 0; i < Math.min(input.size(), wifis.size()); i++) {
+			if (wifis.get(i).getSignal() == null || Double.parseDouble(wifis.get(i).getSignal()) < (-120)) {
 				wifis.get(i).setSignal(NO_SIGNAL + "");
 				diff[i] = DIFF_NO_SIG;
 				w[i] = NORM
-						/ (Math.pow(diff[i], SIG_DIFF) * Math.pow(Integer.parseInt(input.get(i).getSignal()), POWER));
+						/ (Math.pow(diff[i], SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER));
 				pi *= w[i];
 				continue;
 			}
-			diff[i] = Math.abs(Integer.parseInt(wifis.get(i).getSignal()) - Integer.parseInt(input.get(i).getSignal()));
+			diff[i] = Math.abs((int)Double.parseDouble(wifis.get(i).getSignal()) - (int)Double.parseDouble(input.get(i).getSignal()));
 			diff[i] = diff[i] < MIN_DIFF ? MIN_DIFF : diff[i];
-			w[i] = NORM / (Math.pow(diff[i], SIG_DIFF) * Math.pow(Integer.parseInt(input.get(i).getSignal()), POWER));
+			w[i] = NORM / (Math.pow(diff[i], SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER));
 			pi *= w[i];
 		}
 

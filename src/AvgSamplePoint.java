@@ -27,9 +27,9 @@ public class AvgSamplePoint {
 		double sums[] = new double[3];
 		double sum_wights=0;
 		for (int i=0;i<datas.size();i++) {
-			sums[0]+=(Double.parseDouble(datas.get(i).getWifis().get(i).getLat())*(datas.get(i).getPi()));
-			sums[1]+=(Double.parseDouble(datas.get(i).getWifis().get(i).getLon())*(datas.get(i).getPi()));
-			sums[2]+=(Double.parseDouble(datas.get(i).getWifis().get(i).getAlt())*(datas.get(i).getPi()));
+			sums[0]+=(Double.parseDouble(datas.get(i).getWifis().get(0).getLat())*(datas.get(i).getPi()));
+			sums[1]+=(Double.parseDouble(datas.get(i).getWifis().get(0).getLon())*(datas.get(i).getPi()));
+			sums[2]+=(Double.parseDouble(datas.get(i).getWifis().get(0).getAlt())*(datas.get(i).getPi()));
 			sum_wights+=datas.get(i).getPi();
 		}
 		this.avgLat=sums[0]/sum_wights;

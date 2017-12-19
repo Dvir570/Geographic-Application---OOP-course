@@ -72,7 +72,7 @@ public class Algo2 {
 		for (int i=0;i<MISS.size();i++) {
 			for(int j = 0;j<MISS.get(i).size();j++) {
 				if(DB.get(MISS.get(i).getWiFi(j).getMac()) != null) {
-					res.addAll(DB.get(MISS.get(i)));
+					res.addAll(DB.get(MISS.get(i).getWiFi(j).getMac()));
 				}
 			}
 			temp = new ArrayList<Row>();
