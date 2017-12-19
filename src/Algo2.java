@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Algo2 {
@@ -8,7 +9,9 @@ public class Algo2 {
 	private ArrayList<Row> MISS;
 	private Set<Row> res;
 	private ArrayList<AvgSamplePoint> avgPoints;
+	
 	public Algo2(String pathDB, String pathMiss, int NumOfWifis, String PathOut) {
+		this.res = new HashSet<Row>();
 		this.avgPoints = new ArrayList<AvgSamplePoint>();
 		IOcsv readDB = new IOcsv(pathDB);
 		this.DB = new HashMap<String, ArrayList<Row>>();
@@ -76,7 +79,8 @@ public class Algo2 {
 			for(int k = 0;k<temp.size();k++) {
 				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
 			}
-			avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
+			if(!datas.isEmpty())
+				avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
 			res.clear();
 		}
 		System.out.println("avgpoints size: "+avgPoints.size());
@@ -86,7 +90,6 @@ public class Algo2 {
 			writeFinalAlgo2.writeCsvLine(avgPoints.get(i).toString());
 		}
 		writeFinalAlgo2.close();
-		System.out.println("Algo2 done!");
 	}
 	
 	

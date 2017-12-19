@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -11,7 +12,7 @@ public class MainClass {
 	/**
 	* @return true if String s is valid Double. else return false.
 	*/
-	private static boolean isDouble(String s) { //Stackoverflow
+	private static boolean isDouble(String s) {
 		try {
 			Double.parseDouble(s);
 		} catch (NumberFormatException e) {
@@ -43,14 +44,12 @@ public class MainClass {
  */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		File folder = new File(
-//				"input files\\Wiggle WIFI");
 		File folder = new File(
-				"C:\\Users\\dvir\\Desktop\\input");
+				"input files\\Wiggle WIFI");
+
 		ArrayList<File> csvFiles = getCSVs(folder);
 
-//		final String resultFilePath = "output files\\result.csv";
-		final String resultFilePath = "C:\\Users\\dvir\\Desktop\\result.csv";
+		final String resultFilePath = "output files\\result.csv";
 		ResultFile resultFile = new ResultFile(resultFilePath);
 
 		Row rowWithAllwifis = new Row(csvFiles);
@@ -110,24 +109,27 @@ public class MainClass {
 //			System.out.println("the kml file has been created! :)");
 //			break;
 //		default:
+//			scanner.close();
 //			break;
 ////SHIELD Tablet
 //		}
+	
+		
+//		System.out.println("--- Algorithm 1 ---");
+//		//"C:\\Users\\dvir\\Desktop\\result.csv"
+//		//"C:\\Users\\dvir\\Desktop\\finish.csv"
+//		Scanner scanner = new Scanner(System.in);
+//		System.out.println("enter a DB path:");
+//		String dbPath = scanner.next();
+//		System.out.println("enter a destination path:");
+//		String destPath = scanner.next();
 //		scanner.close();
+//		Algo1 algo1  =new Algo1(dbPath, destPath);
+//		algo1.writeCsv();
+//		System.out.println("--- Algorithm 1 finished ---");
 		
-		System.out.println("--- Algorithm 1 ---");
-		//"C:\\Users\\dvir\\Desktop\\result.csv"
-		//"C:\\Users\\dvir\\Desktop\\finish.csv"
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("enter a DB path:");
-		String dbPath = scanner.next();
-		System.out.println("enter a destination path:");
-		String destPath = scanner.next();
-		scanner.close();
-		Algo1 algo1  =new Algo1(dbPath, destPath);
-		algo1.writeCsv();
-		System.out.println("alg1 finished");
-		
-		//Algo2 algo2 = new Algo2("input files\\Algo2\\DB.csv", "input files\\Algo2\\noGPS.csv", 5, "output files\\result of algo2.csv");
+		System.out.println("--- Algorithm 2 ---");
+		Algo2 algo2 = new Algo2("input files\\Algo2\\DB.csv", "input files\\Algo2\\noGPS.csv", 5, "output files\\result of Algorithm 2.csv");
+		System.out.println("--- Algorithm 2 finished ---");
 	}
 }
