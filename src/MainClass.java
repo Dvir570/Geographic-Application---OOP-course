@@ -115,8 +115,16 @@ public class MainClass {
 //		}
 //		scanner.close();
 		
-		System.out.println("alg1");
-		Algo1 algo1  =new Algo1("C:\\Users\\dvir\\Desktop\\result.csv", "C:\\Users\\dvir\\Desktop\\finish.csv");
+		System.out.println("--- Algorithm 1 ---");
+		//"C:\\Users\\dvir\\Desktop\\result.csv"
+		//"C:\\Users\\dvir\\Desktop\\finish.csv"
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("enter a DB path:");
+		String dbPath = scanner.next();
+		System.out.println("enter a destination path:");
+		String destPath = scanner.next();
+		scanner.close();
+		Algo1 algo1  =new Algo1(dbPath, destPath);
 		algo1.writeCsv();
 		System.out.println("alg1 finished");
 		

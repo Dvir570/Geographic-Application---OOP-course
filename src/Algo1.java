@@ -15,7 +15,6 @@ public class Algo1 {
 		String[] sRow;
 		String nextRow = readDB.readCsvLine();
 		while (nextRow != null && !nextRow.equals("")) {
-			System.out.println(nextRow);
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			for (int i = 0; i < countWifi; i++) {
