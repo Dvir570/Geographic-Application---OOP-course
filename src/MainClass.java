@@ -115,7 +115,7 @@ public class MainClass {
 //		}
 	
 		
-		System.out.println("--- Algorithm 1 ---");
+//		System.out.println("--- Algorithm 1 ---");
 //		Scanner scanner = new Scanner(System.in);
 //		System.out.println("enter a DB path:");
 //		//input files\Algo1\DB.csv
@@ -124,13 +124,13 @@ public class MainClass {
 //		//output files\result of Algorithm 1.csv
 //		String destPath = scanner.nextLine();
 //		scanner.close();
-		Algo1 algo1  =new Algo1("input files\\Algo1\\DB.csv", "output files\\result of Algorithm 1.csv");//dbPath, destPath);
-		algo1.writeCsv();
-		System.out.println("--- Algorithm 1 finished ---");
+//		Algo1 algo1  =new Algo1(dbPath, destPath);
+//		algo1.writeCsv();
+//		System.out.println("--- Algorithm 1 finished ---");
 		
-//		System.out.println("--- Algorithm 2 ---");
-//		Algo2 algo2 = new Algo2("input files\\Algo2\\DB2.csv", "input files\\Algo2\\noGPS2.csv", 5, "output files\\result of Algorithm 2.csv");
-//		algo2.writeCsv();
-//		System.out.println("--- Algorithm 2 finished ---");
+		System.out.println("--- Algorithm 2 ---");
+		Algo2 algo2 = new Algo2("input files\\Algo2\\DB BOAZ.csv", "input files\\Algo2\\noGPS BOAZ.csv", 5, "output files\\result of Algorithm 2.csv");
+		algo2.writeCsv();
+		System.out.println("--- Algorithm 2 finished ---");
 	}
 }

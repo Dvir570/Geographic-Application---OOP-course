@@ -81,7 +81,7 @@ public class Algo2 {
 			for(int k = 0;k<temp.size();k++) {
 				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
 			}
-			//if(!datas.isEmpty())
+			//if(!datas.isEmpty()) //with NAN or without?
 				avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
 			res.clear();
 		}
