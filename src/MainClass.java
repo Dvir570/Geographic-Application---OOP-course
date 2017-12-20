@@ -63,7 +63,7 @@ public class MainClass {
 //		do {
 //			System.out.println(
 //					"how do you want to filter wifi points?\nPRESS 1 to filter by place\nPRESS 2 to filter by time\nPRESS 3 to filter by ID");
-//			numberOfFilter = scanner.next();
+//			numberOfFilter = scanner.nextLine();
 //		} while (!(numberOfFilter.equals("1") || numberOfFilter.equals("2") || numberOfFilter.equals("3")));
 //		//ONEPLUS A3003
 //		switch (numberOfFilter) {
@@ -71,13 +71,13 @@ public class MainClass {
 //			String lat, lon, alt, radius;
 //			do {
 //				System.out.print("enter lon: ");
-//				lon = scanner.next();
+//				lon = scanner.nextLine();
 //				System.out.print("enter lat: ");
-//				lat = scanner.next();
+//				lat = scanner.nextLine();
 //				System.out.print("enter alt: ");
-//				alt = scanner.next();
+//				alt = scanner.nextLine();
 //				System.out.print("enter radius: ");
-//				radius = scanner.next();
+//				radius = scanner.nextLine();
 //			} while (!isDouble(lat) && !isDouble(lon) && !isDouble(alt) && !isDouble(radius));
 //			dm.displayByPlace(Double.parseDouble(lon), Double.parseDouble(lat), Double.parseDouble(alt),
 //					Double.parseDouble(radius));
@@ -87,24 +87,24 @@ public class MainClass {
 //			//SimpleDateFormat sdf = new SimpleDateFormat("")
 //			
 //			System.out.println("enter year: ");
-//			String year = scanner.next();
+//			String year = scanner.nextLine();
 //			System.out.println("enter month: ");
-//			String month = scanner.next();
+//			String month = scanner.nextLine();
 //			System.out.println("enter day: ");
-//			String day = scanner.next();
+//			String day = scanner.nextLine();
 //			System.out.println("enter hours: ");
-//			String hours = scanner.next();
+//			String hours = scanner.nextLine();
 //			System.out.println("enter minutes: ");
-//			String minutes = scanner.next();
+//			String minutes = scanner.nextLine();
 //			System.out.println("enter seconds: ");
-//			String seconds = scanner.next();
+//			String seconds = scanner.nextLine();
 //			dm.displayByTime(year+'-'+month+'-'+day+' '+hours+':'+minutes+':'+seconds);
 //			System.out.println("the kml file has been created! :)");
 //			break;
 //		case "3":
 //			System.out.println("enter ID device: ");
-//			String model = scanner.next();
-//			model += scanner.nextLine();
+//			String model = scanner.nextLine();
+//			//model += scanner.nextLine();
 //			dm.displayByModel(model);
 //			System.out.println("the kml file has been created! :)");
 //			break;
@@ -115,22 +115,22 @@ public class MainClass {
 //		}
 	
 		
-//		System.out.println("--- Algorithm 1 ---");
-//		//"C:\\Users\\dvir\\Desktop\\result.csv"
-//		//"C:\\Users\\dvir\\Desktop\\finish.csv"
+		System.out.println("--- Algorithm 1 ---");
 //		Scanner scanner = new Scanner(System.in);
 //		System.out.println("enter a DB path:");
-//		String dbPath = scanner.next();
+//		//input files\Algo1\DB.csv
+//		String dbPath = scanner.nextLine();
 //		System.out.println("enter a destination path:");
-//		String destPath = scanner.next();
+//		//output files\result of Algorithm 1.csv
+//		String destPath = scanner.nextLine();
 //		scanner.close();
-//		Algo1 algo1  =new Algo1(dbPath, destPath);
-//		algo1.writeCsv();
-//		System.out.println("--- Algorithm 1 finished ---");
+		Algo1 algo1  =new Algo1("input files\\Algo1\\DB.csv", "output files\\result of Algorithm 1.csv");//dbPath, destPath);
+		algo1.writeCsv();
+		System.out.println("--- Algorithm 1 finished ---");
 		
-		System.out.println("--- Algorithm 2 ---");
-		Algo2 algo2 = new Algo2("input files\\Algo2\\DB2.csv", "input files\\Algo2\\noGPS2.csv", 5, "output files\\result of Algorithm 2.csv");
-		algo2.writeCsv();
-		System.out.println("--- Algorithm 2 finished ---");
+//		System.out.println("--- Algorithm 2 ---");
+//		Algo2 algo2 = new Algo2("input files\\Algo2\\DB2.csv", "input files\\Algo2\\noGPS2.csv", 5, "output files\\result of Algorithm 2.csv");
+//		algo2.writeCsv();
+//		System.out.println("--- Algorithm 2 finished ---");
 	}
 }

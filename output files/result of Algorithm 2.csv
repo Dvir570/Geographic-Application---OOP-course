@@ -15,7 +15,7 @@
 12/05/17 11:36 AM,model=SM-G950F_device=dreamlte,35.21011187800875,32.103663934523254,710.687120991983410,34:8f:27:20:89:b8,Ariel_University,6,-50,34:8f:27:20:89:bc,Ariel_University,44,-53,34:8f:27:a0:89:b7, ,44,-54,24:79:2a:2b:07:bc,Ariel_University,36,-73,30:e1:71:0d:e0:67,DIRECT-66-HP DeskJet 3630 series,6,-73,24:79:2a:2b:07:b8,Ariel_University,11,-74,24:79:2a:ab:07:b7, ,36,-75,3c:52:82:ef:a4:8b,DIRECT-8A-HP DeskJet 3630 series,6,-78,24:79:2a:2c:5c:18,Ariel_University,11,-86,1c:b9:c4:16:06:bc,Ariel_University,48,-88
 12/05/17 11:36 AM,model=SM-G950F_device=dreamlte,NaN,NaN,NaN1,24:79:2a:2b:02:78,Ariel_University,6,-89
 12/05/17 11:36 AM,model=SM-G950F_device=dreamlte,35.20990106330119,32.103494371506734,710.38002929878053,34:8f:27:20:89:b8,Ariel_University,6,-44,24:79:2a:ac:5c:17, ,36,-89,1c:b9:c4:16:06:b8,Ariel_University,11,-89
-12/05/17 11:37 AM,model=SM-G950F_device=dreamlte,35.21053925400305,32.10493223075338,686.01,1c:b9:c4:16:05:38,Ariel_University,11,-89
+12/05/17 11:37 AM,model=SM-G950F_device=dreamlte,35.2098227155157,32.10414845086142,685.58392794625971,1c:b9:c4:16:05:38,Ariel_University,11,-89
 12/05/17 11:37 AM,model=SM-G950F_device=dreamlte,NaN,NaN,NaN3,34:8f:27:20:89:b8,Ariel_University,6,-39,b2:6c:ac:9f:fb:1f,iagree,1,-89,90:6c:ac:9f:fb:1f,Guest,1,-91
 12/05/17 11:37 AM,model=SM-G950F_device=dreamlte,35.210191536493504,32.10376065961992,699.69307499893264,24:79:2a:2b:07:b8,Ariel_University,11,-67,24:79:2a:2b:07:bc,Ariel_University,36,-68,24:79:2a:ab:07:b7, ,36,-69,24:79:2a:2c:5c:18,Ariel_University,11,-81
 12/05/17 11:41 AM,model=SM-G950F_device=dreamlte,35.20975185422841,32.1039104660973,700.30919889272888,30:e1:71:0d:e0:67,DIRECT-66-HP DeskJet 3630 series,6,-55,24:79:2a:2c:5c:18,Ariel_University,11,-67,24:79:2a:2c:5c:1c,Ariel_University,36,-68,24:79:2a:2b:02:78,Ariel_University,6,-72,24:79:2a:ac:5c:17, ,36,-72,b2:6c:ac:9f:f1:c5,paysday,2,-85,a2:6c:ac:a0:3d:eb,giftwizard,3,-86,90:6c:ac:a0:3d:eb,Guest,3,-89
@@ -28,7 +28,7 @@
 12/05/17 11:41 AM,model=SM-G950F_device=dreamlte,35.21017541181782,32.10369861480585,710.74852344698893,24:79:2a:2b:07:bc,Ariel_University,36,-65,34:8f:27:20:89:b8,Ariel_University,6,-72,1c:b9:c4:15:34:b8,Ariel_University,6,-89
 12/05/17 11:41 AM,model=SM-G950F_device=dreamlte,35.20925997377992,32.104183360097366,686.40315611734871,1c:b9:c4:15:23:58,Ariel_University,6,-85
 12/05/17 11:41 AM,model=SM-G950F_device=dreamlte,NaN,NaN,NaN1,90:6c:ac:a0:3d:eb,Guest,3,-76
-12/05/17 11:43 AM,model=SM-G950F_device=dreamlte,35.21053100682987,32.104929668928776,686.02,1c:b9:c4:16:05:38,Ariel_University,11,-86,b2:6c:ac:9f:fb:1f,iagree,1,-86
+12/05/17 11:43 AM,model=SM-G950F_device=dreamlte,35.209729165824136,32.10405258155952,685.53439537454372,1c:b9:c4:16:05:38,Ariel_University,11,-86,b2:6c:ac:9f:fb:1f,iagree,1,-86
 12/05/17 11:43 AM,model=SM-G950F_device=dreamlte,NaN,NaN,NaN1,1c:b9:c4:95:23:57, ,36,-89
 12/05/17 11:43 AM,model=SM-G950F_device=dreamlte,35.20948832646216,32.10433962507227,686.85982666088743,90:6c:ac:9f:f1:c5,CliClap,2,-81,90:6c:ac:a0:3d:eb,Guest,3,-81,34:8f:27:20:89:bc,Ariel_University,44,-91
 12/05/17 11:43 AM,model=SM-G950F_device=dreamlte,NaN,NaN,NaN1,34:8f:27:a0:89:b7, ,44,-89

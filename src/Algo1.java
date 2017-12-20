@@ -18,11 +18,12 @@ public class Algo1 {
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			for (int i = 0; i < countWifi; i++) {
-				this.DB.add(new WiFi(sRow[1], sRow[7+(4*i)], sRow[6+(4*i)], sRow[8+(4*i)], sRow[3], sRow[2], sRow[4], sRow[9+(4*i)], sRow[0]));
+				this.DB.add(new WiFi(sRow[1], sRow[7+(4*(i))], sRow[6+(4*(i))], sRow[8+(4*(i))], sRow[3], sRow[2], sRow[4], sRow[9+(4*(i))], sRow[0]));
 			}
 			nextRow = readDB.readCsvLine();
 		}
 		sortByMac();
+		System.out.println(this.DB.size());
 		readDB.close();
 	}
 
