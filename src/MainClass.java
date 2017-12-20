@@ -129,7 +129,7 @@ public class MainClass {
 //		System.out.println("--- Algorithm 1 finished ---");
 		
 		System.out.println("--- Algorithm 2 ---");
-		Algo2 algo2 = new Algo2("input files\\Algo2\\DB BOAZ.csv", "input files\\Algo2\\noGPS BOAZ.csv", 5, "output files\\result of Algorithm 2.csv");
+		Algo2 algo2 = new Algo2("input files\\Algo2\\DB BOAZ.csv", "input files\\Algo2\\noGPS BOAZ.csv", 4, "output files\\result of Algorithm 2.csv");
 		algo2.writeCsv();
 		System.out.println("--- Algorithm 2 finished ---");
 	}

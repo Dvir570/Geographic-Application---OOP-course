@@ -11,7 +11,7 @@ public class Algo2 {
 	private ArrayList<AvgSamplePoint> avgPoints;
 	private String pathOut;
 	
-	public Algo2(String pathDB, String pathMiss, int numOfWifis, String pathOut) {
+	public Algo2(String pathDB, String pathMiss, int numOfDatas, String pathOut) {
 		this.pathOut = pathOut;
 		this.res = new HashSet<Row>();
 		this.avgPoints = new ArrayList<AvgSamplePoint>();
@@ -82,7 +82,7 @@ public class Algo2 {
 				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
 			}
 			//if(!datas.isEmpty()) //with NAN or without?
-				avgPoints.add(new AvgSamplePoint(datas, 3, MISS.get(i).getRow()));
+				avgPoints.add(new AvgSamplePoint(datas, numOfDatas, MISS.get(i).getRow()));
 			res.clear();
 		}
 		System.out.println("avgpoints size: "+avgPoints.size());
