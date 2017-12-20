@@ -5,18 +5,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class IOcsv {
+public class IOfiles {
 	private File file;
 	private FileReader fr;
 	private BufferedReader br;
 	private FileWriter fw;
 	private PrintWriter pw;
 
-	public IOcsv(String FilePath) {
+	public IOfiles(String FilePath) {
 		this.file = new File(FilePath);
 	}
 
-	public String readCsvLine() {
+	public String readLine() {
 		try {
 			if (fr == null || br == null) {
 				fr = new FileReader(file.getPath());
@@ -32,7 +32,7 @@ public class IOcsv {
 		return null;
 	}
 
-	public void writeCsvLine(String line) {
+	public void writeLine(String line) {
 		if (line == null)
 			return;
 

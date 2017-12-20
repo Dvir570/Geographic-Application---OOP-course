@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * present part of line in the DB(CSVS) for algo2 to calculate the value pi 
@@ -13,34 +14,36 @@ public class Data {
 	private static final int NO_SIGNAL = -120;
 	private static final int NORM = 10000;
 
-	private ArrayList<WiFi> wifis;
+	private HashMap<String, WiFi> wifis;
 	private double pi = 1;
 
-	public Data(ArrayList<WiFi> wifis, ArrayList<WiFi> input) {
+	public Data(HashMap<String, WiFi> wifis, ArrayList<WiFi> input) {
 		this.wifis = wifis;
-		int[] diff = new int[Math.min(input.size(), wifis.size())];
-		double[] w = new double[Math.min(input.size(), wifis.size())];
-		for (int i = 0; i < Math.min(input.size(), wifis.size()); i++) {
-			if (wifis.get(i).getSignal() == null || Double.parseDouble(wifis.get(i).getSignal()) < (-120)) {
-				wifis.get(i).setSignal(NO_SIGNAL + "");
-				diff[i] = DIFF_NO_SIG;
-				w[i] = NORM
-						/ (Math.pow(diff[i], SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER));
-				pi *= w[i];
-				continue;
+		ArrayList<Integer> diff = new ArrayList<Integer>();
+		ArrayList<Double> w = new ArrayList<Double>();
+		for(int i = 0; i<input.size();i++) {
+			WiFi wifi = wifis.get(input.get(i).getMac());
+			if(wifi!=null) {
+				if (wifi.getSignal().equals("") || Double.parseDouble(wifi.getSignal()) < (-120)) {
+					wifi.setSignal(NO_SIGNAL + "");
+					diff.add(DIFF_NO_SIG);
+					w.add(NORM / (Math.pow(diff.get(diff.size()-1), SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER)));
+					this.pi *= w.get(w.size()-1);
+					continue;
+				}
+				int dTemp = Math.abs((int)Double.parseDouble(wifi.getSignal()) - (int)Double.parseDouble(input.get(i).getSignal()));
+				dTemp = dTemp < MIN_DIFF ? MIN_DIFF : dTemp;
+				diff.add(dTemp);
+				w.add(NORM / (Math.pow(diff.get(diff.size()-1), SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER)));
+				pi *= w.get(w.size()-1);
 			}
-			diff[i] = Math.abs((int)Double.parseDouble(wifis.get(i).getSignal()) - (int)Double.parseDouble(input.get(i).getSignal()));
-			diff[i] = diff[i] < MIN_DIFF ? MIN_DIFF : diff[i];
-			w[i] = NORM / (Math.pow(diff[i], SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER));
-			pi *= w[i];
 		}
-
 	}
 
 	public double getPi() {
 		return pi;
 	}
 	public ArrayList<WiFi> getWifis() {
-		return wifis;
+		return new ArrayList<WiFi>(this.wifis.values());
 	}
 }

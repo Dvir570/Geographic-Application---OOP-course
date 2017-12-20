@@ -15,13 +15,12 @@ public class Algo2 {
 		this.pathOut = pathOut;
 		this.res = new HashSet<Row>();
 		this.avgPoints = new ArrayList<AvgSamplePoint>();
-		IOcsv readDB = new IOcsv(pathDB);
+		IOfiles readDB = new IOfiles(pathDB);
 		this.DB = new HashMap<String, ArrayList<Row>>();
-		String headersFile = readDB.readCsvLine();
+		String headersFile = readDB.readLine();
 		String[] sRow;
-		String nextRow = readDB.readCsvLine();
+		String nextRow = readDB.readLine();
 		while (!(nextRow!=null && nextRow.equals(""))) {
-			System.out.println(nextRow);
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			Row r = new Row();
@@ -44,16 +43,15 @@ public class Algo2 {
 					DB.put(r.getWiFi(i).getMac(), ar);
 				}
 			}
-			nextRow = readDB.readCsvLine();
+			nextRow = readDB.readLine();
 		}
 		readDB.close();
 		
 		//reading pathMiss file
-		IOcsv readMISS = new IOcsv(pathMiss);
+		IOfiles readMISS = new IOfiles(pathMiss);
 		this.MISS = new ArrayList<Row>();
-		nextRow = readMISS.readCsvLine();
+		nextRow = readMISS.readLine();
 		while (nextRow != null) {
-			System.out.println(nextRow);
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			Row r = new Row();
@@ -63,7 +61,7 @@ public class Algo2 {
 				r.add(w);
 			}
 			this.MISS.add(r);
-			nextRow = readMISS.readCsvLine();
+			nextRow = readMISS.readLine();
 		}
 		readMISS.close();
 		
@@ -77,21 +75,24 @@ public class Algo2 {
 			}
 			temp = new ArrayList<Row>();
 			temp.addAll(res);
+			HashMap<String, WiFi> row = new HashMap<String, WiFi>();
 			datas=new ArrayList<Data>();
 			for(int k = 0;k<temp.size();k++) {
-				datas.add(new Data(temp.get(k).getRow(),MISS.get(i).getRow()));
+				for(int l = 0; l<temp.get(k).size();l++)
+					row.put(temp.get(k).getWiFi(l).getMac(), temp.get(k).getWiFi(l));
+				datas.add(new Data(row,MISS.get(i).getRow()));
 			}
 			//if(!datas.isEmpty()) //with NAN or without?
 				avgPoints.add(new AvgSamplePoint(datas, numOfDatas, MISS.get(i).getRow()));
 			res.clear();
 		}
-		System.out.println("avgpoints size: "+avgPoints.size());
+		System.out.println("the count of avgPoints is: "+avgPoints.size());
 	}
 	
 	public void writeCsv() {
-		IOcsv writeFinalAlgo2 = new IOcsv(pathOut);
+		IOfiles writeFinalAlgo2 = new IOfiles(pathOut);
 		for(int i =0;i<avgPoints.size();i++) {
-			writeFinalAlgo2.writeCsvLine(avgPoints.get(i).toString());
+			writeFinalAlgo2.writeLine(avgPoints.get(i).toString());
 		}
 		writeFinalAlgo2.close();
 	}

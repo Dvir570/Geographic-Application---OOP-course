@@ -53,7 +53,7 @@ public class AvgSamplePoint {
 	public String toString() {
 		String s="";
 		WiFi w = input.get(0);
-		s+= w.getTime()+","+w.getModel()+","+avgLat+","+avgLon+","+avgAlt+input.size();
+		s+= w.getTime()+","+w.getModel()+","+avgLon+","+avgLat+","+avgAlt+input.size();
 		for(int i=0;i<input.size();i++) {
 			s+=","+input.get(i).getMac()+","+input.get(i).getSSID()+","+input.get(i).getFreq()+","+input.get(i).getSignal();
 		}

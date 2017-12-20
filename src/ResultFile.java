@@ -12,16 +12,16 @@ import java.util.Comparator;
 public class ResultFile {
 
 	static ArrayList<Row> result = new ArrayList<Row>();
-	IOcsv writeResultFile;
+	IOfiles writeResultFile;
 	/**
 	 * @param resultFilePath
 	 *            path for file result
 	 */
 	public ResultFile(String resultFilePath) {
-		writeResultFile = new IOcsv(resultFilePath);
+		writeResultFile = new IOfiles(resultFilePath);
 
 		// print headers:
-		writeResultFile.writeCsvLine("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
+		writeResultFile.writeLine("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
 				+ "SSID2,MAC2,Frequncy2,Signal2," + "SSID3,MAC3,Frequncy3,Signal3," + "SSID4,MAC4,Frequncy4,Signal4,"
 				+ "SSID5,MAC5,Frequncy5,Signal5," + "SSID6,MAC6,Frequncy6,Signal6," + "SSID7,MAC7,Frequncy7,Signal7,"
 				+ "SSID8,MAC8,Frequncy8,Signal8," + "SSID9,MAC9,Frequncy9,Signal9,"
@@ -60,7 +60,7 @@ public class ResultFile {
 																											// at
 																											// the
 																											// end
-			this.writeResultFile.writeCsvLine(str);
+			this.writeResultFile.writeLine(str);
 
 		}
 	}
