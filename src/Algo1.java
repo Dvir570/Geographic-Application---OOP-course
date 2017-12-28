@@ -6,21 +6,21 @@ public class Algo1 {
 	private ArrayList<AvgMacPoint> avgMacPoints;
 	private ArrayList<WiFi> DB;
 
-	public Algo1(String pathIn, String pathOut) {
+	public Algo1(String pathDB, String pathOut) {
 
 		this.fileOut = new File(pathOut);
-		IOcsv readDB = new IOcsv(pathIn);
+		IOfiles readDB = new IOfiles(pathDB);
 		this.DB = new ArrayList<WiFi>();
-		String headersFile = readDB.readCsvLine();
+		String headersFile = readDB.readLine();
 		String[] sRow;
-		String nextRow = readDB.readCsvLine();
+		String nextRow = readDB.readLine();
 		while (nextRow != null && !nextRow.equals("")) {
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			for (int i = 0; i < countWifi; i++) {
 				this.DB.add(new WiFi(sRow[1], sRow[7+(4*(i))], sRow[6+(4*(i))], sRow[8+(4*(i))], sRow[3], sRow[2], sRow[4], sRow[9+(4*(i))], sRow[0]));
 			}
-			nextRow = readDB.readCsvLine();
+			nextRow = readDB.readLine();
 		}
 		sortByMac();
 		System.out.println(this.DB.size());
@@ -55,9 +55,9 @@ public class Algo1 {
 	}
 	
 	public void writeCsv() {
-		IOcsv writeCsvPoints = new IOcsv(this.fileOut.getPath());
+		IOfiles writeCsvPoints = new IOfiles(this.fileOut.getPath());
 		for (int i=0;i<avgMacPoints.size();i++) {
-			writeCsvPoints.writeCsvLine(i+","+avgMacPoints.get(i).toString());
+			writeCsvPoints.writeLine(i+","+avgMacPoints.get(i).toString());
 		}
 		writeCsvPoints.close();
 	}

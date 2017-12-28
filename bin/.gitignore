@@ -18,4 +18,13 @@
 /RowTest.class
 /WiFi.class
 /WiFiTest.class
+<<<<<<< HEAD
 /GUI/
+=======
+/IOfiles.class
+/IOfilesTest.class
+/DataTest.class
+/AvgSamplePointTest.class
+/AvgMacPointTest.class
+/Algo2Test.class
+>>>>>>> f7d3d8f8c3fa0101146ce535d3a671c121a1080e
