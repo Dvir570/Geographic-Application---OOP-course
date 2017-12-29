@@ -9,7 +9,7 @@
 		<title>GeoApp</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" type='text/css' href="assets/css/main.css" />
 	</head>
 	<body>
 
@@ -24,7 +24,12 @@
 					<h1>Upload WiggleWifi.csv File</h1>
 					<p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod<br />sed arcu cras consecuat lorem ipsum dolor sit amet.</p>
 					<ul class="actions">
-						<li><input name="myFile" accept=".csv" type="file"></li>
+						<li><form id="formWiggleWifiCSV" enctype="multipart/form-data" method="post" action="#">
+								<input id="fileUpload" name="myfile" type="text", accept=".csv" />
+								<label>file path</lable>
+								<button type="submit" value="Upload file" id="uploadWiggleWifiCSV" />
+							</form>
+						</li>
 					</ul>
 				</div>
 			</section>

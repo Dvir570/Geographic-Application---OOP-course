@@ -14,6 +14,25 @@
 		xsmall:	'(max-width: 480px)'
 	});
 
+	$(document).ready(function () {
+
+	$("#uploadWiggleWifiCSV").click(function() {
+				var input = $("input#fileUpload").val();
+				$.ajax(
+					{
+						"url": encodeURI("/wigglewifi?" +input)
+
+					}
+				).then(
+					function(output) {
+						//$("div#output").html("")
+						$("div#output").append("<div>The wiggle wifi file has been uploaded</div>")
+					}
+				);
+				return false
+			})
+
+	});
 	$(function() {
 
 		var	$window = $(window),
