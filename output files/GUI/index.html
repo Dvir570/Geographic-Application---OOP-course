@@ -24,7 +24,12 @@
 					<h1>Upload WiggleWifi.csv File</h1>
 					<p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod<br />sed arcu cras consecuat lorem ipsum dolor sit amet.</p>
 					<ul class="actions">
-						<li><input name="myFile" accept=".csv" type="file"></li>
+						<li><form id="formWiggleWifiCSV" enctype="multipart/form-data" method="post" action="#">
+								<input id="fileUpload" name="myfile" type="text", accept=".csv" />
+								<label>file path</lable>
+								<button type="submit" value="Upload file" id="uploadWiggleWifiCSV" />
+							</form>
+						</li>
 					</ul>
 				</div>
 			</section>

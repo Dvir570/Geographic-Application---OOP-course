@@ -5,10 +5,12 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
-
+import java.util.ArrayList;
+import java.io.File;
 import com.sun.net.httpserver.HttpServer;
 
-import src.IOfiles;
+import src.*;
+
 
 /**
  * A web-server that reverses strings. Uses com.sun.net.httpserver package.
@@ -18,51 +20,35 @@ public class Server {
     public static void main(String[] args) throws Exception {
     	int port = 8001;
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
-//        server.createContext("/home", request -> {
-//        	String fileName = request.getRequestURI().getPath().replaceAll("/file/", "");
-//        	String output = "";
-//        	//IOfiles homeCSS = new IOfiles("output files//GUI//assets//css//main.css");
-//        	//String line = homeCSS.readLine();
-////        	while(line!=null) {
-////        		output+=line;
-////        		line=homeCSS.readLine();
-////        	}
-////        	homeCSS.close();
-//        	
-//        	IOfiles homeHTML = new IOfiles("output files//GUI//index.html");
-//        	String line = homeHTML.readLine();
-//        	while(line!=null) {
-//        		output+=line;
-//        		line=homeHTML.readLine();
-//        	}
-//        	homeHTML.close();
-//        	//String output = new StringBuilder(input).reverse().toString(); 
-//        	System.out.println("   The output is: "+output);
-//        	String contentType = (
-//
-//            		fileName.endsWith(".html")? "text/html":
-//
-//               		fileName.endsWith(".js")? "text/javascript":
-//
-//                   	fileName.endsWith(".css")? "text/css":
-//
-//                   	"text/plain"
-//
-//            		);
-//        	request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
-//        	request.getResponseHeaders().set("Content-Type",contentType );
-//        	
-//            request.sendResponseHeaders(200 /* OK */, 0);
-//            try (OutputStream os = request.getResponseBody()) {
-//            	os.write(output.getBytes());
-//            }
-//        });
-//        
-        server.createContext("/file", request -> {
+        //select a folder 
+            server.createContext("/wigglewifi", request -> {
+            	String input = request.getRequestURI().getQuery();
+            	System.out.println("The input is: "+input);
+        		//CsvFile.readCSV(input);
+            	ArrayList<File> csvFiles = new ArrayList<File>();
+            	csvFiles.add(new File(input));
+            	Row allWifis = new Row(csvFiles);
+            	ResultFile result = new ResultFile("output files\\result.csv");
+            	result.insertRows(allWifis.getRow());
+        		String output="The csv file has created successfully in your folder";
+            	System.out.println("   The output is: "+output);
+            	
+
+            	request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+            	request.getResponseHeaders().set("Content-Type", "text/plain");
+                request.sendResponseHeaders(200 /* OK */, 0);
+                try (OutputStream os = request.getResponseBody()) {
+                	os.write(output.getBytes());
+                } catch (Exception ex) {
+                	System.out.println("Error while sending response to client");
+                	ex.printStackTrace();
+                }
+            });
+        server.createContext("/home", request -> {
 			String output = null;
 
 			try {
-				String fileName = request.getRequestURI().getPath().replaceAll("/file/", "");
+				String fileName = request.getRequestURI().getPath().replaceAll("/home/", "");
 				System.out.println("Got new file-request: "+fileName);
 				Path path = Paths.get("output files","GUI", fileName);
 				if (Files.exists(path)) {
@@ -100,7 +86,7 @@ public class Server {
                 	
         	
         System.out.println("WebServer is up. "+
-        		"To enter the web, go to http://127.0.0.1:"+port+"/file/index.html");
+        		"To enter the web, go to http://127.0.0.1:"+port+"/home/index.html");
         server.start();
 		
 	}

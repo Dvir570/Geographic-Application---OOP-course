@@ -1,5 +1,6 @@
 package src;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,15 +15,18 @@ public class ResultFile {
 
 	static ArrayList<Row> result = new ArrayList<Row>();
 	IOfiles writeResultFile;
+	private File fileExist;
 	/**
 	 * @param resultFilePath
 	 *            path for file result
 	 */
 	public ResultFile(String resultFilePath) {
 		writeResultFile = new IOfiles(resultFilePath);
-
+		this.fileExist = new File(resultFilePath);
+		
 		// print headers:
-		writeResultFile.writeLine("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
+		if(!this.fileExist.exists())
+			writeResultFile.writeLine("Time,ID,Lon,Lat,Alt,#WiFi networks," + "SSID1,MAC1,Frequncy1,Signal1,"
 				+ "SSID2,MAC2,Frequncy2,Signal2," + "SSID3,MAC3,Frequncy3,Signal3," + "SSID4,MAC4,Frequncy4,Signal4,"
 				+ "SSID5,MAC5,Frequncy5,Signal5," + "SSID6,MAC6,Frequncy6,Signal6," + "SSID7,MAC7,Frequncy7,Signal7,"
 				+ "SSID8,MAC8,Frequncy8,Signal8," + "SSID9,MAC9,Frequncy9,Signal9,"
@@ -33,8 +37,7 @@ public class ResultFile {
 	/**
 	 * insert new rows to the result.csv file.
 	 * 
-	 * @param wifis
-	 *            - ArrayList of all WiFi objects you have to insert.
+	 * @param wifis - ArrayList of all WiFi objects you have to insert.
 	 */
 	public void insertRows(ArrayList<WiFi> wifis) {
 		rowsGroupByTimeModel(wifis);
@@ -55,14 +58,9 @@ public class ResultFile {
 			}
 			wifi = row.getWiFi(row.size() - 1); // print without "," at
 												// the end
-			str += (wifi.getSSID() + "," + wifi.getMac() + "," + wifi.getFreq() + "," + wifi.getSignal()); // print
-																											// without
-																											// ","
-																											// at
-																											// the
+			str += (wifi.getSSID() + "," + wifi.getMac() + "," + wifi.getFreq() + "," + wifi.getSignal()); // print																							// the
 																											// end
-			this.writeResultFile.writeLine(str);
-
+			this.writeResultFile.writeLine(str, this.fileExist.exists());
 		}
 	}
 

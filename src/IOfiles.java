@@ -50,6 +50,24 @@ public class IOfiles {
 			System.exit(2);
 		}
 	}
+	
+	public void writeLine(String line, boolean append) {
+		if (line == null)
+			return;
+
+		try {
+			if (pw == null || fw == null) {
+				this.fw = new FileWriter(file.getPath(), append);
+				this.pw = new PrintWriter(fw);
+			}
+
+			pw.println(line);
+
+		} catch (IOException ex) {
+			System.out.print("Error writing file\n" + ex);
+			System.exit(2);
+		}
+	}
 
 	public void close() {
 		try {
