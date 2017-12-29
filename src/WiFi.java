@@ -1,3 +1,4 @@
+package src;
 
 /**
  * present a wifi we found.

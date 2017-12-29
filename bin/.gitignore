@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Algo1.class
 /Algo2.class
 /AvgMacPoint.class
@@ -18,3 +19,35 @@
 /RowTest.class
 /WiFi.class
 /WiFiTest.class
+||||||| merged common ancestors
+/Algo1.class
+/Algo2.class
+/AvgMacPoint.class
+/AvgSamplePoint$1.class
+/AvgSamplePoint.class
+/Data.class
+/DisplayMap$1.class
+/DisplayMap.class
+/DisplayMapTest.class
+/IOcsv.class
+/KML.class
+/KMLTest.class
+/MainClass.class
+/ResultFile$1.class
+/ResultFile.class
+/ResultFileTest.class
+/Row.class
+/RowTest.class
+/WiFi.class
+/WiFiTest.class
+/IOfiles.class
+/IOfilesTest.class
+/DataTest.class
+/AvgSamplePointTest.class
+/AvgMacPointTest.class
+/Algo2Test.class
+=======
+/src/
+/GUI/
+/output files/
+>>>>>>> 00c5c55e5bc23e63866e4210342a69d5974f5ebd

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path=""/>
-	<classpathentry kind="output" path=""/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/http-20070405.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jsr173_api-1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
