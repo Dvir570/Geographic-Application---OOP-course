@@ -15,25 +15,24 @@
 	});
 	$(document).ready(function () {
 
-	$("#UpdateDBcsv").click(function() {
-				var input = $("input#DBfileUpload").val()
-				$.ajax(
-					{
-						"url": encodeURI("/DBupdate?" +input)
+	$("#UpdateWiggleWifiCsv").click(function() {
+			var input = $("input#WiggleWifiFileUpload").val()
+			$.ajax(
+				{
+					"url": encodeURI("/DBupdate?" +input)
 
-					}
-				).then(
-					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
-						$("input#DBfileUpload").val("")
-					}
-				);
-				return false
-			})
+				}
+			).then(
+				function(output) {
+					$("div#output").empty()
+					$("div#output").append("<div>"+output+"</div>")
+					$("input#WiggleWifiFileUpload").val("")
+				}
+			);
+			return false
+		})
 
 	});
-
 	$(function() {
 
 		var	$window = $(window),

@@ -13,24 +13,42 @@
 		small:	'(max-width: 736px)',
 		xsmall:	'(max-width: 480px)'
 	});
-
 	$(document).ready(function () {
 
-	$("#uploadWiggleWifiCSV").click(function() {
-				var input = $("input#fileUpload").val();
+	$("#UpdateDBcsv").click(function() {
+				var input = $("input#DBfileUpload").val()
 				$.ajax(
 					{
-						"url": encodeURI("/wigglewifi?" +input)
+						"url": encodeURI("/DBupdate?" +input)
 
 					}
 				).then(
 					function(output) {
-						//$("div#output").html("")
-						$("div#output").append("<div>The wiggle wifi file has been uploaded</div>")
+						$("div#output").empty()
+						$("div#output").append("<div>"+output+"</div>")
+						$("input#DBfileUpload").val("")
 					}
 				);
 				return false
 			})
+
+	});
+	$("#UpdateWiggleWifiCsv").click(function() {
+			var input = $("input#WiggleWifiFileUpload").val()
+			$.ajax(
+				{
+					"url": encodeURI("/DBupdate?" +input)
+
+				}
+			).then(
+				function(output) {
+					$("div#output").empty()
+					$("div#output").append("<div>"+output+"</div>")
+					$("input#WiggleWifiFileUpload").val("")
+				}
+			);
+			return false
+		})
 
 	});
 	$(function() {

@@ -2558,7 +2558,9 @@
 		}
 
 /* Flex */
-
+	.validation{
+		color: red;
+	}
 	.flex {
 		display: -ms-flexbox;
 		-ms-flex-wrap: nowrap;

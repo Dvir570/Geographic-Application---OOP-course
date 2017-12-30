@@ -51,3 +51,8 @@
 /GUI/
 /output files/
 >>>>>>> 00c5c55e5bc23e63866e4210342a69d5974f5ebd
+/.gitignore
+/doc/
+/docs/
+/input files/
+/jar files/
