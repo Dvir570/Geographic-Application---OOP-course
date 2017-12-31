@@ -21,7 +21,7 @@ public class Algo2 {
 		String headersFile = readDB.readLine();
 		String[] sRow;
 		String nextRow = readDB.readLine();
-		while (!(nextRow!=null && nextRow.equals(""))) {
+		while (!(nextRow!=null && nextRow.equals(""))) { //****
 			sRow = nextRow.split(",");
 			int countWifi = Integer.parseInt(sRow[5]);
 			Row r = new Row();

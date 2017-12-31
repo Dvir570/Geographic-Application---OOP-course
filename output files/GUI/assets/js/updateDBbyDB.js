@@ -44,6 +44,19 @@
 				);
 				return false
 			})
+			$("#DBsave").click(function() {
+				$.ajax(
+					{
+						"url": encodeURI("/DBsave?")
+					}
+				).then(
+					function(output) {
+						$("div#output").empty()
+						$("div#output").append("<div>"+output+"</div>")
+					}
+				);
+				return false
+			})
 	});
 	
 

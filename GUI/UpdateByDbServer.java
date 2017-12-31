@@ -7,10 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import com.sun.net.httpserver.HttpExchange;
 
 import src.IOfiles;
+import src.Row;
+import src.WiFi;
 
 public class UpdateByDbServer {
 	public static void dbUpdate(HttpExchange request) throws IOException {
@@ -33,19 +36,25 @@ public class UpdateByDbServer {
 			return;
 		}
 		System.out.println("The input is: " + input);
-		IOfiles insertToDB = new IOfiles("output files\\result.csv");
 		IOfiles readFromUserDB = new IOfiles(csvF.getPath());
-		File DB = new File("output files\\result.csv");
-		if (DB.exists())
-			readFromUserDB.readLine(); // read headers
-		String newLine = readFromUserDB.readLine();
-		while (newLine != null) {
-			insertToDB.writeLine(newLine, DB.exists());
-			newLine = readFromUserDB.readLine();
+
+		readFromUserDB.readLine();
+		String nextRow = readFromUserDB.readLine();
+		String[] sRow;
+		while (nextRow != null && !nextRow.equals("")) {
+			sRow = nextRow.split(",");
+			int countWifi = Integer.parseInt(sRow[5]);
+			Row r = new Row();
+			for (int i = 0; i < countWifi; i++) {
+				WiFi w = new WiFi(sRow[1], sRow[7 + (4 * i)], sRow[6 + (4 * i)], sRow[8 + (4 * i)], sRow[3], sRow[2],
+						sRow[4], sRow[9 + (4 * i)], sRow[0]);
+				r.add(w);
+			}
+			Server.dataBase.add(r);
+			nextRow = readFromUserDB.readLine();
 		}
-		insertToDB.close();
 		readFromUserDB.close();
-		output = "The csv file has updated successfully in your DB";
+		output = "The csv file has been added successfully in server";
 		System.out.println("   The output is: " + output);
 
 		request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
@@ -58,6 +67,7 @@ public class UpdateByDbServer {
 			ex.printStackTrace();
 		}
 	}
+
 	public static void home(HttpExchange request) throws IOException {
 		String output = null;
 

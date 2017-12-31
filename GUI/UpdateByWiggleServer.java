@@ -58,9 +58,11 @@ class UpdateByWiggleServer {
 			csvFiles.add(csvF);
 		Row allWifis = new Row(csvFiles);
 		ResultFile result = new ResultFile("output files\\result.csv");
-		result.insertRows(allWifis.getRow());
-		result.close();
-		output = "The csv file has updated successfully in your DB";
+		//result.insertRows(allWifis.getRow());
+		result.rowsGroupByTimeModel(allWifis.getRow());
+		result.top10fromAnyGroup();
+		Server.dataBase.addAll(ResultFile.result);
+		output = "The csv file has been added successfully in server";
 		System.out.println("   The output is: " + output);
 
 		request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
