@@ -31,8 +31,21 @@
 				);
 				return false
 			})
-
+			$("#DBclear").click(function() {
+				$.ajax(
+					{
+						"url": encodeURI("/DBclear?")
+					}
+				).then(
+					function(output) {
+						$("div#output").empty()
+						$("div#output").append("<div>"+output+"</div>")
+					}
+				);
+				return false
+			})
 	});
+	
 
 	$(function() {
 

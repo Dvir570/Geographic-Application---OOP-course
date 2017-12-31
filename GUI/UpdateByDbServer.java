@@ -45,11 +45,6 @@ public class UpdateByDbServer {
 		}
 		insertToDB.close();
 		readFromUserDB.close();
-		// ArrayList<File> csvFiles = new ArrayList<File>();
-		// csvFiles.add(csvF);
-		// Row allWifis = new Row(csvFiles);
-		// ResultFile result = new ResultFile();
-		// result.insertRows(allWifis.getRow());
 		output = "The csv file has updated successfully in your DB";
 		System.out.println("   The output is: " + output);
 

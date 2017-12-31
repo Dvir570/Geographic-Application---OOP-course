@@ -44,7 +44,6 @@ public class IOfiles {
 			}
 
 			pw.println(line);
-
 		} catch (IOException ex) {
 			System.out.print("Error writing file\n" + ex);
 			System.exit(2);
@@ -68,7 +67,23 @@ public class IOfiles {
 			System.exit(2);
 		}
 	}
+	public void write(String line, boolean append) {
+		if (line == null)
+			return;
 
+		try {
+			if (pw == null || fw == null) {
+				this.fw = new FileWriter(file.getPath(), append);
+				this.pw = new PrintWriter(fw);
+			}
+
+			pw.print(line);
+
+		} catch (IOException ex) {
+			System.out.print("Error writing file\n" + ex);
+			System.exit(2);
+		}
+	}
 	public void close() {
 		try {
 			if (this.fr != null) {

@@ -59,7 +59,7 @@ public class ResultFile {
 			wifi = row.getWiFi(row.size() - 1); // print without "," at
 												// the end
 			str += (wifi.getSSID() + "," + wifi.getMac() + "," + wifi.getFreq() + "," + wifi.getSignal()); // print																							// the
-																											// end
+			System.out.println(str);																								// end
 			this.writeResultFile.writeLine(str, this.fileExist.exists());
 		}
 	}
