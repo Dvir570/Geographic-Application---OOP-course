@@ -10,7 +10,7 @@ public class DisplayMapTest {
 	@Test
 	public void testDisplayMap() {
 		DisplayMap dm = new DisplayMap();
-		assertTrue(dm.toDisplay!=null);
+		assertTrue(dm.getToDisplay()!=null);
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class DisplayMapTest {
 		ResultFile.result.add(fictiveR4anthercor);
 		dm.displayByPlace(lon, lat, alt, 3);
 		
-		assertTrue(dm.toDisplay.size()==3);
+		assertTrue(dm.getToDisplay().size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);
@@ -63,7 +63,7 @@ public class DisplayMapTest {
 		ResultFile.result.add(fictiveR4anthercor);
 		dm.displayByTime("2017-10-26 14:07:34");
 		
-		assertTrue(dm.toDisplay.size()==3);
+		assertTrue(dm.getToDisplay().size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);
@@ -90,7 +90,7 @@ public class DisplayMapTest {
 		ResultFile.result.add(fictiveR4anthercor);
 		dm.displayByModel("SM-G920F");
 		
-		assertTrue(dm.toDisplay.size()==3);
+		assertTrue(dm.getToDisplay().size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);

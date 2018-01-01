@@ -14,8 +14,8 @@ public class RowTest {
 	@Test
 	public void testRow() {
 		Row r = new Row();
-		assertTrue(r.getRow() != null);
-		assertTrue(r.getRow().size() == 0);
+		assertTrue(r.getWifis() != null);
+		assertTrue(r.getWifis().size() == 0);
 	}
 
 	@Test
@@ -34,7 +34,7 @@ public class RowTest {
 			}
 			br.close();
 			fr.close();
-			assertTrue(counter == r.getRow().size());
+			assertTrue(counter == r.getWifis().size());
 		} catch (IOException ex) {
 			System.out.print("Error reading file\n" + ex);
 			System.exit(2);
@@ -69,11 +69,11 @@ public class RowTest {
 		Row r = new Row();
 		r.setRow(toDisplay);
 
-		assertTrue(r.getRow().size() == toDisplay.size());
+		assertTrue(r.getWifis().size() == toDisplay.size());
 
-		int size = r.getRow().size();
+		int size = r.getWifis().size();
 		r.setRow(null);
-		assertTrue(r.getRow().size() == size);
+		assertTrue(r.getWifis().size() == size);
 	}
 
 	@Test
@@ -104,22 +104,22 @@ public class RowTest {
 		Row r = new Row();
 		r.setRow(toDisplay);
 
-		assertTrue(r.getRow().size() == toDisplay.size());
+		assertTrue(r.getWifis().size() == toDisplay.size());
 	}
 
 	@Test
 	public void testAdd() {
 		Row r = new Row();
 
-		int size = r.getRow().size();
+		int size = r.getWifis().size();
 		r.add(new WiFi(
 				"24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-28 14:07:34,11,-85,5.10432894787016,35.20499025104117,688.1184746940897,16,BT",
 				"SM-G920F"));
-		assertTrue(r.getRow().size() == size + 1);
+		assertTrue(r.getWifis().size() == size + 1);
 
-		size = r.getRow().size();
+		size = r.getWifis().size();
 		r.add(null);
-		assertTrue(r.getRow().size() == size);
+		assertTrue(r.getWifis().size() == size);
 
 	}
 

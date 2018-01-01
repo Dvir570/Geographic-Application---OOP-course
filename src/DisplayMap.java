@@ -7,13 +7,17 @@ import java.util.Comparator;
  * Filter by option you choose and create the kml file.
  */
 public class DisplayMap {
-	ArrayList<WiFi> toDisplay;
+	private ArrayList<WiFi> toDisplay;
 
+	public DisplayMap(ArrayList<WiFi> toDisplay) {
+		this.toDisplay = toDisplay;
+	}
+	
 	public DisplayMap() {
 		this.toDisplay = new ArrayList<WiFi>();
 	}
 
-	private void SortbyMac() {
+	public void SortbyMac() {
 		if (toDisplay.size() == 0)
 			return;
 
@@ -38,7 +42,7 @@ public class DisplayMap {
 
 		toDisplay = new ArrayList<WiFi>();
 		for (int i = 0; i < ar.size(); i++) {
-			Collections.sort(ar.get(i).getRow(), new Comparator<WiFi>() { // StackOverflow://https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
+			Collections.sort(ar.get(i).getWifis(), new Comparator<WiFi>() { // StackOverflow://https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
 				@Override
 				public int compare(WiFi w1, WiFi w2) {
 					if (Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal()))
@@ -50,8 +54,6 @@ public class DisplayMap {
 			});
 			toDisplay.add(ar.get(i).getWiFi(0));
 		}
-		KML kml = new KML();
-		kml.makeKML(toDisplay);
 	}
 
 	/**
@@ -115,4 +117,8 @@ public class DisplayMap {
 		}
 		SortbyMac();
 	}
+
+	public ArrayList<WiFi> getToDisplay() {
+		return toDisplay;
+	}	
 }

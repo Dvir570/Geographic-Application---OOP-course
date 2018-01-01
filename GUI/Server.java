@@ -48,14 +48,70 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
-		server.createContext("/DBsave", request -> {
+		server.createContext("/DBsaveCSV", request -> {
 			String resPath = "output files\\result.csv";
-			ResultFile result=new ResultFile("output files\\result.csv");
+			ResultFile result = new ResultFile(resPath);
 			ResultFile.result.clear();
 			ResultFile.result.addAll(dataBase);
 			result.writeDB();
 			result.close();
-			String output = "DB saved successfully at "+ resPath;
+			String output;
+			output = "DB saved successfully as csv at "+resPath;
+			System.out.println(output);
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		});
+		server.createContext("/DBsaveKML", request -> {
+			String resPath = "output files\\result.kml";
+			ArrayList<WiFi> toKml = new ArrayList<WiFi>();
+			ArrayList<Row> temp = new ArrayList<Row>();
+			temp.addAll(dataBase);
+			for (int i = 0; i < temp.size(); i++) {
+				toKml.addAll(temp.get(i).getWifis());
+			}
+			DisplayMap dm =  new DisplayMap(toKml);
+			dm.SortbyMac();
+			KML.makeKML(dm.getToDisplay(), resPath);
+			String output = "DB saved successfully as kml at " + resPath;
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		});
+		server.createContext("/numOfRecords", request -> {
+			String output = dataBase.size()+"";
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		});
+		server.createContext("/numOfRouters", request -> {
+			ArrayList<WiFi> wifis = new ArrayList<WiFi>();
+			ArrayList<Row> temp = new ArrayList<Row>();
+			temp.addAll(dataBase);
+			for (int i = 0; i < temp.size(); i++) {
+				wifis.addAll(temp.get(i).getWifis());
+			}
+			DisplayMap dm =  new DisplayMap(wifis);
+			dm.SortbyMac();
+			String output = dm.getToDisplay().size()+"";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);

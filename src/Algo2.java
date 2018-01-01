@@ -81,10 +81,10 @@ public class Algo2 {
 			for(int k = 0;k<temp.size();k++) {
 				for(int l = 0; l<temp.get(k).size();l++)
 					row.put(temp.get(k).getWiFi(l).getMac(), temp.get(k).getWiFi(l));
-				datas.add(new Data(row,MISS.get(i).getRow()));
+				datas.add(new Data(row,MISS.get(i).getWifis()));
 			}
 			//if(!datas.isEmpty()) //with NAN or without?
-				avgPoints.add(new AvgSamplePoint(datas, numOfDatas, MISS.get(i).getRow()));
+				avgPoints.add(new AvgSamplePoint(datas, numOfDatas, MISS.get(i).getWifis()));
 			res.clear();
 		}
 		System.out.println("the count of avgPoints is: "+avgPoints.size());

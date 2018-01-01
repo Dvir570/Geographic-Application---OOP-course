@@ -54,7 +54,7 @@ public class MainClass {
 		ResultFile resultFile = new ResultFile(resultFilePath);
 
 		Row rowWithAllwifis = new Row(csvFiles);
-		resultFile.insertRows(rowWithAllwifis.getRow());
+		resultFile.insertRows(rowWithAllwifis.getWifis());
 		resultFile.close();
 		
 //		// ************************part 3**************************

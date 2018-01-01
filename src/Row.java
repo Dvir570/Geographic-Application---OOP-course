@@ -58,7 +58,7 @@ public class Row {
 	/**
 	 * @return ArrayList of WiFi object in the row
 	 */
-	public ArrayList<WiFi> getRow() {
+	public ArrayList<WiFi> getWifis() {
 		return this.row;
 	}
 

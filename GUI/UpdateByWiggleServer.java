@@ -59,7 +59,7 @@ class UpdateByWiggleServer {
 		Row allWifis = new Row(csvFiles);
 		ResultFile result = new ResultFile("output files\\result.csv");
 		//result.insertRows(allWifis.getRow());
-		result.rowsGroupByTimeModel(allWifis.getRow());
+		result.rowsGroupByTimeModel(allWifis.getWifis());
 		result.top10fromAnyGroup();
 		Server.dataBase.addAll(ResultFile.result);
 		output = "The csv file has been added successfully in server";

@@ -113,7 +113,7 @@ public class ResultFile {
 	public void top10fromAnyGroup() {
 		// top ten by signal:
 		for (int i = 0; i < this.result.size(); i++) {
-			Collections.sort(this.result.get(i).getRow(), new Comparator<WiFi>() { // StackOverflow:
+			Collections.sort(this.result.get(i).getWifis(), new Comparator<WiFi>() { // StackOverflow:
 																					// https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
 				@Override
 				public int compare(WiFi w1, WiFi w2) {
@@ -125,8 +125,8 @@ public class ResultFile {
 				}
 			});
 			if (this.result.get(i).size() > 10)
-				this.result.get(i).getRow()
-						.removeAll(this.result.get(i).getRow().subList(10, this.result.get(i).size()));
+				this.result.get(i).getWifis()
+						.removeAll(this.result.get(i).getWifis().subList(10, this.result.get(i).size()));
 		}
 	}
 

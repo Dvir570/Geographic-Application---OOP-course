@@ -14,7 +14,7 @@ public class KML {
  * creating the kml and sending it to directory
  * @param toDisplay
  */
-	public void makeKML(ArrayList<WiFi> toDisplay) {
+	public static void makeKML(ArrayList<WiFi> toDisplay,String path) {
 		Kml kml = new Kml();
 		Document doc = kml.createAndSetDocument();
 		String time;
@@ -29,7 +29,7 @@ public class KML {
 							Double.parseDouble(w.getLat()), Double.parseDouble(w.getAlt()));
 		}
 		try {
-			kml.marshal(new File("output files\\placemarks.kml"));
+			kml.marshal(new File(path));
 		} catch (IOException ex) {
 			System.out.print("Error reading file\n" + ex);
 			System.exit(2);
@@ -41,7 +41,7 @@ public class KML {
 	 * @param oldTimeFormat date time in old format yyyy\MM\dd hh:mm:ss
 	 * @return the new format yyyy\MM\dd+T+hh:mm:ss
 	 */
-	private String convertTimeFormat(String oldTimeFormat) {
+	private static String convertTimeFormat(String oldTimeFormat) {
 		String[] dateTime = oldTimeFormat.split(" ");
 		return dateTime[0] + 'T' + dateTime[1];
 	}

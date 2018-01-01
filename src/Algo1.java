@@ -52,7 +52,7 @@ public class Algo1 {
 		}
 		this.avgMacPoints = new ArrayList<AvgMacPoint>();
 		for (int i = 0; i < ar.size(); i++) {
-			avgMacPoints.add(new AvgMacPoint(ar.get(i).getRow()));
+			avgMacPoints.add(new AvgMacPoint(ar.get(i).getWifis()));
 		}
 	}
 	

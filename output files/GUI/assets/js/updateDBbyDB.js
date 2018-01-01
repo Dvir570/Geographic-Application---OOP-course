@@ -14,7 +14,21 @@
 		xsmall:	'(max-width: 480px)'
 	});
 	$(document).ready(function () {
-
+	$.ajax(
+		{"url": encodeURI("/numOfRecords?")}).then(
+			function(output) {
+				$("#numOfRecords").append(output)
+			});
+	$.ajax(
+		{"url": encodeURI("/numOfRouters?")}).then(
+			function(output) {
+				$("#numOfRouters").append(output)
+			});
+	/*$.ajax(
+		{"url": encodeURI("/filterDetails?")}).then(
+			function(output) {
+				$("#filterDetails").append(output)
+			});*/
 	$("#UpdateDBcsv").click(function() {
 				var input = $("input#DBfileUpload").val()
 				$.ajax(
@@ -44,10 +58,23 @@
 				);
 				return false
 			})
-			$("#DBsave").click(function() {
+			$("#DBsaveCSV").click(function() {
 				$.ajax(
 					{
-						"url": encodeURI("/DBsave?")
+						"url": encodeURI("/DBsaveCSV?")
+					}
+				).then(
+					function(output) {
+						$("div#output").empty()
+						$("div#output").append("<div>"+output+"</div>")
+					}
+				);
+				return false
+			})
+			$("#DBsaveKML").click(function() {
+				$.ajax(
+					{
+						"url": encodeURI("/DBsaveKML?")
 					}
 				).then(
 					function(output) {
@@ -107,5 +134,4 @@
 				});
 
 	});
-
 })(jQuery);

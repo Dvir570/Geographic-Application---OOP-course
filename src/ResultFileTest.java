@@ -82,8 +82,8 @@ public class ResultFileTest {
 		if(ResultFile.result.size()==1)
 			assertTrue(ResultFile.result.get(0).size()==10);
 		
-		for (int i=0;i<ResultFile.result.get(0).getRow().size();i++) {
-			System.out.println(ResultFile.result.get(0).getRow().get(i).getSignal());
+		for (int i=0;i<ResultFile.result.get(0).getWifis().size();i++) {
+			System.out.println(ResultFile.result.get(0).getWifis().get(i).getSignal());
 		}
 		int min = Integer.parseInt(toDisplay.get(0).getSignal());
 		for(int i = 1; i<toDisplay.size();i++)
