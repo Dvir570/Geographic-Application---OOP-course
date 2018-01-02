@@ -38,11 +38,16 @@
 					}
 				).then(
 					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
+						$("div#output").empty().append("<div>"+output+"</div>")
 						$("input#DBfileUpload").val("")
 					}
 				);
+				$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+					$("#numOfRecords").empty().append(output)
+				});
+				$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+					$("#numOfRouters").empty().append(output)
+				});
 				return false
 			})
 			$("#DBclear").click(function() {
@@ -50,12 +55,15 @@
 					{
 						"url": encodeURI("/DBclear?")
 					}
-				).then(
-					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
-					}
-				);
+				).then(function(output) {
+						$("div#output").empty().append("<div>"+output+"</div>")
+				});
+				$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+						$("#numOfRecords").empty().append(output)
+				});
+				$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+						$("#numOfRouters").empty().append(output)
+				});	
 				return false
 			})
 			$("#DBsaveCSV").click(function() {
@@ -65,8 +73,7 @@
 					}
 				).then(
 					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
+						$("div#output").empty().append("<div>"+output+"</div>")
 					}
 				);
 				return false
@@ -78,8 +85,7 @@
 					}
 				).then(
 					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
+						$("div#output").empty().append("<div>"+output+"</div>")
 					}
 				);
 				return false
