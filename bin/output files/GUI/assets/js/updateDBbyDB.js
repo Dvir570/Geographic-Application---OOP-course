@@ -14,7 +14,21 @@
 		xsmall:	'(max-width: 480px)'
 	});
 	$(document).ready(function () {
-
+	$.ajax(
+		{"url": encodeURI("/numOfRecords?")}).then(
+			function(output) {
+				$("#numOfRecords").append(output)
+			});
+	$.ajax(
+		{"url": encodeURI("/numOfRouters?")}).then(
+			function(output) {
+				$("#numOfRouters").append(output)
+			});
+	/*$.ajax(
+		{"url": encodeURI("/filterDetails?")}).then(
+			function(output) {
+				$("#filterDetails").append(output)
+			});*/
 	$("#UpdateDBcsv").click(function() {
 				var input = $("input#DBfileUpload").val()
 				$.ajax(
@@ -120,5 +134,4 @@
 				});
 
 	});
-
 })(jQuery);
