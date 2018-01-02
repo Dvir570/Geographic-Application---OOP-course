@@ -1,5 +1,7 @@
 package src;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -12,7 +14,7 @@ public class DisplayMap {
 	public DisplayMap(ArrayList<WiFi> toDisplay) {
 		this.toDisplay = toDisplay;
 	}
-	
+
 	public DisplayMap() {
 		this.toDisplay = new ArrayList<WiFi>();
 	}
@@ -38,7 +40,7 @@ public class DisplayMap {
 				}
 			}
 		}
-		System.out.println("number of points: "+ar.size());
+		System.out.println("number of points: " + ar.size());
 
 		toDisplay = new ArrayList<WiFi>();
 		for (int i = 0; i < ar.size(); i++) {
@@ -68,18 +70,18 @@ public class DisplayMap {
 	 * @param radius
 	 *            extends all WiFi objects around coordinates by the given radius
 	 */
-	public void displayByPlace(double lon, double lat, double alt, double radius) {
-		this.toDisplay.clear();
-		for (int i = 0; i < ResultFile.result.size(); i++) {
-			for (int k = 0; k < ResultFile.result.get(i).size(); k++) {
-				WiFi w = ResultFile.result.get(i).getWiFi(k);
-				if (Double.parseDouble(w.getLat()) <= (lat + radius) && Double.parseDouble(w.getLat()) >= (lat - radius)
-						&& Double.parseDouble(w.getLon()) <= (lon + radius)
-						&& Double.parseDouble(w.getLon()) >= (lon - radius))
-					this.toDisplay.add(w);
-			}
+	public ArrayList<Row> displayByPlace(ArrayList<Row> DB,double lon1, double lon2, double lat1, double lat2) {
+		ArrayList<Row> ar=new ArrayList<Row>();////////////////////****TODO 
+		for (int i = 0; i < DB.size(); i++) {
+			Row r = DB.get(i);
+			WiFi w = r.getWiFi(0);
+			if((Double.parseDouble(w.getLat())>=Math.min(lat1, lat2))
+					&&(Double.parseDouble(w.getLat())<=Math.max(lat1, lat2))
+					&&(Double.parseDouble(w.getLon())>=Math.min(lon1, lon2))
+					&&(Double.parseDouble(w.getLon())<=Math.max(lon1, lon2)))
+				ar.add(r);
 		}
-		SortbyMac();
+		return ar; 
 	}
 
 	/**
@@ -88,16 +90,24 @@ public class DisplayMap {
 	 * @param dateTime
 	 *            filtered by the dateTime given
 	 */
-	public void displayByTime(String dateTime) {
-		this.toDisplay.clear();
-		for (int i = 0; i < ResultFile.result.size(); i++) {
-			for (int k = 0; k < ResultFile.result.get(i).size(); k++) {
-				WiFi w = ResultFile.result.get(i).getWiFi(k);
-				if (w.getTime().equals(dateTime))
-					this.toDisplay.add(w);
-			}
+	public ArrayList<Row> displayByTime(ArrayList<Row> DB, String startTime, String endTime) {
+		String[] dArray = startTime.split("/ :");
+		Date st = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
+				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
+		dArray = endTime.split("/ :");
+		Date et = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
+				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
+		ArrayList<Row> ar = new ArrayList<Row>();
+		for (int i = 0; i < DB.size(); i++) {
+			Row r = DB.get(i);
+			String tempTime = r.getWiFi(0).getTime();
+			dArray = tempTime.split("/ :");
+			Date d = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
+					Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
+			if (d.before(et) && d.after(st))
+				ar.add(r);
 		}
-		SortbyMac();
+		return ar;
 	}
 
 	/**
@@ -106,19 +116,17 @@ public class DisplayMap {
 	 * @param model
 	 *            id device
 	 */
-	public void displayByModel(String model) {
-		this.toDisplay.clear();
-		for (int i = 0; i < ResultFile.result.size(); i++) {
-			for (int k = 0; k < ResultFile.result.get(i).size(); k++) {
-				WiFi w = ResultFile.result.get(i).getWiFi(k);
-				if (w.getModel().equals(model))
-					this.toDisplay.add(w);
-			}
+	public ArrayList<Row> displayByModel(ArrayList<Row> DB, String model) {
+		ArrayList<Row> ar = new ArrayList<Row>();
+		for (int i = 0; i < DB.size(); i++) {
+			Row r = DB.get(i);
+			if (r.getWiFi(0).getModel().equals(model))
+				ar.add(r);
 		}
-		SortbyMac();
+		return ar;
 	}
 
 	public ArrayList<WiFi> getToDisplay() {
 		return toDisplay;
-	}	
+	}
 }
