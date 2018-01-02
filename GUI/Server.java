@@ -90,7 +90,7 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
-		
+
 		server.createContext("/numOfRecords", request -> {
 			String output = dataBase.size()+"";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
@@ -125,10 +125,36 @@ public class Server {
 		});
 		server.createContext("/FilterBy", request -> {////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 			String filter = request.getRequestURI().getQuery();
-			boolean 
+			boolean time;
+			boolean id;
+			boolean pos;
+			String[] filterArray =new String[2];
+			time= filter.contains("Time(");
+			id= filter.contains("ID(");
+			pos= filter.contains("Position(");
 			
+			if (time&&id) {
+				if(filter.contains("&&"))
+					filterArray = filter.split("&&");
+				else
+					filterArray = filter.split("||");
+			}
 			
+			if (time&&pos) {
+				if(filter.contains("&&"))
+					filterArray = filter.split("&&");
+				else
+					filterArray = filter.split("||");
+			}
 			
+			if (id&&pos) {
+				if(filter.contains("&&"))
+					filterArray = filter.split("&&");
+				else
+					filterArray = filter.split("||");
+			}
+
+
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);
@@ -137,11 +163,11 @@ public class Server {
 			} catch (Exception ex) {
 				System.out.println("Error while sending response to client");
 				ex.printStackTrace();
-			}
-		
+			});
+
 		System.out.println(
 				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/updateDBbyDB.html");
 		server.start();
 
+		}
 	}
-}
