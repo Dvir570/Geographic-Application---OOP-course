@@ -36,15 +36,19 @@
 			$.ajax(
 				{
 					"url": encodeURI("/WiggleUpdate?" +input)
-
 				}
 			).then(
 				function(output) {
-					$("div#output").empty()
-					$("div#output").append("<div>"+output+"</div>")
+					$("div#output").empty().append("<div>"+output+"</div>")
 					$("input#WiggleFileUpload").val("")
 				}
 			);
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+				$("#numOfRecords").empty().append(output)
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+				$("#numOfRouters").empty().append(output)
+			});
 			return false
 		})
 		$("#DBclear").click(function() {
@@ -54,10 +58,15 @@
 				}
 			).then(
 				function(output) {
-					$("div#output").empty()
-					$("div#output").append("<div>"+output+"</div>")
+					$("div#output").empty().append("<div>"+output+"</div>")
 				}
 			);
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+				$("#numOfRecords").empty().append(output)
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+				$("#numOfRouters").empty().append(output)
+			});
 			return false
 		})
 		$("#DBsaveCSV").click(function() {
@@ -67,8 +76,7 @@
 					}
 				).then(
 					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
+						$("div#output").empty().append("<div>"+output+"</div>")
 					}
 				);
 				return false
@@ -80,8 +88,7 @@
 					}
 				).then(
 					function(output) {
-						$("div#output").empty()
-						$("div#output").append("<div>"+output+"</div>")
+						$("div#output").empty().append("<div>"+output+"</div>")
 					}
 				);
 				return false

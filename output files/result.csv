@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Time,ID,Lon,Lat,Alt,#WiFi networks,SSID1,MAC1,Frequncy1,Signal1,SSID2,MAC2,Frequncy2,Signal2,SSID3,MAC3,Frequncy3,Signal3,SSID4,MAC4,Frequncy4,Signal4,SSID5,MAC5,Frequncy5,Signal5,SSID6,MAC6,Frequncy6,Signal6,SSID7,MAC7,Frequncy7,Signal7,SSID8,MAC8,Frequncy8,Signal8,SSID9,MAC9,Frequncy9,Signal9,SSID10,MAC10,Frequncy10,Signal10
 2017-10-27 16:40:41,ONEPLUS A3003,34.80916339,32.1617425,29,2,Triumph,10:0d:7f:86:c9:7c,2432,-79,SETUP,2a:66:bc:ce:e1:75,2462,-83
 2017-10-27 16:40:14,Lenovo PB2-690Y,34.80923149,32.16172751,13,3,BigMeeting_2.4G,74:da:38:b6:ed:8c,2427,-80,,fa:8f:ca:52:c2:cd,2462,-87,spot32,d2:6c:ac:04:0d:e9,2412,-90
@@ -736,3 +737,5 @@ Time,ID,Lon,Lat,Alt,#WiFi networks,SSID1,MAC1,Frequncy1,Signal1,SSID2,MAC2,Frequ
 2017-10-27 16:18:45,Lenovo PB2-690Y,34.80930495,32.1672194,37,4,INGENEO,cc:b2:55:e8:4c:e6,2437,-80,HP-Print-A0-LaserJet Pro MFP,30:f7:72:6e:8e:a0,2437,-87,cactus,a0:4f:d4:42:ba:71,2412,-88,kaymeraQA,00:f6:63:15:58:80,2412,-88
 2017-10-27 16:37:49,ONEPLUS A3003,34.80747327,32.1651241,25,10,F-Z,04:a1:51:13:13:37,2462,-76,Cloudius,de:9f:db:7f:73:aa,2412,-77,GINI-APPS,f0:3e:90:0f:4c:b8,2412,-79,GAL-ALMAGOR,14:ae:db:bd:de:12,2437,-79,rainbow,ee:9f:db:7b:8a:fa,2462,-80,COMET,80:1f:02:38:6a:b0,2462,-81,Off-Oz,00:25:86:b0:42:ae,2437,-82,HOTBOX,7c:03:4c:bb:29:b6,2472,-83,RTO,e0:b9:a5:10:95:6b,2442,-85,BlueSnap-Guest-2.4GHz,c0:56:27:a0:6c:9a,2422,-86
 2017-10-27 16:25:06,ONEPLUS A3003,34.8039691,32.16810512,36,6,BezeqFree,6a:12:f5:84:50:41,2447,-80,klara-012,c4:12:f5:fd:d1:94,2417,-82,Yafim,14:ae:db:32:13:d2,2432,-86,Roikhel,9c:d6:43:23:99:91,2437,-87,opus7_5,c4:12:f5:84:50:3f,5240,-88,099556880,10:0d:7f:99:bd:b2,2462,-91
+=======
+>>>>>>> bf141af4a8dedf6a94f7418db04bea5eb9d9eb2d
