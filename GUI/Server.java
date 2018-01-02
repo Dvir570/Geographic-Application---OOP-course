@@ -90,6 +90,7 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
+		
 		server.createContext("/numOfRecords", request -> {
 			String output = dataBase.size()+"";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
@@ -102,7 +103,7 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
-		server.createContext("/numOfRouters", request -> {
+		server.createContext  ("/numOfRouters", request -> {
 			ArrayList<WiFi> wifis = new ArrayList<WiFi>();
 			ArrayList<Row> temp = new ArrayList<Row>();
 			temp.addAll(dataBase);
@@ -122,6 +123,22 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
+		server.createContext("/FilterBy", request -> {////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			String filter = request.getRequestURI().getQuery();
+			boolean 
+			
+			
+			
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		
 		System.out.println(
 				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/updateDBbyDB.html");
 		server.start();
