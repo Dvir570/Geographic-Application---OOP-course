@@ -77,8 +77,36 @@
 					</div>
 					<div class="flex-item right">
 						<div>
-							<h3>Filter Details</h3>
-							<p id="filterDetails"></p>
+							<h3>Filter</h3>
+							<p>
+								<select id="filterType1" class="soflow">
+									  <option value="ID">ID</option>
+									  <option value="TIME">TIME</option>
+									  <option value="LOCATION">LOCATION</option>
+								</select>
+								<input class="hideme filter1" id="id1Filter" type="text"/>
+								<p class="hideme filter1" id="dt1Filter">
+									<input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30">
+									<input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30">
+								</p>								
+								<p class="hideme filter1" id="location1Filter">
+									<label>Lat range:</label>
+									<input id="slat1Filter" type="number"/>
+									<input id="elat1Filter" type="number"/>
+									<label>Lon range:</label>
+									<input id="slon1Filter" type="number"/>
+									<input id="elon1Filter" type="number"/>
+								</p>
+							</p>
+							
+							<p class="hideme">
+								<select id="filterType2" class="soflow">
+									  <option value="ID">ID</option>
+									  <option value="TIME">TIME</option>
+									  <option value="LOCATION">LOCATION</option>
+								</select>
+							</p>
+							
 						</div>
 						<div>
 							<h3></h3>

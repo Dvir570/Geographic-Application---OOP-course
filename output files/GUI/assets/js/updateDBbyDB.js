@@ -14,6 +14,25 @@
 		xsmall:	'(max-width: 480px)'
 	});
 	$(document).ready(function () {
+		
+	/* filters */
+	$("select#filterType1").change(function() {
+		var sel = $("#filterType1 option:selected");
+		if(sel.text() == "ID"){
+			$(".filter1:not(.hideme)").addClass("hideme")
+			$("#id1Filter").removeClass("hideme")
+		}
+		if(sel.text() == "TIME"){
+			$(".filter1:not(.hideme)").addClass("hideme")
+			$("#dt1Filter").removeClass("hideme")
+		}
+		if(sel.text() == "LOCATION"){
+			$(".filter1:not(.hideme)").addClass("hideme")
+			$("#location1Filter").removeClass("hideme")
+		}
+	})
+	
+	/* requests */
 	$.ajax(
 		{"url": encodeURI("/numOfRecords?")}).then(
 			function(output) {
