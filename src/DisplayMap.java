@@ -105,7 +105,7 @@ public class DisplayMap {
 		String[] dArray = startTime.split("-T:");
 		Date st = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
-		dArray = endTime.split("/ :");
+		dArray = endTime.split("-T:");
 		Date et = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
 		if (et.before(st)) { //swap
