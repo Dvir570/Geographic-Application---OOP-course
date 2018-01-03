@@ -1799,6 +1799,10 @@
 	.align-right {
 		text-align: right;
 	}
+	
+	.center{
+		text-align: center;
+	}
 
 /* Section/Article */
 
@@ -3039,7 +3043,7 @@
 	}
 
 		#one .flex-item.left div:first-child, #one .flex-item.right div:first-child {
-			padding-top: 1em;
+			padding-top: 2em;
 		}
 
 		#one .flex-item.left div:last-child, #one .flex-item.right div:last-child {
@@ -3050,10 +3054,10 @@
 		}
 
 		#one .flex-item.left div p, #one .flex-item.right div p {
-			margin-bottom: 1em;
+			margin-bottom: 2em;
 		}
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 3000px) {
 
 			#one .flex-item.left div:first-child, #one .flex-item.right div:first-child {
 				padding-top: 0;
@@ -3065,7 +3069,7 @@
 
 		}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (max-width: 1960px) {
 
 			#one .flex-item {
 				-moz-flex-direction: column;
