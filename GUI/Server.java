@@ -126,42 +126,163 @@ public class Server {
 		server.createContext("/FilterBy", request -> {
 			String filter = request.getRequestURI().getQuery();
 			String output = "";
-			boolean time;
-			boolean id;
-			boolean pos;
+			boolean time1;
+			boolean id1;
+			boolean pos1;
+			boolean time2 = false;
+			boolean id2 = false;
+			boolean pos2 = false;
+			if(filter.contains("&&") || filter.contains("||")) {
+				String[] temp = filter.split("||&&");
+				time2 = temp[1].contains("Time(");
+				id2 = temp[1].contains("ID(");
+				pos2 = temp[1].contains("Pos(");
+			}
 			String[] filterArray = new String[2];
-			time = filter.contains("Time(");
-			id = filter.contains("ID(");
-			pos = filter.contains("Position(");
-			ArrayList<Row> DBFinal = new ArrayList<Row>();
-			if (time && id) {
+			time1 = filter.contains("Time(");
+			id1 = filter.contains("ID(");
+			pos1 = filter.contains("Pos(");
+
+			if (time1 && id1) {
 				if (filter.contains("&&")) {
 					filterArray = filter.split("&&");
-					filterArray[0] = filterArray[0].substring(5, filterArray[0].length() - 1);
-					filterArray[1] = filterArray[1].substring(3, filterArray[1].length() - 1);
+					int openT = filterArray[0].lastIndexOf("(");
+					int closeT = filterArray[0].indexOf(")");
+					boolean notT = filterArray[0].contains("!");
+					int openID = filterArray[1].lastIndexOf("(");
+					int closeID = filterArray[1].indexOf(")");
+					boolean notID = filterArray[1].contains("!");
+					filterArray[0] = filterArray[0].substring(openT + 1, closeT);
+					filterArray[1] = filterArray[1].substring(openID + 1, closeID);
 					String[] dateArray = new String[2];
 					dateArray = filterArray[0].split(",");
 					ArrayList<Row> db = new ArrayList<Row>();
 					db.addAll(dataBase);
-					db = DisplayMap.displayByTime(db, dateArray[0], dateArray[1]);
-					db = DisplayMap.displayByModel(db, filterArray[1]);
-				} else
+					db = DisplayMap.displayByTime(db, notT, dateArray[0], dateArray[1]);
+					db = DisplayMap.displayByModel(db, notID, filterArray[1]);
+					dataBase.clear();
+					dataBase.addAll(db);
+				} else if (filter.contains("||")) {
 					filterArray = filter.split("||");
+					int openT = filterArray[0].lastIndexOf("(");
+					int closeT = filterArray[0].indexOf(")");
+					boolean notT = filterArray[0].contains("!");
+					int openID = filterArray[1].lastIndexOf("(");
+					int closeID = filterArray[1].indexOf(")");
+					boolean notID = filterArray[1].contains("!");
+					filterArray[0] = filterArray[0].substring(openT + 1, closeT);
+					filterArray[1] = filterArray[1].substring(openID + 1, closeID);
+					String[] dateArray = new String[2];
+					dateArray = filterArray[0].split(",");
+					ArrayList<Row> db1 = new ArrayList<Row>();
+					db1.addAll(dataBase);
+					ArrayList<Row> db2 = new ArrayList<Row>();
+					db2.addAll(dataBase);
+					db1 = DisplayMap.displayByTime(db1, notT, dateArray[0], dateArray[1]);
+					db2 = DisplayMap.displayByModel(db2, notID, filterArray[1]);
+					dataBase.clear();
+					dataBase.addAll(db1);
+					dataBase.addAll(db2);
+				}	
+			} 
+			else if ()
+			else if (time1 && pos1) {
+				if (filter.contains("&&")) {
+					filterArray = filter.split("&&");
+					int openT = filter.lastIndexOf("(");
+					int closeT = filterArray[0].indexOf(")");
+					boolean notT = filterArray[0].contains("!");
+					int openP = filter.lastIndexOf("(");
+					int closeP = filter.indexOf(")");
+					boolean notP = filterArray[0].contains("!");
+					filterArray[0] = filterArray[0].substring(openT + 1, closeT);
+					filterArray[1] = filterArray[1].substring(openP + 1, closeP);
+					String[] dateArray = new String[2];
+					ArrayList<Row> db = new ArrayList<Row>();
+					db.addAll(dataBase);
+					db = DisplayMap.displayByTime(db, notT, dateArray[0], dateArray[1]);
+					db = DisplayMap.displayByModel(db, notP, filterArray[1]);
+					dataBase.clear();
+					dataBase.addAll(db);
+				} else if (filter.contains("||")) {
+					filterArray = filter.split("||");
+					int openT = filterArray[0].lastIndexOf("(");
+					int closeT = filterArray[0].indexOf(")");
+					boolean notT = filterArray[0].contains("!");
+					int openP = filterArray[1].lastIndexOf("(");
+					int closeP = filterArray[1].indexOf(")");
+					boolean notP = filterArray[1].contains("!");
+					filterArray[0] = filterArray[0].substring(openT + 1, closeT);
+					filterArray[1] = filterArray[1].substring(openP + 1, closeP);
+					String[] dateArray = new String[2];
+					dateArray = filterArray[0].split(",");
+					ArrayList<Row> db1 = new ArrayList<Row>();
+					db1.addAll(dataBase);
+					ArrayList<Row> db2 = new ArrayList<Row>();
+					db2.addAll(dataBase);
+					db1 = DisplayMap.displayByTime(db1, notT, dateArray[0], dateArray[1]);
+					db2 = DisplayMap.displayByModel(db2, notP, filterArray[1]);
+					dataBase.clear();
+					dataBase.addAll(db1);
+					dataBase.addAll(db2);
+				}
 			}
 
-			if (time && pos) {
-				if (filter.contains("&&"))
+			else if (id1 && pos1) {
+				String[] posArray = new String[4];
+				if (filter.contains("&&")) {
 					filterArray = filter.split("&&");
-				else
+					int openID = filterArray[0].lastIndexOf("(");
+					int closeID = filterArray[0].indexOf(")");
+					boolean notID = filterArray[0].contains("!");
+					int openP = filterArray[1].lastIndexOf("(");
+					int closeP = filterArray[1].indexOf(")");
+					boolean notP = filterArray[1].contains("!");
+					filterArray[0] = filterArray[0].substring(openID + 1, closeID);
+					filterArray[1] = filterArray[1].substring(openP + 1, closeP);
+					posArray = filterArray[1].split(",");
+					ArrayList<Row> db = new ArrayList<Row>();
+					db.addAll(dataBase);
+					db = DisplayMap.displayByPlace(db, notID, Double.parseDouble(posArray[0]),
+							Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
+							Double.parseDouble(posArray[3]));
+					db = DisplayMap.displayByModel(db, notP, filterArray[0]);
+					dataBase.clear();
+					dataBase.addAll(db);
+				} else {
 					filterArray = filter.split("||");
+					int openID = filterArray[0].lastIndexOf("(");
+					int closeID = filterArray[0].indexOf(")");
+					boolean notID = filterArray[0].contains("!");
+					int openP = filterArray[1].lastIndexOf("(");
+					int closeP = filterArray[1].indexOf(")");
+					boolean notP = filterArray[1].contains("!");
+					filterArray[0] = filterArray[0].substring(openID + 1, closeID);
+					filterArray[1] = filterArray[1].substring(openP + 1, closeP);
+					posArray = filterArray[1].split(",");
+					ArrayList<Row> db1 = new ArrayList<Row>();
+					ArrayList<Row> db2 = new ArrayList<Row>();
+					db1.addAll(dataBase);
+					db2.addAll(dataBase);
+					db1 = DisplayMap.displayByModel(db1, notID, filterArray[0]);
+					db2 = DisplayMap.displayByPlace(db2, notP, Double.parseDouble(posArray[0]),
+							Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
+							Double.parseDouble(posArray[3]));
+					dataBase.clear();
+					dataBase.addAll(db1);
+					dataBase.addAll(db2);
+				}
 			}
-
-			if (id && pos) {
-				if (filter.contains("&&"))
-					filterArray = filter.split("&&");
-				else
-					filterArray = filter.split("||");
-			}
+			/*
+			 * else { ArrayList<Row> db = new ArrayList<Row>(); db.addAll(dataBase); if
+			 * (filter.contains("Time")) { String[] timeArray =new String[2];
+			 * timeArray=filter.split(","); timeArray[0]=timeArray[0].substring(5,
+			 * timeArray[0].length());
+			 * timeArray[1]=timeArray[1].substring(0,timeArray[1].length()-1);
+			 * db=DisplayMap.displayByTime(db, timeArray[0],timeArray[1]); } if
+			 * (filter.contains("ID")) { filter.substring(3, filter.length()-1);
+			 * db=DisplayMap.displayByModel(db,filter); } dataBase.addAll(db); }
+			 */
 
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
