@@ -102,11 +102,11 @@ public class DisplayMap {
 	public static ArrayList<Row> displayByTime(ArrayList<Row> DB, boolean not, String startTime, String endTime) {
 		Date temp = new Date();
 
-		String[] dArray = startTime.split("/ :");
-		Date st = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
+		String[] dArray = startTime.split("-T:");
+		Date st = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
 		dArray = endTime.split("/ :");
-		Date et = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
+		Date et = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
 		if (et.before(st)) { //swap
 			temp = et;

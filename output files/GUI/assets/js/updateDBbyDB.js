@@ -14,133 +14,228 @@
 		xsmall:	'(max-width: 480px)'
 	});
 	$(document).ready(function () {
-		
-	/* filters */
-	var id1Filter = '<input id="id1Filter" type="text"/>';
-	var dt1Filter = '<p id="dt1Filter"><input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
-	var location1Filter = '<p id="location1Filter"><label>Lat range:</label><input id="slat1Filter" type="number" min="0" step="0.00001"/><input id="elat1Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon1Filter" type="number" min="0" step="0.00001"/><input id="elon1Filter" type="number" min="0" step="0.00001"/></p>';
-	var id2Filter = '<input id="id2Filter" type="text"/>';
-	var dt2Filter = '<p id="dt2Filter"><input id="sdt2Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt2Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
-	var location2Filter = '<p id="location2Filter"><label>Lat range:</label><input id="slat2Filter" type="number" min="0" step="0.00001"/><input id="elat2Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon2Filter" type="number" min="0" step="0.00001"/><input id="elon2Filter" type="number" min="0" step="0.00001"/></p>';	$("p#filterInfo1").empty()
-	$("p#filterInfo1").append(id1Filter)
-	$("select#filterType1").change(function() {
-		var sel = $("#filterType1 option:selected");
-		if(sel.text() == "ID"){
-			$("p#filterInfo1").empty()
-			$("p#filterInfo1").append(id1Filter)
-		}
-		if(sel.text() == "TIME"){
-			$("p#filterInfo1").empty()
-			$("p#filterInfo1").append(dt1Filter)
-		}
-		if(sel.text() == "LOCATION"){
-			$("p#filterInfo1").empty()
-			$("p#filterInfo1").append(location1Filter)
-		}
-	})
-	$("select#operation").change(function() {
-		var operation = $("#operation option:selected");
-		var filter2 = '<p><select id="filterType2" class="soflow"><option value="ID">ID</option><option value="TIME">TIME</option><option value="LOCATION">LOCATION</option></select></p><p><input type="checkbox" id="not2"><label for="not2">Not</label></p><p id="filterInfo2"></p>';
-		if(operation.text() != "NO OPERATION"){
-			$("#filter2").removeClass("hideme")
-			$("p#filterInfo2").empty().append(id2Filter)
-		}else{
-			$("#filter2").addClass("hideme")
-		}
-	})
-	$("#filterType2").change(function() {
-		var sel = $("#filterType2 option:selected");
-		if(sel.text() == "ID"){
-			$("p#filterInfo2").empty()
-			$("p#filterInfo2").append(id2Filter)
-		}
-		if(sel.text() == "TIME"){
-			$("p#filterInfo2").empty()
-			$("p#filterInfo2").append(dt2Filter)
-		}
-		if(sel.text() == "LOCATION"){
-			$("p#filterInfo2").empty()
-			$("p#filterInfo2").append(location2Filter)
-		}
-	})
-	$("#filter2").addClass("hideme")
-	/* requests */
-	$.ajax(
-		{"url": encodeURI("/numOfRecords?")}).then(
-			function(output) {
-				$("#numOfRecords").append(output)
-			});
-	$.ajax(
-		{"url": encodeURI("/numOfRouters?")}).then(
-			function(output) {
-				$("#numOfRouters").append(output)
-			});
-	/*$.ajax(
-		{"url": encodeURI("/filterDetails?")}).then(
-			function(output) {
-				$("#filterDetails").append(output)
-			});*/
-	$("#UpdateDBcsv").click(function() {
-				var input = $("input#DBfileUpload").val()
-				$.ajax(
-					{
-						"url": encodeURI("/DBupdate?" +input)
+			
+		/* filters */
+		var id1Filter = '<input id="id1Filter" type="text"/>';
+		var dt1Filter = '<p id="dt1Filter"><input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+		var location1Filter = '<p id="location1Filter"><label>Lat range:</label><input id="slat1Filter" type="number" min="0" step="0.00001"/><input id="elat1Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon1Filter" type="number" min="0" step="0.00001"/><input id="elon1Filter" type="number" min="0" step="0.00001"/></p>';
+		var id2Filter = '<input id="id2Filter" type="text"/>';
+		var dt2Filter = '<p id="dt2Filter"><input id="sdt2Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt2Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+		var location2Filter = '<p id="location2Filter"><label>Lat range:</label><input id="slat2Filter" type="number" min="0" step="0.00001"/><input id="elat2Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon2Filter" type="number" min="0" step="0.00001"/><input id="elon2Filter" type="number" min="0" step="0.00001"/></p>';	$("p#filterInfo1").empty()
+		$("p#filterInfo1").append(id1Filter)
+		$("select#filterType1").change(function() {
+			var sel = $("#filterType1 option:selected");
+			if(sel.text() == "ID"){
+				$("p#filterInfo1").empty()
+				$("p#filterInfo1").append(id1Filter)
+			}
+			if(sel.text() == "TIME"){
+				$("p#filterInfo1").empty()
+				$("p#filterInfo1").append(dt1Filter)
+			}
+			if(sel.text() == "LOCATION"){
+				$("p#filterInfo1").empty()
+				$("p#filterInfo1").append(location1Filter)
+			}
+		})
+		$("select#operation").change(function() {
+			var operation = $("#operation option:selected");
+			var filter2 = '<p><select id="filterType2" class="soflow"><option value="ID">ID</option><option value="TIME">TIME</option><option value="LOCATION">LOCATION</option></select></p><p><input type="checkbox" id="not2"><label for="not2">Not</label></p><p id="filterInfo2"></p>';
+			if(operation.text() != "NO OPERATION"){
+				$("#filter2").removeClass("hideme")
+				$("p#filterInfo2").empty().append(id2Filter)
+			}else{
+				$("#filter2").addClass("hideme")
+			}
+		})
+		$("#filterType2").change(function() {
+			var sel = $("#filterType2 option:selected");
+			if(sel.text() == "ID"){
+				$("p#filterInfo2").empty()
+				$("p#filterInfo2").append(id2Filter)
+			}
+			if(sel.text() == "TIME"){
+				$("p#filterInfo2").empty()
+				$("p#filterInfo2").append(dt2Filter)
+			}
+			if(sel.text() == "LOCATION"){
+				$("p#filterInfo2").empty()
+				$("p#filterInfo2").append(location2Filter)
+			}
+		})
+		$("#filter2").addClass("hideme")
+		/* requests */
+		$.ajax(
+			{"url": encodeURI("/numOfRecords?")}).then(
+				function(output) {
+					$("#numOfRecords").append(output)
+				});
+		$.ajax(
+			{"url": encodeURI("/numOfRouters?")}).then(
+				function(output) {
+					$("#numOfRouters").append(output)
+				});
+		/*$.ajax(
+			{"url": encodeURI("/filterDetails?")}).then(
+				function(output) {
+					$("#filterDetails").append(output)
+				});*/
+		$("#UpdateDBcsv").click(function() {
+			var input = $("input#DBfileUpload").val()
+			$.ajax(
+				{
+					"url": encodeURI("/DBupdate?" +input)
 
-					}
-				).then(
-					function(output) {
-						$("div#output").empty().append("<div>"+output+"</div>")
-						$("input#DBfileUpload").val("")
-					}
-				);
-				$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+				}
+			).then(
+				function(output) {
+					$("div#output").empty().append("<div>"+output+"</div>")
+					$("input#DBfileUpload").val("")
+				}
+			);
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+				$("#numOfRecords").empty().append(output)
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+				$("#numOfRouters").empty().append(output)
+			});
+			return false
+		})
+		$("#DBclear").click(function() {
+			$.ajax(
+				{
+					"url": encodeURI("/DBclear?")
+				}
+			).then(function(output) {
+					$("div#output").empty().append("<div>"+output+"</div>")
+			});
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
 					$("#numOfRecords").empty().append(output)
-				});
-				$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
 					$("#numOfRouters").empty().append(output)
-				});
-				return false
-			})
-			$("#DBclear").click(function() {
-				$.ajax(
-					{
-						"url": encodeURI("/DBclear?")
+			});	
+			return false
+		})
+		$("#DBsaveCSV").click(function() {
+			$.ajax(
+				{
+					"url": encodeURI("/DBsaveCSV?")
+				}
+			).then(
+				function(output) {
+					$("div#output").empty().append("<div>"+output+"</div>")
+				}
+			);
+			return false
+		})
+		$("#DBsaveKML").click(function() {
+			$.ajax(
+				{
+					"url": encodeURI("/DBsaveKML?")
+				}
+			).then(
+				function(output) {
+					$("div#output").empty().append("<div>"+output+"</div>")
+				}
+			);
+			return false
+		})
+		$("#submitFilter").click(function() {
+			var filter = "";
+			var filter1Type = $("#filterType1 option:selected").text();
+			var not1 = $("#not1").prop('checked');
+			var operation = $("#operation option:selected").text();
+			if(operation == "NO OPERATION"){
+				if(filter1Type == "ID"){
+					if(not1)
+						filter = "ID(!(" + $("#id1Filter").val() +"))";
+					else filter = "ID(" + $("#id1Filter").val() +")";
+				}else if(filter1Type == "TIME"){
+					if(not1)
+						filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
+					else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
+				}else if(filter1Type == "LOCATION"){
+					if(not1)
+						filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+					else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+				}
+			}else{
+				var filter2Type = $("#filterType2 option:selected").text();
+				var not2 = $("#not2").prop('checked');
+				if(filter1Type == "TIME"){
+					if(not1)filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
+					else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(filter2Type == "ID"){
+						if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
+						else filter = filter + "ID(" + $("#id2Filter").val() +")";
+					} else if(filter2Type == "TIME"){
+						if(not2) filter = filter + "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+						else filter = filter + "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+					} else if(filter2Type == "LOCATION"){
+						if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+						else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
 					}
-				).then(function(output) {
-						$("div#output").empty().append("<div>"+output+"</div>")
-				});
-				$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
-						$("#numOfRecords").empty().append(output)
-				});
-				$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
-						$("#numOfRouters").empty().append(output)
-				});	
-				return false
-			})
-			$("#DBsaveCSV").click(function() {
-				$.ajax(
-					{
-						"url": encodeURI("/DBsaveCSV?")
+				}else if(filter1Type == "ID" && filter2Type != "TIME"){
+					if(not1) filter = "ID(!("+$("#id1Filter").val() +"))";
+					else filter = "ID("+$("#id1Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(filter2Type == "ID"){
+						if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
+						else filter = filter + "ID(" + $("#id2Filter").val() +")";
+					} else if(filter2Type == "LOCATION"){
+						if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+						else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
 					}
-				).then(
-					function(output) {
-						$("div#output").empty().append("<div>"+output+"</div>")
-					}
-				);
-				return false
-			})
-			$("#DBsaveKML").click(function() {
-				$.ajax(
-					{
-						"url": encodeURI("/DBsaveKML?")
-					}
-				).then(
-					function(output) {
-						$("div#output").empty().append("<div>"+output+"</div>")
-					}
-				);
-				return false
-			})
+				}else if(filter1Type == "LOCATION" && filter2Type == "LOCATION"){
+					if(not1) filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+					else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+					else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
+				}else if(filter1Type == "ID" && filter2Type == "TIME"){
+					if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+					else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(not1) filter = filter + "ID(!(" + $("#id1Filter").val() +"))";
+					else filter = filter + "ID(" + $("#id1Filter").val() +")";
+				}else if(filter1Type == "LOCATION" && filter2Type == "TIME"){
+					if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+					else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+					else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+				}else if(filter1Type == "LOCATION" && filter2Type == "ID"){
+					if(not2) filter = "ID(!(" + $("#id2Filter").val() +"))";
+					else filter = "ID(" + $("#id2Filter").val() +")";
+					if(operation == "AND") filter = filter + "&&";
+					else filter = filter + "||";
+					if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+					else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+				}				
+			}
+			$("#filterDetails").empty().append(filter);
+			/*$.ajax(
+				{
+					"url": encodeURI("/FilterBy?" + filter)
+				}
+			).then(function(output) {
+					$("div#output").empty().append("<div>"+output+"</div>")
+			});
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+					$("#numOfRecords").empty().append(output)
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+					$("#numOfRouters").empty().append(output)
+			});*/
+			return false
+		})
 	});
 	
 
