@@ -70,18 +70,18 @@ public class DisplayMap {
 	 * @param radius
 	 *            extends all WiFi objects around coordinates by the given radius
 	 */
-	public ArrayList<Row> displayByPlace(ArrayList<Row> DB,double lon1, double lon2, double lat1, double lat2) {
-		ArrayList<Row> ar=new ArrayList<Row>();////////////////////****TODO 
+	public static ArrayList<Row> displayByPlace(ArrayList<Row> DB, double lon1, double lon2, double lat1, double lat2) {
+		ArrayList<Row> ar = new ArrayList<Row>();
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
 			WiFi w = r.getWiFi(0);
-			if((Double.parseDouble(w.getLat())>=Math.min(lat1, lat2))
-					&&(Double.parseDouble(w.getLat())<=Math.max(lat1, lat2))
-					&&(Double.parseDouble(w.getLon())>=Math.min(lon1, lon2))
-					&&(Double.parseDouble(w.getLon())<=Math.max(lon1, lon2)))
+			if ((Double.parseDouble(w.getLat()) >= Math.min(lat1, lat2))
+					&& (Double.parseDouble(w.getLat()) <= Math.max(lat1, lat2))
+					&& (Double.parseDouble(w.getLon()) >= Math.min(lon1, lon2))
+					&& (Double.parseDouble(w.getLon()) <= Math.max(lon1, lon2)))
 				ar.add(r);
 		}
-		return ar; 
+		return ar;
 	}
 
 	/**
@@ -90,13 +90,21 @@ public class DisplayMap {
 	 * @param dateTime
 	 *            filtered by the dateTime given
 	 */
-	public ArrayList<Row> displayByTime(ArrayList<Row> DB, String startTime, String endTime) {
+	@SuppressWarnings("deprecation")
+	public static ArrayList<Row> displayByTime(ArrayList<Row> DB, String startTime, String endTime) {
+		Date temp = new Date();
+
 		String[] dArray = startTime.split("/ :");
 		Date st = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
 		dArray = endTime.split("/ :");
 		Date et = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
+		if (et.before(st)) { //swap
+			temp = et;
+			et = st;
+			st = temp;
+		}
 		ArrayList<Row> ar = new ArrayList<Row>();
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
@@ -116,7 +124,7 @@ public class DisplayMap {
 	 * @param model
 	 *            id device
 	 */
-	public ArrayList<Row> displayByModel(ArrayList<Row> DB, String model) {
+	public static ArrayList<Row> displayByModel(ArrayList<Row> DB, String model) {
 		ArrayList<Row> ar = new ArrayList<Row>();
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
