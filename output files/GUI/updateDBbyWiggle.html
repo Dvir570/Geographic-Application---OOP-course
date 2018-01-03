@@ -90,18 +90,45 @@
 
 		<!-- Two -->
 			<section id="two" class="wrapper style1 special">
-				<div class="inner">
-					<h2>Feugiat lorem</h2>
-					<figure>
-					    <blockquote>
-					        "Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra<br /> magna etiam lorem ultricies in diam. Sed arcu cras consequat."
-					    </blockquote>
-					    <footer>
-					        <cite class="author">Jane Anderson</cite>
-					        <cite class="company">CEO, Untitled</cite>
-					    </footer>
-					</figure>
-				</div>
+				<h2>Filter</h2>
+				<form>
+					<div id="filter1" class="inner flex">
+						<p>
+							<select id="filterType1" class="soflow">
+								  <option value="ID">ID</option>
+								  <option value="TIME">TIME</option>
+								  <option value="LOCATION">LOCATION</option>
+							</select>
+						</p>
+						<p>
+							<input type="checkbox" id="not1">
+							<label for="not1">Not</label>
+						</p>
+						<p id="filterInfo1"></p>
+					</div>
+					<div class="inner">
+						<select id="operation" class="soflow">
+							  <option value="NoOperation">NO OPERATION</option>
+							  <option value="AND">AND</option>
+							  <option value="OR">OR</option>
+						</select>
+					</div>
+					<div id="filter2" class="inner flex">
+						<p>
+							<select id="filterType2" class="soflow">
+								  <option value="ID">ID</option>
+								  <option value="TIME">TIME</option>
+								  <option value="LOCATION">LOCATION</option>
+							</select>
+						</p>
+						<p>
+							<input type="checkbox" id="not2">
+							<label for="not2">Not</label>
+						</p>
+						<p id="filterInfo2"></p>
+					</div>
+					<button id="submitFilter" type="submit" class="button alt">SUBMIT FILTER</button>
+				</form>
 			</section>
 
 		<!-- Three -->

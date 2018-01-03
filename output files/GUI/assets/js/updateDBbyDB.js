@@ -16,22 +16,54 @@
 	$(document).ready(function () {
 		
 	/* filters */
+	var id1Filter = '<input id="id1Filter" type="text"/>';
+	var dt1Filter = '<p id="dt1Filter"><input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+	var location1Filter = '<p id="location1Filter"><label>Lat range:</label><input id="slat1Filter" type="number" min="0" step="0.00001"/><input id="elat1Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon1Filter" type="number" min="0" step="0.00001"/><input id="elon1Filter" type="number" min="0" step="0.00001"/></p>';
+	var id2Filter = '<input id="id2Filter" type="text"/>';
+	var dt2Filter = '<p id="dt2Filter"><input id="sdt2Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt2Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+	var location2Filter = '<p id="location2Filter"><label>Lat range:</label><input id="slat2Filter" type="number" min="0" step="0.00001"/><input id="elat2Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon2Filter" type="number" min="0" step="0.00001"/><input id="elon2Filter" type="number" min="0" step="0.00001"/></p>';	$("p#filterInfo1").empty()
+	$("p#filterInfo1").append(id1Filter)
 	$("select#filterType1").change(function() {
 		var sel = $("#filterType1 option:selected");
 		if(sel.text() == "ID"){
-			$(".filter1:not(.hideme)").addClass("hideme")
-			$("#id1Filter").removeClass("hideme")
+			$("p#filterInfo1").empty()
+			$("p#filterInfo1").append(id1Filter)
 		}
 		if(sel.text() == "TIME"){
-			$(".filter1:not(.hideme)").addClass("hideme")
-			$("#dt1Filter").removeClass("hideme")
+			$("p#filterInfo1").empty()
+			$("p#filterInfo1").append(dt1Filter)
 		}
 		if(sel.text() == "LOCATION"){
-			$(".filter1:not(.hideme)").addClass("hideme")
-			$("#location1Filter").removeClass("hideme")
+			$("p#filterInfo1").empty()
+			$("p#filterInfo1").append(location1Filter)
 		}
 	})
-	
+	$("select#operation").change(function() {
+		var operation = $("#operation option:selected");
+		var filter2 = '<p><select id="filterType2" class="soflow"><option value="ID">ID</option><option value="TIME">TIME</option><option value="LOCATION">LOCATION</option></select></p><p><input type="checkbox" id="not2"><label for="not2">Not</label></p><p id="filterInfo2"></p>';
+		if(operation.text() != "NO OPERATION"){
+			$("#filter2").removeClass("hideme")
+			$("p#filterInfo2").empty().append(id2Filter)
+		}else{
+			$("#filter2").addClass("hideme")
+		}
+	})
+	$("#filterType2").change(function() {
+		var sel = $("#filterType2 option:selected");
+		if(sel.text() == "ID"){
+			$("p#filterInfo2").empty()
+			$("p#filterInfo2").append(id2Filter)
+		}
+		if(sel.text() == "TIME"){
+			$("p#filterInfo2").empty()
+			$("p#filterInfo2").append(dt2Filter)
+		}
+		if(sel.text() == "LOCATION"){
+			$("p#filterInfo2").empty()
+			$("p#filterInfo2").append(location2Filter)
+		}
+	})
+	$("#filter2").addClass("hideme")
 	/* requests */
 	$.ajax(
 		{"url": encodeURI("/numOfRecords?")}).then(
