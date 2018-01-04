@@ -51,6 +51,31 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
+			server.createContext("/saveFilter", request -> {
+			String input = request.getRequestURI().getQuery();
+			String output = "";
+			String[] inputArray = new String[2];
+			inputArray = input.split("%");
+			File filterPath = new File(inputArray[0]);
+
+			if (filterPath.isFile())
+				output = "this file already exists";
+			else {
+				IOfiles writer = new IOfiles(filterPath.getPath());
+				writer.writeLine(inputArray[1]);
+				writer.close();
+				output = "the filter has been recorded";
+			}
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		});
 		server.createContext("/DBsaveCSV", request -> {
 			String resPath = "output files\\result.csv";
 			ResultFile result = new ResultFile(resPath);
