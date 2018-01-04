@@ -130,7 +130,7 @@ public class Server {
 			backUpDataBase.addAll(dataBase);
 			String output = "";
 			filterDB(request);
-			output = "DataBAse filterred succsesfully";
+			output = "Database filterred succsesfully";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);
@@ -156,18 +156,25 @@ public class Server {
 		boolean time2 = false;
 		boolean id2 = false;
 		boolean pos2 = false;
+		String[] temp = new String[] { filter };
 		if (filter.contains("&&") || filter.contains("||")) {
-			String[] temp = filter.split("||&&");
+
+			if (filter.contains("&&"))
+				temp = filter.split("&&");
+			else {
+				temp = filter.replace('|', '%').split("%%");
+				filter = filter.replace('|', '%');
+			}
 			time2 = temp[1].contains("Time(");
 			id2 = temp[1].contains("ID(");
 			pos2 = temp[1].contains("Pos(");
 		}
 		String[] filterArray = new String[2];
-		time1 = filter.contains("Time(");
-		id1 = filter.contains("ID(");
-		pos1 = filter.contains("Pos(");
+		time1 = temp[0].contains("Time(");
+		id1 = temp[0].contains("ID(");
+		pos1 = temp[0].contains("Pos(");
 
-		if (time1 && id1) {
+		if (time1 && id2) {
 			if (filter.contains("&&")) {
 				filterArray = filter.split("&&");
 				int openT = filterArray[0].lastIndexOf("(");
@@ -186,8 +193,8 @@ public class Server {
 				db = DisplayMap.displayByModel(db, notID, filterArray[1]);
 				dataBase.clear();
 				dataBase.addAll(db);
-			} else if (filter.contains("||")) {
-				filterArray = filter.split("||");
+			} else if (filter.contains("%%")) {
+				filterArray = filter.split("%%");
 				int openT = filterArray[0].lastIndexOf("(");
 				int closeT = filterArray[0].indexOf(")");
 				boolean notT = filterArray[0].contains("!");
@@ -229,8 +236,8 @@ public class Server {
 				db = DisplayMap.displayByTime(db, notT2, date2Array[0], date2Array[1]);
 				dataBase.clear();
 				dataBase.addAll(db);
-			} else if (filter.contains("||")) {
-				filterArray = filter.split("||");
+			} else if (filter.contains("%%")) {
+				filterArray = filter.split("%%");
 				int openT1 = filterArray[0].lastIndexOf("(");
 				int closeT1 = filterArray[0].indexOf(")");
 				boolean notT1 = filterArray[0].contains("!");
@@ -256,7 +263,7 @@ public class Server {
 
 		}
 
-		else if (time1 && pos1) {
+		else if (time1 && pos2) {
 			if (filter.contains("&&")) {
 				filterArray = filter.split("&&");
 				int openT = filterArray[0].lastIndexOf("(");
@@ -268,6 +275,7 @@ public class Server {
 				filterArray[0] = filterArray[0].substring(openT + 1, closeT);
 				filterArray[1] = filterArray[1].substring(openP + 1, closeP);
 				String[] dateArray = new String[2];
+				dateArray = filterArray[0].split(",");
 				String[] posArray = new String[4];
 				posArray = filterArray[1].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
@@ -278,8 +286,8 @@ public class Server {
 						Double.parseDouble(posArray[3]));
 				dataBase.clear();
 				dataBase.addAll(db);
-			} else if (filter.contains("||")) {
-				filterArray = filter.split("||");
+			} else if (filter.contains("%%")) {
+				filterArray = filter.split("%%");
 				int openT = filterArray[0].lastIndexOf("(");
 				int closeT = filterArray[0].indexOf(")");
 				boolean notT = filterArray[0].contains("!");
@@ -291,12 +299,13 @@ public class Server {
 				String[] dateArray = new String[2];
 				dateArray = filterArray[0].split(",");
 				String[] posArray = new String[4];
+				posArray = filterArray[1].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
 				db1.addAll(dataBase);
 				ArrayList<Row> db2 = new ArrayList<Row>();
 				db2.addAll(dataBase);
 				db1 = DisplayMap.displayByTime(db1, notT, dateArray[0], dateArray[1]);
-				db2 = DisplayMap.displayByPlace(db1, notP, Double.parseDouble(posArray[0]),
+				db2 = DisplayMap.displayByPlace(db2, notP, Double.parseDouble(posArray[0]),
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
 				dataBase.clear();
@@ -329,8 +338,8 @@ public class Server {
 						Double.parseDouble(pos2Array[3]));
 				dataBase.clear();
 				dataBase.addAll(db);
-			} else if (filter.contains("||")) {
-				filterArray = filter.split("||");
+			} else if (filter.contains("%%")) {
+				filterArray = filter.split("%%");
 				int openP1 = filterArray[0].lastIndexOf("(");
 				int closeP1 = filterArray[0].indexOf(")");
 				boolean notP1 = filterArray[0].contains("!");
@@ -357,7 +366,7 @@ public class Server {
 				dataBase.addAll(db1);
 				dataBase.addAll(db2);
 			}
-		} else if (id1 && pos1) {
+		} else if (id1 && pos2) {
 			String[] posArray = new String[4];
 			if (filter.contains("&&")) {
 				filterArray = filter.split("&&");
@@ -379,7 +388,7 @@ public class Server {
 				dataBase.clear();
 				dataBase.addAll(db);
 			} else {
-				filterArray = filter.split("||");
+				filterArray = filter.split("%%");
 				int openID = filterArray[0].lastIndexOf("(");
 				int closeID = filterArray[0].indexOf(")");
 				boolean notID = filterArray[0].contains("!");
@@ -418,8 +427,8 @@ public class Server {
 				db = DisplayMap.displayByModel(db, notid2, filterArray[1]);
 				dataBase.clear();
 				dataBase.addAll(db);
-			} else if (filter.contains("||")) {
-				filterArray = filter.split("||");
+			} else if (filter.contains("%%")) {
+				filterArray = filter.split("%%");
 				int openid1 = filterArray[0].lastIndexOf("(");
 				int closeid1 = filterArray[0].indexOf(")");
 				boolean notid1 = filterArray[0].contains("!");
@@ -452,11 +461,11 @@ public class Server {
 				db = DisplayMap.displayByTime(db, notT, timeArray[0], timeArray[1]);
 			} else if (filter.contains("ID")) {
 				boolean notID = filter.contains("!");
-				filter = filter.substring(filter.lastIndexOf("(" + 1), filter.indexOf(")"));
+				filter = filter.substring(filter.lastIndexOf("(") + 1, filter.indexOf(")"));
 				db = DisplayMap.displayByModel(db, notID, filter);
 			} else if (filter.contains("Pos")) {
 				boolean notP = filter.contains("!");
-				filter = filter.substring(filter.lastIndexOf("(" + 1), filter.indexOf(")"));
+				filter = filter.substring(filter.lastIndexOf("(") + 1, filter.indexOf(")"));
 				String[] posArray = new String[4];
 				posArray = filter.split(",");
 				db = DisplayMap.displayByPlace(db, notP, Double.parseDouble(posArray[0]),

@@ -16,10 +16,10 @@
 	$(document).ready(function () {
 			
 		/* filters */
-		var id1Filter = '<input id="id1Filter" type="text"/>';
+		var id1Filter = '<input id="id1Filter" type="text" placeholder="device ID"/>';
 		var dt1Filter = '<p id="dt1Filter"><input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
 		var location1Filter = '<p id="location1Filter"><label>Lat range:</label><input id="slat1Filter" type="number" min="0" step="0.00001"/><input id="elat1Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon1Filter" type="number" min="0" step="0.00001"/><input id="elon1Filter" type="number" min="0" step="0.00001"/></p>';
-		var id2Filter = '<input id="id2Filter" type="text"/>';
+		var id2Filter = '<input id="id2Filter" type="text" placeholder="device ID"/>';
 		var dt2Filter = '<p id="dt2Filter"><input id="sdt2Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt2Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
 		var location2Filter = '<p id="location2Filter"><label>Lat range:</label><input id="slat2Filter" type="number" min="0" step="0.00001"/><input id="elat2Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon2Filter" type="number" min="0" step="0.00001"/><input id="elon2Filter" type="number" min="0" step="0.00001"/></p>';	$("p#filterInfo1").empty()
 		$("p#filterInfo1").append(id1Filter)
@@ -115,6 +115,7 @@
 			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
 					$("#numOfRouters").empty().append(output)
 			});	
+			$("#filterDetails").empty()
 			return false
 		})
 		$("#DBsaveCSV").click(function() {
@@ -141,100 +142,48 @@
 			);
 			return false
 		})
-		$("#submitFilter").click(function() {
-			var filter = "";
-			var filter1Type = $("#filterType1 option:selected").text();
-			var not1 = $("#not1").prop('checked');
-			var operation = $("#operation option:selected").text();
-			if(operation == "NO OPERATION"){
-				if(filter1Type == "ID"){
-					if(not1)
-						filter = "ID(!(" + $("#id1Filter").val() +"))";
-					else filter = "ID(" + $("#id1Filter").val() +")";
-				}else if(filter1Type == "TIME"){
-					if(not1)
-						filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
-					else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
-				}else if(filter1Type == "LOCATION"){
-					if(not1)
-						filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
-					else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
-				}
-			}else{
-				var filter2Type = $("#filterType2 option:selected").text();
-				var not2 = $("#not2").prop('checked');
-				if(filter1Type == "TIME"){
-					if(not1)filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
-					else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(filter2Type == "ID"){
-						if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
-						else filter = filter + "ID(" + $("#id2Filter").val() +")";
-					} else if(filter2Type == "TIME"){
-						if(not2) filter = filter + "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
-						else filter = filter + "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
-					} else if(filter2Type == "LOCATION"){
-						if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
-						else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
-					}
-				}else if(filter1Type == "ID" && filter2Type != "TIME"){
-					if(not1) filter = "ID(!("+$("#id1Filter").val() +"))";
-					else filter = "ID("+$("#id1Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(filter2Type == "ID"){
-						if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
-						else filter = filter + "ID(" + $("#id2Filter").val() +")";
-					} else if(filter2Type == "LOCATION"){
-						if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
-						else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
-					}
-				}else if(filter1Type == "LOCATION" && filter2Type == "LOCATION"){
-					if(not1) filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
-					else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
-					else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
-				}else if(filter1Type == "ID" && filter2Type == "TIME"){
-					if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
-					else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(not1) filter = filter + "ID(!(" + $("#id1Filter").val() +"))";
-					else filter = filter + "ID(" + $("#id1Filter").val() +")";
-				}else if(filter1Type == "LOCATION" && filter2Type == "TIME"){
-					if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
-					else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
-					else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
-				}else if(filter1Type == "LOCATION" && filter2Type == "ID"){
-					if(not2) filter = "ID(!(" + $("#id2Filter").val() +"))";
-					else filter = "ID(" + $("#id2Filter").val() +")";
-					if(operation == "AND") filter = filter + "&&";
-					else filter = filter + "||";
-					if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
-					else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
-				}				
-			}
+		$("#applyFilter").click(function() {
+			//filter building
+			var filter = buildFilter();
 			$("#filterDetails").empty().append(filter);
-			/*$.ajax(
+			$.ajax(
 				{
 					"url": encodeURI("/FilterBy?" + filter)
 				}
 			).then(function(output) {
-					$("div#output").empty().append("<div>"+output+"</div>")
+					$("div#filterOutput").empty().append(output)
 			});
 			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
 					$("#numOfRecords").empty().append(output)
 			});
 			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
 					$("#numOfRouters").empty().append(output)
-			});*/
+			});
 			return false
+		})
+		$("#saveFilter").click(function() {
+			var filterName = $("input#fileNameFilter").val();
+			var filter = buildFilter();
+			$.ajax(
+				{
+					"url": encodeURI("/saveFilter?" + filterName)
+				}
+			).then(function(output) {
+					$("div#filterOutput").empty().append(output)
+			});
+		})
+		$("#uploadFilter").click(function() {
+			var filter = $("#fileNameUploadFilter").val();
+			uploadFilter(filter);
+			/*var filterName = $("input#fileNameFilter").val();
+			var filter = buildFilter();
+			$.ajax(
+				{
+					"url": encodeURI("/saveFilter?" + filterName)
+				}
+			).then(function(output) {
+					$("div#filterOutput").empty().append(output)
+			});*/
 		})
 	});
 	
@@ -287,3 +236,203 @@
 
 	});
 })(jQuery);
+
+function buildFilter(){
+	var filter = "";
+	var filter1Type = $("#filterType1 option:selected").text();
+	var not1 = $("#not1").prop('checked');
+	var operation = $("#operation option:selected").text();
+	if(operation == "NO OPERATION"){
+		if(filter1Type == "ID"){
+			if(not1)
+				filter = "ID(!(" + $("#id1Filter").val() +"))";
+			else filter = "ID(" + $("#id1Filter").val() +")";
+		}else if(filter1Type == "TIME"){
+			if(not1)
+				filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
+			else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
+		}else if(filter1Type == "LOCATION"){
+			if(not1)
+				filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+			else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+		}
+	}else{
+		var filter2Type = $("#filterType2 option:selected").text();
+		var not2 = $("#not2").prop('checked');
+		if(filter1Type == "TIME"){
+			if(not1)filter = "Time(!(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +"))";
+			else filter = "Time(" + $("#sdt1Filter").val() + "," + $("#edt1Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(filter2Type == "ID"){
+				if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
+				else filter = filter + "ID(" + $("#id2Filter").val() +")";
+			} else if(filter2Type == "TIME"){
+				if(not2) filter = filter + "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+				else filter = filter + "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+			} else if(filter2Type == "LOCATION"){
+				if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+				else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
+			}
+		}else if(filter1Type == "ID" && filter2Type != "TIME"){
+			if(not1) filter = "ID(!("+$("#id1Filter").val() +"))";
+			else filter = "ID("+$("#id1Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(filter2Type == "ID"){
+				if(not2) filter = filter + "ID(!(" + $("#id2Filter").val() +"))";
+				else filter = filter + "ID(" + $("#id2Filter").val() +")";
+			} else if(filter2Type == "LOCATION"){
+				if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+				else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
+			}
+		}else if(filter1Type == "LOCATION" && filter2Type == "LOCATION"){
+			if(not1) filter = "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+			else filter = "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(not2) filter = filter + "Pos(!(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +"))";
+			else filter = filter + "Pos(" + $("#slon2Filter").val() + "," + $("#elon2Filter").val() + "," + $("#slat2Filter").val() + "," + $("#elat2Filter").val() +")";
+		}else if(filter1Type == "ID" && filter2Type == "TIME"){
+			if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+			else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(not1) filter = filter + "ID(!(" + $("#id1Filter").val() +"))";
+			else filter = filter + "ID(" + $("#id1Filter").val() +")";
+		}else if(filter1Type == "LOCATION" && filter2Type == "TIME"){
+			if(not2) filter = "Time(!(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +"))";
+			else filter = "Time(" + $("#sdt2Filter").val() + "," + $("#edt2Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+			else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+		}else if(filter1Type == "LOCATION" && filter2Type == "ID"){
+			if(not2) filter = "ID(!(" + $("#id2Filter").val() +"))";
+			else filter = "ID(" + $("#id2Filter").val() +")";
+			if(operation == "AND") filter = filter + "&&";
+			else filter = filter + "||";
+			if(not1) filter = filter + "Pos(!(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +"))";
+			else filter = filter + "Pos(" + $("#slon1Filter").val() + "," + $("#elon1Filter").val() + "," + $("#slat1Filter").val() + "," + $("#elat1Filter").val() +")";
+		}				
+	}
+	return filter;
+}
+
+function uploadFilter(filter){
+	if(filter.includes("&&") || filter.includes("||")){
+		var filters;
+		if(filter.includes("&&")){
+			$("#operation").val("AND");
+			filters.split("&&");
+		}else {
+			$("#operation").val("OR");
+			filters.split("||");
+		}
+		if(filters[0].includes("Time")){
+			$("#filterType1").val("TIME");
+			var times = filters[0].split(",");
+			if(filters[0].includes("!")){
+				$("#not1").prop('checked', true);
+				$("#sdt1Filter").val(times[0].substring(7,times[0].length));
+				$("#edt1Filter").val(times[1].substring(0,times[1].length-2));
+			}else{
+				$("#sdt1Filter").val(times[0].substring(5,times[0].length));
+				$("#edt1Filter").val(times[1].substring(0,times[1].length-1));
+			}
+		}else if(filters[0].includes("Pos")){
+			$("#filterType1").val("LOCATION");
+			var cord = filters[0].split(",");
+			if(filters[0].includes("!")){
+				$("#not1").prop('checked', true);
+				$("#slon1Filter").val(cord[0].substring(6,times[0].length));
+				$("#elon1Filter").val(cord[1]);
+				$("#slat1Filter").val(cord[2]);
+				$("#elat1Filter").val(cord[3].substring(0,cord[3].length-2));
+			}else{
+				$("#slon1Filter").val(cord[0].substring(4,times[0].length));
+				$("#elon1Filter").val(cord[1]);
+				$("#slat1Filter").val(cord[2]);
+				$("#elat1Filter").val(cord[3].substring(0,cord[3].length-1));
+			}
+		}else{ //filter1 is ID
+			if(filters[0].includes("!")){
+				$("#not1").prop('checked', true);
+				$("#id1Filter").val(filters[0].substring(5,filters[0].length-2));
+			}else{
+				$("#id1Filter").val(filters[0].substring(3,filters[0].length-1));
+			}
+		}
+		
+		if(filters[1].includes("Time")){
+			$("#filterType2").val("TIME");
+			var times = filters[1].split(",");
+			if(filters[1].includes("!")){
+				$("#not2").prop('checked', true);
+				$("#sdt2Filter").val(times[0].substring(7,times[0].length));
+				$("#edt2Filter").val(times[1].substring(0,times[1].length-2));
+			}else{
+				$("#sdt2Filter").val(times[0].substring(5,times[0].length));
+				$("#edt2Filter").val(times[1].substring(0,times[1].length-1));
+			}
+		}else if(filters[1].includes("Pos")){
+			$("#filterType2").val("LOCATION");
+			var cord = filters[1].split(",");
+			if(filters[1].includes("!")){
+				$("#not2").prop('checked', true);
+				$("#slon2Filter").val(cord[0].substring(6,times[0].length));
+				$("#elon2Filter").val(cord[1]);
+				$("#slat2Filter").val(cord[2]);
+				$("#elat2Filter").val(cord[3].substring(0,cord[3].length-2));
+			}else{
+				$("#slon2Filter").val(cord[0].substring(4,times[0].length));
+				$("#elon2Filter").val(cord[1]);
+				$("#slat2Filter").val(cord[2]);
+				$("#elat2Filter").val(cord[3].substring(0,cord[3].length-1));
+			}
+		}else{ //filter2 is ID
+			if(filters[1].includes("!")){
+				$("#not2").prop('checked', true);
+				$("#id2Filter").val(filters[1].substring(5,filters[1].length-2));
+			}else{
+				$("#id1Filter").val(filters[1].substring(3,filters[1].length-1));
+			}
+		}
+	}else{
+		$("#operation").val("NO OPERATION");
+		if(filter.includes("Time")){
+			$("#filterType1").val("TIME");
+			var times = filter.split(",");
+			if(filter.includes("!")){
+				$("#not1").prop('checked', true);
+				$("#sdt1Filter").val(times[0].substring(7,times[0].length));
+				$("#edt1Filter").val(times[1].substring(0,times[1].length-2));
+			}else{
+				$("#sdt1Filter").val(times[0].substring(5,times[0].length));
+				$("#edt1Filter").val(times[1].substring(0,times[1].length-1));
+			}
+		}else if(filter.includes("Pos")){
+			$("#filterType1").val("LOCATION");
+			var cord = filter.split(",");
+			if(filter.includes("!")){
+				$("#not1").prop('checked', true);
+				$("#slon1Filter").val(cord[0].substring(6,times[0].length));
+				$("#elon1Filter").val(cord[1]);
+				$("#slat1Filter").val(cord[2]);
+				$("#elat1Filter").val(cord[3].substring(0,cord[3].length-2));
+			}else{
+				$("#slon1Filter").val(cord[0].substring(4,times[0].length));
+				$("#elon1Filter").val(cord[1]);
+				$("#slat1Filter").val(cord[2]);
+				$("#elat1Filter").val(cord[3].substring(0,cord[3].length-1));
+			}
+		}else{ //filter1 is ID
+			if(filter.includes("!")){
+				$("#not1").prop('checked', true);
+				$("#id1Filter").val(filter.substring(5,filter.length-2));
+			}else{
+				$("#id1Filter").val(filter.substring(3,filter.length-1));
+			}
+		}
+	}
+}

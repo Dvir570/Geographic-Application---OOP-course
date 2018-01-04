@@ -1,9 +1,15 @@
 package src;
 
+import java.text.ParseException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Filter by option you choose and create the kml file.
@@ -100,33 +106,37 @@ public class DisplayMap {
 	 * @param dateTime
 	 *            filtered by the dateTime given
 	 */
-	@SuppressWarnings("deprecation")
 	public static ArrayList<Row> displayByTime(ArrayList<Row> DB, boolean not, String startTime, String endTime) {
-		Date temp = new Date();
-
-		String[] dArray = startTime.split("-T:");
-		Date st = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
-				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
-		dArray = endTime.split("-T:");
-		Date et = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
-				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
-		if (et.before(st)) { // swap
-			temp = et;
-			et = st;
-			st = temp;
-		}
 		ArrayList<Row> ar = new ArrayList<Row>();
-		for (int i = 0; i < DB.size(); i++) {
-			Row r = DB.get(i);
-			String tempTime = r.getWiFi(0).getTime();
-			dArray = tempTime.split("- :");
-			Date d = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
-					Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]), Integer.parseInt(dArray[5]));
-			if (not) {
-				if (!(d.before(et) && d.after(st)))
+		startTime += ":00";
+		endTime += ":00";
+		startTime = startTime.replace('T', ' ');
+		endTime = endTime.replace('T', ' ');
+		try {
+			SimpleDateFormat format = new SimpleDateFormat();
+
+			format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date temp;
+			Date st = format.parse(startTime);
+			Date et = format.parse(endTime);
+			if (et.before(st)) { // swap
+				temp = et;
+				et = st;
+				st = temp;
+			}
+			for (int i = 0; i < DB.size(); i++) {
+				Row r = DB.get(i);
+				String tempTime = r.getWiFi(0).getTime();
+				Date d = format.parse(tempTime);
+				if (not) {
+					if (!(d.before(et) && d.after(st)))
+						ar.add(r);
+				} else if (d.before(et) && d.after(st))
 					ar.add(r);
-			} else if (d.before(et) && d.after(st))
-				ar.add(r);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return ar;
 	}

@@ -42,10 +42,10 @@
 			<section id="banner">
 				<div class="content">
 					<h1>Update DB format File</h1>
-					<p>You need to copy the path of the file and past it in the textbox.<br />This file should be the one with 46 columns.</p>
+					<p>You need to copy the path of the file and paste it in the textbox.<br />This file should be the one with 46 columns.</p>
 					<ul class="actions">
 						<li><form id="formDBcsv" enctype="multipart/form-data" method="post" action="#">
-								<input id="DBfileUpload" type="text" accept=".csv" />
+								<input id="DBfileUpload" type="text" accept=".csv" placeholder="Enter a path to csv file" />
 								<label>file path</label>
 								<button type="submit" value="Upload file" id="UpdateDBcsv" />
 							</form>
@@ -75,7 +75,7 @@
 					<div class="flex-item image fit round">
 						<img src="images/shmuel.jpg" alt="" />
 					</div>
-					<div class="flex-item image fit round right">
+					<div class="flex-item image fit round">
 						<img src="images/dvir.jpg" alt="" />
 					</div>
 				</div>
@@ -95,7 +95,7 @@
 						</p>
 						<p>
 							<input type="checkbox" id="not1">
-							<label for="not1">Not</label>
+							<label for="not1" style="font-weight:bold;">Not</label>
 						</p>
 						<p id="filterInfo1"></p>
 					</div>
@@ -120,8 +120,14 @@
 						</p>
 						<p id="filterInfo2"></p>
 					</div>
-					<button id="submitFilter" type="submit" class="button alt">SUBMIT FILTER</button>
+					<button id="applyFilter" type="submit" class="button alt">APPLY FILTER</button>
+					<button id="resetDB" type="submit" class="button alt">RESET DB</button><br/><br/>
+					<button id="saveFilter" type="submit" class="button alt" for="fileNameFilter">SAVE FILTER</button>
+					<input id="fileNameFilter" type="text" accept=".txt" for="saveFilter" placeholder="Enter path\filterName.txt" />
+					<button id="uploadFilter" type="submit" class="button alt" for="fileNameUploadFilter">UPLOAD FILTER</button>
+					<input id="fileNameUploadFilter" type="text" accept=".txt" for="uploadFilter" placeholder="Enter path\filterName.txt" />
 				</form>
+				<div id="filterOutput" class="validation-white"></div>
 			</section>
 
 		<!-- Three -->

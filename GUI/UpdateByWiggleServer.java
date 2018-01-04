@@ -57,6 +57,7 @@ class UpdateByWiggleServer {
 		else
 			csvFiles.add(csvF);
 		Row allWifis = new Row(csvFiles);
+		ResultFile.result.clear();
 		ResultFile result = new ResultFile("output files\\result.csv");
 		//result.insertRows(allWifis.getRow());
 		result.rowsGroupByTimeModel(allWifis.getWifis());
