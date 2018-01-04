@@ -58,14 +58,16 @@ public class Server {
 			inputArray = input.split("%");
 			File filterPath = new File(inputArray[0]);
 
-			if (filterPath.isFile())
-				output = "this file already exists";
+			if (filterPath.exists())
+				output = "File already exists";
+			else if(!filterPath.getPath().contains(".txt"))
+				output="Bad File format";
 			else {
 				IOfiles writer = new IOfiles(filterPath.getPath());
 				writer.writeLine(inputArray[1]);
 				writer.close();
-				output = "the filter has been recorded";
-			}
+				output = "Filter has been recorded at "+filterPath.getPath();
+			} 
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);
