@@ -51,7 +51,7 @@ public class Server {
 				ex.printStackTrace();
 			}
 		});
-			server.createContext("/saveFilter", request -> {
+		server.createContext("/saveFilter", request -> {
 			String input = request.getRequestURI().getQuery();
 			String output = "";
 			String[] inputArray = new String[2];
@@ -60,14 +60,38 @@ public class Server {
 
 			if (filterPath.exists())
 				output = "File already exists";
-			else if(!filterPath.getPath().contains(".txt"))
-				output="Bad File format";
+			else if (!filterPath.getPath().contains(".txt"))
+				output = "Bad File format";
 			else {
 				IOfiles writer = new IOfiles(filterPath.getPath());
 				writer.writeLine(inputArray[1]);
 				writer.close();
-				output = "Filter has been recorded at "+filterPath.getPath();
-			} 
+				output = "Filter has been recorded at " + filterPath.getPath();
+			}
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+		});
+
+		server.createContext("/uploadFilter", request -> {
+			String input = request.getRequestURI().getQuery();
+			String output;
+			File filePath = new File(input);
+			if (!filePath.getPath().contains(".txt"))
+				output = "Bad file format";
+			else if (filePath.exists()) {
+				IOfiles reader = new IOfiles(filePath.getPath());
+				reader.readLine();
+				output = "Filter has been uploaded succesfully" + "%" + reader;
+			} else
+				output = "File doesnt exists";
+
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);
