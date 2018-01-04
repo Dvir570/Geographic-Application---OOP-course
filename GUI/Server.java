@@ -87,8 +87,7 @@ public class Server {
 				output = "Bad file format";
 			else if (filePath.exists()) {
 				IOfiles reader = new IOfiles(filePath.getPath());
-				reader.readLine();
-				output = "Filter has been uploaded succesfully" + "%" + reader;
+				output = "Filter has been uploaded succesfully" + "%" + reader.readLine();;
 			} else
 				output = "File doesnt exists";
 

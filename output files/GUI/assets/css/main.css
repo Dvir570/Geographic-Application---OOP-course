@@ -1989,7 +1989,7 @@
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #f6755e;
+			background: #25a2c3;
 			border: solid 2px #dee1e3;
 			color: #ffffff;
 			content: '\f00c';
@@ -2635,7 +2635,7 @@
 		}
 
 		.wrapper.style1 {
-			background: #f6755e;
+			background: #25a2c3;
 			color: #fcdcd6;
 		}
 

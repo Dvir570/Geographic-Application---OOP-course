@@ -46,8 +46,7 @@
 					<ul class="actions">
 						<li><form id="formDBcsv" enctype="multipart/form-data" method="post" action="#">
 								<input id="DBfileUpload" type="text" accept=".csv" placeholder="Enter a path to csv file" />
-								<label>file path</label>
-								<button type="submit" value="Upload file" id="UpdateDBcsv" />
+								<button type="submit" value="Upload file" id="UpdateDBcsv">UPLOAD FILE</button>
 							</form>
 						</li>
 						<div id="output" class="validation"> </div>
@@ -116,15 +115,15 @@
 						</p>
 						<p>
 							<input type="checkbox" id="not2">
-							<label for="not2">Not</label>
+							<label for="not2" style="font-weight:bold;">Not</label>
 						</p>
 						<p id="filterInfo2"></p>
 					</div>
 					<button id="applyFilter" type="submit" class="button alt">APPLY FILTER</button>
-					<button id="resetDB" type="submit" class="button alt">RESET DB</button><br/><br/>
-					<button id="saveFilter" type="submit" class="button alt" for="fileNameFilter">SAVE FILTER</button>
+					<button id="restoreDB" type="submit" class="button alt">RESTORE DB</button><br/><br/>
+					<button id="saveFilter" type="button" class="button alt" for="fileNameFilter">SAVE FILTER</button>
 					<input id="fileNameFilter" type="text" accept=".txt" for="saveFilter" placeholder="Enter path\filterName.txt" />
-					<button id="uploadFilter" type="submit" class="button alt" for="fileNameUploadFilter">UPLOAD FILTER</button>
+					<button id="uploadFilter" type="button" class="button alt" for="fileNameUploadFilter">UPLOAD FILTER</button>
 					<input id="fileNameUploadFilter" type="text" accept=".txt" for="uploadFilter" placeholder="Enter path\filterName.txt" />
 				</form>
 				<div id="filterOutput" class="validation-white"></div>

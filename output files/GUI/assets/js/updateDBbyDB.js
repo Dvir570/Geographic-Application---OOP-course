@@ -162,28 +162,45 @@
 			return false
 		})
 		$("#saveFilter").click(function() {
-			var filterName = $("input#fileNameFilter").val();
+			var fileNameFilter = $("input#fileNameFilter").val();
 			var filter = buildFilter();
 			$.ajax(
 				{
-					"url": encodeURI("/saveFilter?" + filterName)
+					"url": encodeURI("/saveFilter?" + fileNameFilter+"%"+filter)
 				}
 			).then(function(output) {
 					$("div#filterOutput").empty().append(output)
 			});
 		})
 		$("#uploadFilter").click(function() {
-			var filter = $("#fileNameUploadFilter").val();
-			uploadFilter(filter);
-			/*var filterName = $("input#fileNameFilter").val();
-			var filter = buildFilter();
+			var filterFileName = $("input#fileNameUploadFilter").val();
 			$.ajax(
 				{
-					"url": encodeURI("/saveFilter?" + filterName)
+					"url": encodeURI("/uploadFilter?" + filterFileName)
+				}
+			).then(function(output) {
+				if(output.includes("%")){
+					msgFilter = output.split("%");
+					uploadFilter(msgFilter[1]);
+					$("div#filterOutput").empty().append(msgFilter[0])
+				}else $("div#filterOutput").empty().append(output)
+			});
+		})
+		$("#restoreDB").click(function() {
+			$.ajax(
+				{
+					"url": encodeURI("/restoreDB?")
 				}
 			).then(function(output) {
 					$("div#filterOutput").empty().append(output)
-			});*/
+					$("#filterDetails").empty()
+			});
+			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+					$("#numOfRecords").empty().append(output)
+			});
+			$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+					$("#numOfRouters").empty().append(output)
+			});
 		})
 	});
 	
@@ -321,15 +338,24 @@ function buildFilter(){
 
 function uploadFilter(filter){
 	if(filter.includes("&&") || filter.includes("||")){
+		$("#filter2").removeClass("hideme")
+		var id1Filter = '<input id="id1Filter" type="text" placeholder="device ID"/>';
+		var dt1Filter = '<p id="dt1Filter"><input id="sdt1Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt1Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+		var location1Filter = '<p id="location1Filter"><label>Lat range:</label><input id="slat1Filter" type="number" min="0" step="0.00001"/><input id="elat1Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon1Filter" type="number" min="0" step="0.00001"/><input id="elon1Filter" type="number" min="0" step="0.00001"/></p>';
+		var id2Filter = '<input id="id2Filter" type="text" placeholder="device ID"/>';
+		var dt2Filter = '<p id="dt2Filter"><input id="sdt2Filter" type="datetime-local" value="2017-06-01T08:30"><input id="edt2Filter" type="datetime-local" value="2017-06-01T08:30"></p>';
+		var location2Filter = '<p id="location2Filter"><label>Lat range:</label><input id="slat2Filter" type="number" min="0" step="0.00001"/><input id="elat2Filter" type="number" min="0" step="0.00001"/><label>Lon range:</label><input id="slon2Filter" type="number" min="0" step="0.00001"/><input id="elon2Filter" type="number" min="0" step="0.00001"/></p>';
+		//$("p#filterInfo2").empty().append(id2Filter)
 		var filters;
 		if(filter.includes("&&")){
 			$("#operation").val("AND");
-			filters.split("&&");
+			filters = filter.split("&&");
 		}else {
 			$("#operation").val("OR");
-			filters.split("||");
+			filters = filter.split("||");
 		}
 		if(filters[0].includes("Time")){
+			$("p#filterInfo1").empty().append(dt1Filter)
 			$("#filterType1").val("TIME");
 			var times = filters[0].split(",");
 			if(filters[0].includes("!")){
@@ -341,6 +367,7 @@ function uploadFilter(filter){
 				$("#edt1Filter").val(times[1].substring(0,times[1].length-1));
 			}
 		}else if(filters[0].includes("Pos")){
+			$("p#filterInfo1").empty().append(location1Filter)
 			$("#filterType1").val("LOCATION");
 			var cord = filters[0].split(",");
 			if(filters[0].includes("!")){
@@ -356,6 +383,7 @@ function uploadFilter(filter){
 				$("#elat1Filter").val(cord[3].substring(0,cord[3].length-1));
 			}
 		}else{ //filter1 is ID
+			$("p#filterInfo1").empty().append(id1Filter)
 			if(filters[0].includes("!")){
 				$("#not1").prop('checked', true);
 				$("#id1Filter").val(filters[0].substring(5,filters[0].length-2));
@@ -365,6 +393,7 @@ function uploadFilter(filter){
 		}
 		
 		if(filters[1].includes("Time")){
+			$("p#filterInfo2").empty().append(dt2Filter)
 			$("#filterType2").val("TIME");
 			var times = filters[1].split(",");
 			if(filters[1].includes("!")){
@@ -376,26 +405,28 @@ function uploadFilter(filter){
 				$("#edt2Filter").val(times[1].substring(0,times[1].length-1));
 			}
 		}else if(filters[1].includes("Pos")){
+			$("p#filterInfo2").empty().append(location2Filter)
 			$("#filterType2").val("LOCATION");
 			var cord = filters[1].split(",");
 			if(filters[1].includes("!")){
 				$("#not2").prop('checked', true);
-				$("#slon2Filter").val(cord[0].substring(6,times[0].length));
+				$("#slon2Filter").val(cord[0].substring(6,cord[0].length));
 				$("#elon2Filter").val(cord[1]);
 				$("#slat2Filter").val(cord[2]);
 				$("#elat2Filter").val(cord[3].substring(0,cord[3].length-2));
 			}else{
-				$("#slon2Filter").val(cord[0].substring(4,times[0].length));
+				$("#slon2Filter").val(cord[0].substring(4,cord[0].length));
 				$("#elon2Filter").val(cord[1]);
 				$("#slat2Filter").val(cord[2]);
 				$("#elat2Filter").val(cord[3].substring(0,cord[3].length-1));
 			}
 		}else{ //filter2 is ID
+			$("p#filterInfo2").empty().append(id2Filter)
 			if(filters[1].includes("!")){
 				$("#not2").prop('checked', true);
 				$("#id2Filter").val(filters[1].substring(5,filters[1].length-2));
 			}else{
-				$("#id1Filter").val(filters[1].substring(3,filters[1].length-1));
+				$("#id2Filter").val(filters[1].substring(3,filters[1].length-1));
 			}
 		}
 	}else{
