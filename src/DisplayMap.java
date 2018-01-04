@@ -60,7 +60,8 @@ public class DisplayMap {
 
 	/**
 	 * filter by place giving coordinates
-	 * @param notID 
+	 * 
+	 * @param notID
 	 * 
 	 * @param lon
 	 *            longtitude
@@ -71,19 +72,20 @@ public class DisplayMap {
 	 * @param radius
 	 *            extends all WiFi objects around coordinates by the given radius
 	 */
-	public static ArrayList<Row> displayByPlace(ArrayList<Row> DB, boolean not, double lon1, double lon2, double lat1, double lat2) {
+	public static ArrayList<Row> displayByPlace(ArrayList<Row> DB, boolean not, double lon1, double lon2, double lat1,
+			double lat2) {
 		ArrayList<Row> ar = new ArrayList<Row>();
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
 			WiFi w = r.getWiFi(0);
-			
+
 			if (not) {
-			if (!((Double.parseDouble(w.getLat()) >= Math.min(lat1, lat2))
-					&& (Double.parseDouble(w.getLat()) <= Math.max(lat1, lat2))
-					&& (Double.parseDouble(w.getLon()) >= Math.min(lon1, lon2))
-					&& (Double.parseDouble(w.getLon()) <= Math.max(lon1, lon2))))
-				ar.add(r);}
-			else if (((Double.parseDouble(w.getLat()) >= Math.min(lat1, lat2))
+				if (!((Double.parseDouble(w.getLat()) >= Math.min(lat1, lat2))
+						&& (Double.parseDouble(w.getLat()) <= Math.max(lat1, lat2))
+						&& (Double.parseDouble(w.getLon()) >= Math.min(lon1, lon2))
+						&& (Double.parseDouble(w.getLon()) <= Math.max(lon1, lon2))))
+					ar.add(r);
+			} else if (((Double.parseDouble(w.getLat()) >= Math.min(lat1, lat2))
 					&& (Double.parseDouble(w.getLat()) <= Math.max(lat1, lat2))
 					&& (Double.parseDouble(w.getLon()) >= Math.min(lon1, lon2))
 					&& (Double.parseDouble(w.getLon()) <= Math.max(lon1, lon2))))
@@ -108,7 +110,7 @@ public class DisplayMap {
 		dArray = endTime.split("-T:");
 		Date et = new Date(Integer.parseInt(dArray[0]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[2]),
 				Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
-		if (et.before(st)) { //swap
+		if (et.before(st)) { // swap
 			temp = et;
 			et = st;
 			st = temp;
@@ -117,13 +119,13 @@ public class DisplayMap {
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
 			String tempTime = r.getWiFi(0).getTime();
-			dArray = tempTime.split("/ :");
+			dArray = tempTime.split("- :");
 			Date d = new Date(Integer.parseInt(dArray[2]), Integer.parseInt(dArray[1]), Integer.parseInt(dArray[0]),
-					Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]));
-			if(not) {
+					Integer.parseInt(dArray[3]), Integer.parseInt(dArray[4]), Integer.parseInt(dArray[5]));
+			if (not) {
 				if (!(d.before(et) && d.after(st)))
-					ar.add(r);}
-			else if (d.before(et) && d.after(st))
+					ar.add(r);
+			} else if (d.before(et) && d.after(st))
 				ar.add(r);
 		}
 		return ar;
@@ -135,15 +137,15 @@ public class DisplayMap {
 	 * @param model
 	 *            id device
 	 */
-	public static ArrayList<Row> displayByModel(ArrayList<Row> DB,boolean not, String model) {
+	public static ArrayList<Row> displayByModel(ArrayList<Row> DB, boolean not, String model) {
 		ArrayList<Row> ar = new ArrayList<Row>();
-		
+
 		for (int i = 0; i < DB.size(); i++) {
 			Row r = DB.get(i);
-			if(not) {
-			if (!(r.getWiFi(0).getModel().equals(model)))
-				ar.add(r);}
-			else if (r.getWiFi(0).getModel().equals(model))
+			if (not) {
+				if (!(r.getWiFi(0).getModel().equals(model)))
+					ar.add(r);
+			} else if (r.getWiFi(0).getModel().equals(model))
 				ar.add(r);
 		}
 		return ar;
