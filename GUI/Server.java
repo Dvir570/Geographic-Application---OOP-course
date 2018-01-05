@@ -207,7 +207,9 @@ public class Server {
 		});
 
 		System.out.println(
-				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/updateDBbyDB.html");
+				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/updateDBbyWiggle.html");
+		System.out.println(
+				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/result.html");
 		server.start();
 
 	}

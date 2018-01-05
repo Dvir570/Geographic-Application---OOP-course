@@ -8,6 +8,7 @@
 	<head>
 		<title>Intensify by TEMPLATED</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
@@ -29,8 +30,10 @@
 		<!-- Menu -->
 			<nav id="menu">
 				<ul class="links">
-					<li><a href="updateDBbyDB.html">Update DB by DB</a></li>
-					<li><a href="updateDBbyWiggle.html">Update DB by WiggleWifi file</a></li>
+					<li><a href="updateDBbyWiggle.html">Update by Wiggle Wifi</a></li>
+					<li><a href="updateDBbyDB.html">Update by DB</a></li>
+					<li><a href="algorithmI.html">Algorithm I</a></li>
+					<li><a href="algorithmII.html">Algorithm II</a></li>
 					<li><a href="elements.html">Elements</a></li>
 				</ul>
 				<ul class="actions vertical">
@@ -42,10 +45,10 @@
 			<section id="banner">
 				<div class="content">
 					<h1>Update Wiggle Wifi File</h1>
-					<p>You need to copy the path of the file or directory and paste it in the textbox.<br />The files should be product of Wiggle Wifi csv file.</p>
+					<p>You need to copy the path of the file or directory and paste it in the textbox.<br />The files should be product of Wiggle Wifi app.</p>
 					<ul class="actions">
 						<li><form id="formDBcsv" enctype="multipart/form-data" method="post" action="#">
-								<input id="WiggleFileUpload" type="text" accept=".csv" placeholder="Enter a path to csv file or directory"/>
+								<input id="WiggleFileUpload" type="text" accept=".csv" placeholder="Enter a path"/>
 								<button type="submit" value="Upload file" id="UpdateWiggleCsv">UPLOAD</button>
 							</form>
 						</li>
@@ -74,7 +77,7 @@
 					<div class="flex-item image fit round">
 						<img src="images/shmuel.jpg" alt="" />
 					</div>
-					<div class="flex-item image fit round right">
+					<div class="flex-item image fit round">
 						<img src="images/dvir.jpg" alt="" />
 					</div>
 				</div>
@@ -94,7 +97,7 @@
 						</p>
 						<p>
 							<input type="checkbox" id="not1">
-							<label for="not1">Not</label>
+							<label for="not1" style="font-weight:bold;">Not</label>
 						</p>
 						<p id="filterInfo1"></p>
 					</div>
@@ -115,44 +118,24 @@
 						</p>
 						<p>
 							<input type="checkbox" id="not2">
-							<label for="not2">Not</label>
+							<label for="not2" style="font-weight:bold;">Not</label>
 						</p>
 						<p id="filterInfo2"></p>
 					</div>
-					<button id="applyFilter" type="submit" class="button alt">SUBMIT FILTER</button>
+					<button id="applyFilter" type="button" class="button alt">APPLY FILTER</button>
+					<button id="restoreDB" type="button" class="button alt">RESTORE DB</button><br/><br/>
+					<button id="saveFilter" type="button" class="button alt" for="fileNameFilter">SAVE FILTER</button>
+					<input id="fileNameFilter" type="text" accept=".txt" for="saveFilter" placeholder="Enter path\filterName.txt" /><br/><br/>
+					<button id="uploadFilter" type="button" class="button alt" for="fileNameUploadFilter">UPLOAD FILTER</button>
+					<input id="fileNameUploadFilter" type="text" accept=".txt" for="uploadFilter" placeholder="Enter path\filterName.txt" />
 				</form>
+				<div id="filterOutput" class="validation-white"></div>
 			</section>
 
 		<!-- Three -->
 			<section id="three" class="wrapper">
 				<div class="inner flex flex-3">
-					<div class="flex-item box">
-						<div class="image fit">
-							<img src="images/pic02.jpg" alt="" />
-						</div>
-						<div class="content">
-							<h3>Consequat</h3>
-							<p>Placerat ornare. Pellentesque od sed euismod in, pharetra ltricies edarcu cas consequat.</p>
-						</div>
-					</div>
-					<div class="flex-item box">
-						<div class="image fit">
-							<img src="images/pic03.jpg" alt="" />
-						</div>
-						<div class="content">
-							<h3>Adipiscing</h3>
-							<p>Morbi in sem quis dui placerat Pellentesque odio nisi, euismod pharetra lorem ipsum.</p>
-						</div>
-					</div>
-					<div class="flex-item box">
-						<div class="image fit">
-							<img src="images/pic04.jpg" alt="" />
-						</div>
-						<div class="content">
-							<h3>Malesuada</h3>
-							<p>Nam dui mi, tincidunt quis, accu an porttitor, facilisis luctus que metus vulputate sem magna.</p>
-						</div>
-					</div>
+					<div id="map" class="flex box"></div>
 				</div>
 			</section>
 
@@ -177,6 +160,9 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/updateDBbyWiggle.js"></script>
+			 <script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhqdvX2Q-IW5XiQBAByVa5uQK1LNhJqOM&callback=initMap">
+			</script>
 
 	</body>
 </html>

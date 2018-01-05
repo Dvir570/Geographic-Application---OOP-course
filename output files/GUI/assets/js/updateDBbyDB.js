@@ -25,18 +25,12 @@
 		$("p#filterInfo1").append(id1Filter)
 		$("select#filterType1").change(function() {
 			var sel = $("#filterType1 option:selected");
-			if(sel.text() == "ID"){
-				$("p#filterInfo1").empty()
-				$("p#filterInfo1").append(id1Filter)
-			}
-			if(sel.text() == "TIME"){
-				$("p#filterInfo1").empty()
-				$("p#filterInfo1").append(dt1Filter)
-			}
-			if(sel.text() == "LOCATION"){
-				$("p#filterInfo1").empty()
-				$("p#filterInfo1").append(location1Filter)
-			}
+			if(sel.text() == "ID")
+				$("p#filterInfo1").empty().append(id1Filter)
+			if(sel.text() == "TIME")
+				$("p#filterInfo1").empty().append(dt1Filter)
+			if(sel.text() == "LOCATION")
+				$("p#filterInfo1").empty().append(location1Filter)
 		})
 		$("select#operation").change(function() {
 			var operation = $("#operation option:selected");
@@ -50,20 +44,15 @@
 		})
 		$("#filterType2").change(function() {
 			var sel = $("#filterType2 option:selected");
-			if(sel.text() == "ID"){
-				$("p#filterInfo2").empty()
-				$("p#filterInfo2").append(id2Filter)
-			}
-			if(sel.text() == "TIME"){
-				$("p#filterInfo2").empty()
-				$("p#filterInfo2").append(dt2Filter)
-			}
-			if(sel.text() == "LOCATION"){
-				$("p#filterInfo2").empty()
-				$("p#filterInfo2").append(location2Filter)
-			}
+			if(sel.text() == "ID")
+				$("p#filterInfo2").empty().append(id2Filter)
+			if(sel.text() == "TIME")
+				$("p#filterInfo2").empty().append(dt2Filter)
+			if(sel.text() == "LOCATION")
+				$("p#filterInfo2").empty().append(location2Filter)
 		})
 		$("#filter2").addClass("hideme")
+		
 		/* requests */
 		$.ajax(
 			{"url": encodeURI("/numOfRecords?")}).then(
@@ -80,15 +69,10 @@
 				function(output) {
 					$("#filterDetails").append(output)
 				});*/
+				
 		$("#UpdateDBcsv").click(function() {
 			var input = $("input#DBfileUpload").val()
-			$.ajax(
-				{
-					"url": encodeURI("/DBupdate?" +input)
-
-				}
-			).then(
-				function(output) {
+			$.ajax({"url": encodeURI("/DBupdate?" +input)}).then(function(output) {
 					$("div#output").empty().append("<div>"+output+"</div>")
 					$("input#DBfileUpload").val("")
 				}
@@ -102,11 +86,7 @@
 			return false
 		})
 		$("#DBclear").click(function() {
-			$.ajax(
-				{
-					"url": encodeURI("/DBclear?")
-				}
-			).then(function(output) {
+			$.ajax({"url": encodeURI("/DBclear?")}).then(function(output) {
 					$("div#output").empty().append("<div>"+output+"</div>")
 			});
 			$.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
@@ -119,31 +99,20 @@
 			return false
 		})
 		$("#DBsaveCSV").click(function() {
-			$.ajax(
-				{
-					"url": encodeURI("/DBsaveCSV?")
-				}
-			).then(
-				function(output) {
+			$.ajax({"url": encodeURI("/DBsaveCSV?")}).then(function(output) {
 					$("div#output").empty().append("<div>"+output+"</div>")
 				}
 			);
 			return false
 		})
 		$("#DBsaveKML").click(function() {
-			$.ajax(
-				{
-					"url": encodeURI("/DBsaveKML?")
-				}
-			).then(
-				function(output) {
+			$.ajax({"url": encodeURI("/DBsaveKML?")}).then(function(output) {
 					$("div#output").empty().append("<div>"+output+"</div>")
 				}
 			);
 			return false
 		})
 		$("#applyFilter").click(function() {
-			//filter building
 			var filter = buildFilter();
 			$("#filterDetails").empty().append(filter);
 			$.ajax(
