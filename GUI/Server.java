@@ -31,6 +31,24 @@ public class Server {
 		server.createContext("/DBupdate", request -> {
 			UpdateByDbServer.dbUpdate(request);
 		});
+		server.createContext("/AlgorithmI", request -> {
+			AvgMacPoint avgP = AlgorithmIServer.algo1(request);
+			String output;
+			if (avgP == null)
+				output = "No such point";
+			else
+				output = avgP.getAvgLon() + "," + avgP.getAvgLat() + "," + avgP.getAvgAlt();
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+
+		});
 		server.createContext("/home", request -> {
 			UpdateByDbServer.home(request);
 		});
@@ -87,7 +105,8 @@ public class Server {
 				output = "Bad file format";
 			else if (filePath.exists()) {
 				IOfiles reader = new IOfiles(filePath.getPath());
-				output = "Filter has been uploaded succesfully" + "%" + reader.readLine();;
+				output = "Filter has been uploaded succesfully" + "%" + reader.readLine();
+				;
 			} else
 				output = "File doesnt exists";
 
@@ -206,8 +225,8 @@ public class Server {
 			}
 		});
 
-		System.out.println(
-				"WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port + "/home/updateDBbyWiggle.html");
+		System.out.println("WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port
+				+ "/home/updateDBbyWiggle.html");
 		server.start();
 
 	}
