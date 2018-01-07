@@ -31,7 +31,7 @@ public class Server {
 		server.createContext("/DBupdate", request -> {
 			UpdateByDbServer.dbUpdate(request);
 		});
-		server.createContext("/AlgorithmI", request -> {
+		server.createContext("/algorithmI", request -> {
 			AvgMacPoint avgP = AlgorithmIServer.algo1(request);
 			String output;
 			if (avgP == null)
