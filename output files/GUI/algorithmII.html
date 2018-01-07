@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>GeoApp</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<nav class="left">
+					<a href="#menu"><span>Menu</span></a>
+				</nav>
+				<a href="updateDBbyWiggle.html" class="logo">GeoApp</a>
+				<nav class="right">
+					<button id="DBclear" type="submit" class="button alt">DB clear</button>
+					<button id="DBsaveCSV" type="submit" class="button alt">DB save csv</button>
+					<button id="DBsaveKML" type="submit" class="button alt">DB save kml</button>
+				</nav>
+			</header>
+
+		<!-- Menu -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="updateDBbyWiggle.html">Update by Wiggle Wifi</a></li>
+					<li><a href="updateDBbyDB.html">Update by DB</a></li>
+					<li><a href="algorithmI.html">Algorithm I</a></li>
+					<li><a href="algorithmII.html">Algorithm II</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+		<!-- Banner -->
+			<section id="banner">
+				<div class="content">
+					<h1>Algorithm II</h1>
+					<p>This algorithm will return you a appreciate location of specific sampling.<br/>You need to enter string of specific sampling or up to three macs and signals.<br />The appreciate become established from database.</p>
+					<ul class="actions">
+						<li>
+							<form id="formAlgorithmII" action="#">
+								<div class="4u 12u$(small)">
+									<input type="radio" id="string-radio" value="string" name="radio-input-choose">
+									<label for="string-radio">string of sampling</label>
+								</div>
+								<div class="4u$ 12u$(small)">
+									<input type="radio" id="macs-signals-radio" value="macs-signals" name="radio-input-choose">
+									<label for="macs-signals-radio">macs and signals</label>
+								</div>
+								<!--<div id="after-radio-display">-->
+									<div id="sampleString">
+										<input id="sampleStringInput" type="text" placeholder="Enter a string of sampling" />
+									</div>
+									<div id="macsAndSignals">
+										<input id="mac1" type="text" placeholder="Enter a mac" />
+										<input id="signal1" for="mac1" type="text" placeholder="Enter a signal" /></br>
+										<input id="mac2" type="text" placeholder="Enter a mac" />
+										<input id="signal2" for="mac2" type="text" placeholder="Enter a signal" /></br>
+										<input id="mac3" type="text" placeholder="Enter a mac" />
+										<input id="signal3" for="mac3" type="text" placeholder="Enter a signal" />
+									</div>
+									<button type="button" id="GetAppreciateLocation">GET APPRECIATE LOCATION</button>
+								<!--</div>-->
+							</form>
+						</li>
+						<div id="output" class="validation"> </div>
+					</ul>
+				</div>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper">	
+				<div class="inner flex flex-3">
+					<div id="map" class="flex box"></div>
+				</div>
+			</section>
+			
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<h2>Get In Touch</h2>
+					<ul class="actions">
+						<li><span class="icon fa-phone"></span> <a href="#">(000) 000-0000</a></li>
+						<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
+						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/algorithmII.js"></script>
+			<script async defer
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhqdvX2Q-IW5XiQBAByVa5uQK1LNhJqOM&callback=initMap">
+			</script>
+	</body>
+</html>
