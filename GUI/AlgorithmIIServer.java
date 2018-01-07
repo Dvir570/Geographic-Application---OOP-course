@@ -6,6 +6,7 @@ import com.sun.net.httpserver.HttpExchange;
 
 import src.AlgorithmII;
 import src.AvgSamplePoint;
+import src.Database;
 
 public class AlgorithmIIServer {
 
@@ -14,11 +15,11 @@ public class AlgorithmIIServer {
 		String[] inputArray = input.split("%");
 		AlgorithmII alg;
 		if (inputArray[0].equals("S")) {
-			alg= new AlgorithmII(Server.dataBase, inputArray[1]);
+			alg= new AlgorithmII(Database.database, inputArray[1]);
 		}
 		else {
 			String[] macsSignals= inputArray[1].split(",");
-			alg= new AlgorithmII(Server.dataBase, macsSignals);
+			alg= new AlgorithmII(Database.database, macsSignals);
 		}
 		return alg.getAvgPoint();
 	}

@@ -40,9 +40,12 @@ public class Listener {
 							WatchEvent<Path> event = cast(i);
 							WatchEvent.Kind<Path> kind = event.kind();
 							System.out.println(event.context());
+
 							synchronized (paths) {
 								if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
-									paths.remove(path.toFile().getPath());
+									File f = event.context().toAbsolutePath().toFile();
+									if(f.isDirectory())
+										paths.remove(path.toFile().getPath());
 								}
 								Database.resetDatabase(paths);
 							}
@@ -60,34 +63,16 @@ public class Listener {
 		});
 	}
 
-	public void directoryRegister(String Path) throws IOException {
-		File f = new File(Path);
-		if(f.isDirectory()) {
-			ArrayList<File> files = getCSVs(f);
-			for(int i =0;i<files.size();i++) {
-				synchronized (paths) {
-					this.paths.add(files.get(i).getPath());
-				}
-				Path file = Paths.get(files.get(i).getPath());
-				WatchKey watchKey = file.register(watchServise, StandardWatchEventKinds.ENTRY_CREATE,
-						StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
-				synchronized (keys) {
-					keys.put(watchKey, file);
-				}
-			}
-		}else {
-			synchronized (paths) {
-				this.paths.add(f.getPath());
-			}
-			Path file = Paths.get(f.getPath());
-			WatchKey watchKey = file.register(watchServise, StandardWatchEventKinds.ENTRY_CREATE,
-					StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
-			synchronized (keys) {
-				keys.put(watchKey, file);
-			}
+	public void directoryRegister(String directoryPath) throws IOException {
+		synchronized (paths) {
+			this.paths.add(directoryPath);
 		}
-		
-		
+		Path directory = Paths.get(directoryPath);
+		WatchKey watchKey = directory.register(watchServise, StandardWatchEventKinds.ENTRY_CREATE,
+				StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
+		synchronized (keys) {
+			keys.put(watchKey, directory);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -98,7 +83,7 @@ public class Listener {
 	public void close() throws IOException {
 		this.watchServise.close();
 	}
-	
+
 	private static ArrayList<File> getCSVs(File folder) {
 		ArrayList<File> ans = new ArrayList<File>();
 
