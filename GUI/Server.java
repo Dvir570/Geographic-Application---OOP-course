@@ -23,10 +23,14 @@ import src.*;
  */
 public class Server {
 
-	public static Set<Row> dataBase = new HashSet<Row>();
+	//public static Database database
+	//public static ArrayList<String> paths =new  ArrayList<String>();
 	private static Set<Row> backUpDataBase = new HashSet<Row>();
-
+	public static Listener listener;
+	
 	public static void main(String[] args) throws Exception {
+		listener = new Listener();
+		listener.startListening();
 		int port = 8001;
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 		
@@ -80,7 +84,7 @@ public class Server {
 			UpdateByWiggleServer.wiggleUpdate(request);
 		});
 		server.createContext("/DBclear", request -> {
-			dataBase.clear();
+			Database.database.clear();
 			String output = "DB cleared successfully";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
@@ -147,7 +151,7 @@ public class Server {
 			String resPath = "output files\\result.csv";
 			ResultFile result = new ResultFile(resPath);
 			ResultFile.result.clear();
-			ResultFile.result.addAll(dataBase);
+			ResultFile.result.addAll(Database.database);
 			result.writeDB();
 			result.close();
 			String output;
@@ -167,7 +171,7 @@ public class Server {
 			String resPath = "output files\\result.kml";
 			ArrayList<WiFi> toKml = new ArrayList<WiFi>();
 			ArrayList<Row> temp = new ArrayList<Row>();
-			temp.addAll(dataBase);
+			temp.addAll(Database.database);
 			for (int i = 0; i < temp.size(); i++) {
 				toKml.addAll(temp.get(i).getWifis());
 			}
@@ -187,7 +191,8 @@ public class Server {
 		});
 
 		server.createContext("/numOfRecords", request -> {
-			String output = dataBase.size() + "";
+			System.out.println("sdghjhgfd");
+			String output = Database.database.size() + "";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
 			request.sendResponseHeaders(200 /* OK */, 0);
@@ -201,7 +206,7 @@ public class Server {
 		server.createContext("/numOfRouters", request -> {
 			ArrayList<WiFi> wifis = new ArrayList<WiFi>();
 			ArrayList<Row> temp = new ArrayList<Row>();
-			temp.addAll(dataBase);
+			temp.addAll(Database.database);
 			for (int i = 0; i < temp.size(); i++) {
 				wifis.addAll(temp.get(i).getWifis());
 			}
@@ -219,7 +224,7 @@ public class Server {
 			}
 		});
 		server.createContext("/FilterBy", request -> {
-			backUpDataBase.addAll(dataBase);
+			backUpDataBase.addAll(Database.database);
 			String output = "";
 			filterDB(request);
 			output = "Database filterred succsesfully";
@@ -234,8 +239,8 @@ public class Server {
 			}
 		});
 		server.createContext("/restoreDB", request -> {
-			dataBase.clear();
-			dataBase.addAll(backUpDataBase);
+			Database.database.clear();
+			Database.database.addAll(backUpDataBase);
 			String output = "Database resorred succsesfully ";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
@@ -251,7 +256,6 @@ public class Server {
 		System.out.println("WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port
 				+ "/home/updateDBbyWiggle.html");
 		server.start();
-
 	}
 
 	private static void filterDB(HttpExchange request) {
@@ -294,11 +298,11 @@ public class Server {
 				String[] dateArray = new String[2];
 				dateArray = filterArray[0].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByTime(db, notT, dateArray[0], dateArray[1]);
 				db = DisplayMap.displayByModel(db, notID, filterArray[1]);
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else if (filter.contains("%%")) {
 				filterArray = filter.split("%%");
 				int openT = filterArray[0].lastIndexOf("(");
@@ -312,14 +316,14 @@ public class Server {
 				String[] dateArray = new String[2];
 				dateArray = filterArray[0].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
-				db1.addAll(dataBase);
+				db1.addAll(Database.database);
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db2.addAll(dataBase);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByTime(db1, notT, dateArray[0], dateArray[1]);
 				db2 = DisplayMap.displayByModel(db2, notID, filterArray[1]);
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 			}
 		} else if (time1 && time2) {
 			if (filter.contains("&&")) {
@@ -337,11 +341,11 @@ public class Server {
 				date1Array = filterArray[0].split(",");
 				date2Array = filterArray[0].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByTime(db, notT1, date1Array[0], date1Array[1]);
 				db = DisplayMap.displayByTime(db, notT2, date2Array[0], date2Array[1]);
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else if (filter.contains("%%")) {
 				filterArray = filter.split("%%");
 				int openT1 = filterArray[0].lastIndexOf("(");
@@ -357,14 +361,14 @@ public class Server {
 				date1Array = filterArray[0].split(",");
 				date2Array = filterArray[0].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
-				db1.addAll(dataBase);
+				db1.addAll(Database.database);
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db2.addAll(dataBase);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByTime(db1, notT1, date1Array[0], date1Array[1]);
 				db2 = DisplayMap.displayByTime(db1, notT2, date2Array[0], date2Array[1]);
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 			}
 
 		}
@@ -385,13 +389,13 @@ public class Server {
 				String[] posArray = new String[4];
 				posArray = filterArray[1].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByTime(db, notT, dateArray[0], dateArray[1]);
 				db = DisplayMap.displayByPlace(db, notP, Double.parseDouble(posArray[0]),
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else if (filter.contains("%%")) {
 				filterArray = filter.split("%%");
 				int openT = filterArray[0].lastIndexOf("(");
@@ -407,16 +411,16 @@ public class Server {
 				String[] posArray = new String[4];
 				posArray = filterArray[1].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
-				db1.addAll(dataBase);
+				db1.addAll(Database.database);
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db2.addAll(dataBase);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByTime(db1, notT, dateArray[0], dateArray[1]);
 				db2 = DisplayMap.displayByPlace(db2, notP, Double.parseDouble(posArray[0]),
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 
 			}
 		} else if (pos1 && pos2) {
@@ -435,15 +439,15 @@ public class Server {
 				pos1Array = filterArray[0].split(",");
 				pos2Array = filterArray[1].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByPlace(db, notP1, Double.parseDouble(pos1Array[0]),
 						Double.parseDouble(pos1Array[1]), Double.parseDouble(pos1Array[2]),
 						Double.parseDouble(pos1Array[3]));
 				db = DisplayMap.displayByPlace(db, notP2, Double.parseDouble(pos2Array[0]),
 						Double.parseDouble(pos2Array[1]), Double.parseDouble(pos2Array[2]),
 						Double.parseDouble(pos2Array[3]));
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else if (filter.contains("%%")) {
 				filterArray = filter.split("%%");
 				int openP1 = filterArray[0].lastIndexOf("(");
@@ -459,8 +463,8 @@ public class Server {
 				pos2Array = filterArray[1].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db1.addAll(dataBase);
-				db2.addAll(dataBase);
+				db1.addAll(Database.database);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByPlace(db1, notP1, Double.parseDouble(pos1Array[0]),
 						Double.parseDouble(pos1Array[1]), Double.parseDouble(pos1Array[2]),
 						Double.parseDouble(pos1Array[3]));
@@ -468,9 +472,9 @@ public class Server {
 				db2 = DisplayMap.displayByPlace(db2, notP1, Double.parseDouble(pos2Array[0]),
 						Double.parseDouble(pos2Array[1]), Double.parseDouble(pos2Array[2]),
 						Double.parseDouble(pos2Array[3]));
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 			}
 		} else if (id1 && pos2) {
 			String[] posArray = new String[4];
@@ -486,13 +490,13 @@ public class Server {
 				filterArray[1] = filterArray[1].substring(openP + 1, closeP);
 				posArray = filterArray[1].split(",");
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByPlace(db, notID, Double.parseDouble(posArray[0]),
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
 				db = DisplayMap.displayByModel(db, notP, filterArray[0]);
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else {
 				filterArray = filter.split("%%");
 				int openID = filterArray[0].lastIndexOf("(");
@@ -506,15 +510,15 @@ public class Server {
 				posArray = filterArray[1].split(",");
 				ArrayList<Row> db1 = new ArrayList<Row>();
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db1.addAll(dataBase);
-				db2.addAll(dataBase);
+				db1.addAll(Database.database);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByModel(db1, notID, filterArray[0]);
 				db2 = DisplayMap.displayByPlace(db2, notP, Double.parseDouble(posArray[0]),
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 			}
 		} else if (id1 && id2) {
 			if (filter.contains("&&")) {
@@ -528,11 +532,11 @@ public class Server {
 				filterArray[0] = filterArray[0].substring(openid1 + 1, closeid1);
 				filterArray[1] = filterArray[1].substring(openid2 + 1, closeid2);
 				ArrayList<Row> db = new ArrayList<Row>();
-				db.addAll(dataBase);
+				db.addAll(Database.database);
 				db = DisplayMap.displayByModel(db, notid1, filterArray[0]);
 				db = DisplayMap.displayByModel(db, notid2, filterArray[1]);
-				dataBase.clear();
-				dataBase.addAll(db);
+				Database.database.clear();
+				Database.database.addAll(db);
 			} else if (filter.contains("%%")) {
 				filterArray = filter.split("%%");
 				int openid1 = filterArray[0].lastIndexOf("(");
@@ -545,19 +549,19 @@ public class Server {
 				filterArray[1] = filterArray[1].substring(openid2 + 1, closeid2);
 				ArrayList<Row> db1 = new ArrayList<Row>();
 				ArrayList<Row> db2 = new ArrayList<Row>();
-				db1.addAll(dataBase);
-				db2.addAll(dataBase);
+				db1.addAll(Database.database);
+				db2.addAll(Database.database);
 				db1 = DisplayMap.displayByModel(db1, notid1, filterArray[0]);
 				db2 = DisplayMap.displayByModel(db2, notid2, filterArray[1]);
-				dataBase.clear();
-				dataBase.addAll(db1);
-				dataBase.addAll(db2);
+				Database.database.clear();
+				Database.database.addAll(db1);
+				Database.database.addAll(db2);
 			}
 		}
 
 		else {
 			ArrayList<Row> db = new ArrayList<Row>();
-			db.addAll(dataBase);
+			db.addAll(Database.database);
 			if (filter.contains("Time")) {
 				boolean notT = filter.contains("!");
 				String[] timeArray = new String[2];
@@ -578,8 +582,8 @@ public class Server {
 						Double.parseDouble(posArray[1]), Double.parseDouble(posArray[2]),
 						Double.parseDouble(posArray[3]));
 			}
-			dataBase.clear();
-			dataBase.addAll(db);
+			Database.database.clear();
+			Database.database.addAll(db);
 		}
 	}
 }

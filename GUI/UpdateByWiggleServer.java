@@ -50,6 +50,7 @@ class UpdateByWiggleServer {
 			}
 			return;
 		}
+		Server.listener.directoryRegister(input);
 		System.out.println("The input is: " + input);
 		ArrayList<File> csvFiles = new ArrayList<File>();
 		if (csvF.isDirectory())
@@ -62,7 +63,7 @@ class UpdateByWiggleServer {
 		//result.insertRows(allWifis.getRow());
 		result.rowsGroupByTimeModel(allWifis.getWifis());
 		result.top10fromAnyGroup();
-		Server.dataBase.addAll(ResultFile.result);
+		Database.database.addAll(ResultFile.result);
 		output = "The csv file has been added successfully in server";
 		System.out.println("   The output is: " + output);
 

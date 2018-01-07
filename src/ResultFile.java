@@ -20,6 +20,11 @@ public class ResultFile {
 	private File fileExist;
 
 	/**
+	 * empty constructor
+	 */
+	public ResultFile() {	}
+	
+	/**
 	 * @param resultFilePath
 	 *            path for file result
 	 */

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import com.sun.net.httpserver.HttpExchange;
 
+import src.Database;
 import src.IOfiles;
 import src.Row;
 import src.WiFi;
@@ -35,6 +36,7 @@ public class UpdateByDbServer {
 			}
 			return;
 		}
+		Server.listener.directoryRegister(input);
 		System.out.println("The input is: " + input);
 		IOfiles readFromUserDB = new IOfiles(csvF.getPath());
 
@@ -50,7 +52,7 @@ public class UpdateByDbServer {
 						sRow[4], sRow[9 + (4 * i)], sRow[0]);
 				r.add(w);
 			}
-			Server.dataBase.add(r);
+			Database.database.add(r);
 			nextRow = readFromUserDB.readLine();
 		}
 		readFromUserDB.close();
