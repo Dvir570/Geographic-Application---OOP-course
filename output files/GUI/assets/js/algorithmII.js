@@ -30,7 +30,16 @@
 					$("div#output").empty().append("You must enter at least one mac address")
 					return;
 				}
-				//////////////////////////
+				var pairs;
+				if(!$("#mac1").val())
+					pairs += $("#mac1").val() + "," + $("#signal1").val();
+				if(!$("#mac2").val())
+					pairs += "," + $("#mac2").val() + "," + $("#signal2").val();
+				if(!$("#mac3").val())
+					pairs += "," + $("#mac3").val() + "," + $("#signal3").val();
+				$.ajax({"url": encodeURI("/algorithmII?M%" + pairs)}).then(function(output) {
+					$("div#output").empty().append(output)
+				});
 			}
 			else{
 				$("div#output").empty().append("Input is empty")

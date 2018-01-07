@@ -10,7 +10,6 @@ public class AlgorithmII {
 	private Row MISS;
 	private Set<Row> res;
 	private AvgSamplePoint avgPoint;
-	private String pathOut;
 
 	public AlgorithmII(Set<Row> dbRows, String missLoc) {
 		this.res = new HashSet<Row>();
