@@ -9,6 +9,7 @@ public class WiFi {
 	public WiFi() {
 	}
 
+
 	/**
 	 * @param line
 	 *            represent the whole information of one line in the CSV file
@@ -137,4 +138,10 @@ public class WiFi {
 		this.signal = signal;
 	}
 
+
+	public void setMac(String mac) {
+		this.mac = mac;
+	}
+	
+	
 }

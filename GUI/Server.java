@@ -49,6 +49,25 @@ public class Server {
 			}
 
 		});
+		
+		server.createContext("/algorithmII", request -> {
+			AvgSamplePoint avgsP = AlgorithmIIServer.algo2(request);
+			String output;
+			if (avgsP == null)
+				output = "No such point";
+			else
+				output = avgsP.getAvgLon() + "," + avgsP.getAvgLat() + "," + avgsP.getAvgAlt();
+			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+			request.getResponseHeaders().set("Content-Type", "text/plain");
+			request.sendResponseHeaders(200 /* OK */, 0);
+			try (OutputStream os = request.getResponseBody()) {
+				os.write(output.getBytes());
+			} catch (Exception ex) {
+				System.out.println("Error while sending response to client");
+				ex.printStackTrace();
+			}
+
+		});
 		server.createContext("/home", request -> {
 			UpdateByDbServer.home(request);
 		});

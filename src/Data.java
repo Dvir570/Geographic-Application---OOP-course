@@ -25,7 +25,7 @@ public class Data {
 		for(int i = 0; i<input.size();i++) {
 			WiFi wifi = wifis.get(input.get(i).getMac());
 			if(wifi!=null) {
-				if (wifi.getSignal().equals("") || Double.parseDouble(wifi.getSignal()) < (-120)) {
+				if (wifi.getSignal() == null || (wifi.getSignal() != null && (wifi.getSignal().equals("") || Double.parseDouble(wifi.getSignal()) < (-120)))) {
 					wifi.setSignal(NO_SIGNAL + "");
 					diff.add(DIFF_NO_SIG);
 					w.add(NORM / (Math.pow(diff.get(diff.size()-1), SIG_DIFF) * Math.pow(Double.parseDouble(input.get(i).getSignal()), POWER)));
