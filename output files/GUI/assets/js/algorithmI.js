@@ -15,6 +15,16 @@
 	});
 	$(document).ready(function () {	
 		//Requests
+		$("#getAppreciateLocation").click(function(){
+			if(!$("#macAddress").val()){
+				$("div#output").empty().append("Input is empty")
+				return;
+			}
+			var mac = $("#macAddress").val();
+			$.ajax({"url": encodeURI("/algorithmI?" + mac)}).then(function(output) {
+					$("div#output").empty().append(output)
+			});
+		})
 		$("#DBclear").click(function() {
 			$.ajax({"url": encodeURI("/DBclear?")}).then(function(output) {
 					$("div#output").empty().append(output)

@@ -3,12 +3,12 @@ package src;
 import java.io.File;
 import java.util.ArrayList;
 
-public class Algo1 {
+public class AlgorithmI {
 	private File  fileOut;
 	private ArrayList<AvgMacPoint> avgMacPoints;
 	private ArrayList<WiFi> DB;
 
-	public Algo1(String pathDB, String pathOut) {
+	public AlgorithmI(String pathDB, String pathOut) {
 
 		this.fileOut = new File(pathOut);
 		IOfiles readDB = new IOfiles(pathDB);

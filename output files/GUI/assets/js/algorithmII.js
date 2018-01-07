@@ -30,6 +30,7 @@
 					$("div#output").empty().append("You must enter at least one mac address")
 					return;
 				}
+				//////////////////////////
 			}
 			else{
 				$("div#output").empty().append("Input is empty")

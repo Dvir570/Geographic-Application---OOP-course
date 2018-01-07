@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Algo2 {
+public class AlgorithmII {
 	private HashMap<String, ArrayList<Row>> DB;
 	private ArrayList<Row> MISS;
 	private Set<Row> res;
 	private ArrayList<AvgSamplePoint> avgPoints;
 	private String pathOut;
 	
-	public Algo2(String pathDB, String pathMiss, int numOfDatas, String pathOut) {
+	public AlgorithmII(String pathDB, String pathMiss, int numOfDatas, String pathOut) {
 		this.pathOut = pathOut;
 		this.res = new HashSet<Row>();
 		this.avgPoints = new ArrayList<AvgSamplePoint>();
