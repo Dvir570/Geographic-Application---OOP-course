@@ -2,11 +2,13 @@ package GUI;
 
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.awt.Desktop;
 import java.io.File;
 
 import com.sun.net.httpserver.HttpExchange;
@@ -15,7 +17,7 @@ import com.sun.net.httpserver.HttpServer;
 import src.*;
 
 /**
- * A web-server that reverses strings. Uses com.sun.net.httpserver package.
+ * A web-server that serve GeoApp application
  * 
  * @see https://stackoverflow.com/a/3732328/827927
  */
@@ -27,6 +29,8 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		int port = 8001;
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+		
+		Desktop.getDesktop().browse(new URL("http://127.0.0.1:8001/home/updateDBbyWiggle.html").toURI());
 		// select a folder
 		server.createContext("/DBupdate", request -> {
 			UpdateByDbServer.dbUpdate(request);

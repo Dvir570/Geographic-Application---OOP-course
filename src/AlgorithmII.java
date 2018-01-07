@@ -93,6 +93,7 @@ public class AlgorithmII {
 			WiFi w = new WiFi();
 			w.setMac(macsSignals[2 * k]);
 			w.setSignal(macsSignals[2 * k + 1]);
+			MISS.add(w);
 		}
 
 		temp.clear();

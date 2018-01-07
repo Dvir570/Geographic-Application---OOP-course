@@ -53,9 +53,9 @@ public class DisplayMap {
 			Collections.sort(ar.get(i).getWifis(), new Comparator<WiFi>() { // StackOverflow://https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
 				@Override
 				public int compare(WiFi w1, WiFi w2) {
-					if (Integer.parseInt(w2.getSignal()) > Integer.parseInt(w1.getSignal()))
+					if (Double.parseDouble(w2.getSignal()) > Double.parseDouble(w1.getSignal()))
 						return 1;
-					else if (Integer.parseInt(w2.getSignal()) < Integer.parseInt(w1.getSignal()))
+					else if (Double.parseDouble(w2.getSignal()) < Double.parseDouble(w1.getSignal()))
 						return -1;
 					return 0;
 				}
