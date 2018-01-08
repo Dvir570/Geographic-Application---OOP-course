@@ -22,6 +22,9 @@ public class Database {
 	 */
 	public static void resetDatabase(ArrayList<String> paths) {
 		database.clear();
+		ResultFile.result.clear();
+		Row allWifis = new Row();
+		ArrayList<File> csvFiles = new ArrayList<File>();
 		IOfiles io;
 		for (int i = 0; i < paths.size(); i++) {
 			ArrayList<File> files = getCSVs(new File(paths.get(i)));
@@ -43,18 +46,17 @@ public class Database {
 						nextRow = io.readLine();
 					}
 				} else {
-					ArrayList<File> csvFiles = new ArrayList<File>();
-					csvFiles.add(files.get(i));
-					Row allWifis = new Row(csvFiles);
-					ResultFile.result.clear();
-					ResultFile result = new ResultFile();
-					result.rowsGroupByTimeModel(allWifis.getWifis());
-					result.top10fromAnyGroup();
-					database.addAll(ResultFile.result);
+					csvFiles.add(files.get(j));
+					
 				}
 				io.close();
 			}
 		}
+		allWifis.addRows(csvFiles);
+		ResultFile result = new ResultFile();
+		result.rowsGroupByTimeModel(allWifis.getWifis());
+		result.top10fromAnyGroup();
+		database.addAll(ResultFile.result);
 	}
 
 	private static boolean isDBfile(IOfiles io) {

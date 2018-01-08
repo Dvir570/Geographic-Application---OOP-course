@@ -43,6 +43,23 @@ public class Row {
 			readCsv.close();
 		}
 	}
+	
+	public void addRows(ArrayList<File> csvFiles) {
+		for (int cf = 0; cf < csvFiles.size(); cf++) {
+			IOfiles readCsv = new IOfiles(csvFiles.get(cf).getPath());
+
+			String model = readCsv.readLine().split(",")[2].split("=")[1];
+			String headersFile = readCsv.readLine();
+
+			String nextWiFi = readCsv.readLine();
+			while (nextWiFi != null) {
+				this.row.add(new WiFi(nextWiFi, model));
+				nextWiFi = readCsv.readLine();
+			}
+
+			readCsv.close();
+		}
+	}
 
 	/**
 	 * set ArrayList of WiFi objects to the Row object

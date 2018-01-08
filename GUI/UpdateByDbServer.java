@@ -36,7 +36,8 @@ public class UpdateByDbServer {
 			}
 			return;
 		}
-		Server.listener.directoryRegister(input);
+		File f = new File(input);
+		Server.listener.directoryRegister(f.getParent());
 		System.out.println("The input is: " + input);
 		IOfiles readFromUserDB = new IOfiles(csvF.getPath());
 

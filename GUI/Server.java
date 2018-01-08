@@ -85,6 +85,9 @@ public class Server {
 		});
 		server.createContext("/DBclear", request -> {
 			Database.database.clear();
+			listener.close();
+			listener = new Listener();
+			listener.startListening();
 			String output = "DB cleared successfully";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
