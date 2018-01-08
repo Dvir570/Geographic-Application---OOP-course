@@ -234,6 +234,21 @@ function loadlink(){
 setInterval(function(){
     loadlink() // this will run after every 5 seconds
 }, 5000);
+var map;
+var src = 'https://127.0.0.1:8001/home/result.kml';
+function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+		  center: new google.maps.LatLng(-19.257753, 146.823688),
+		  zoom: 2,
+		  mapTypeId: 'terrain'
+		});
+
+		var kmlLayer = new google.maps.KmlLayer(src, {
+		  suppressInfoWindows: true,
+		  preserveViewport: false,
+		  map: map
+		});
+}
 function buildFilter(){
 	var filter = "";
 	var filter1Type = $("#filterType1 option:selected").text();
