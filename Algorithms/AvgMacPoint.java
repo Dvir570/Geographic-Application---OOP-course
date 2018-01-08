@@ -1,6 +1,8 @@
 
-package src;
+package Algorithms;
 import java.util.ArrayList;
+
+import BuisnessLogic.WiFi;
 
 public class AvgMacPoint {
 	private ArrayList<WiFi> commonMac;

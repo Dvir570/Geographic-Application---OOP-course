@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import src.*;
+import BuisnessLogic.*;
 
 class UpdateByWiggleServer {
 
@@ -50,7 +50,7 @@ class UpdateByWiggleServer {
 			}
 			return;
 		}
-		Server.listener.directoryRegister(input);
+		Server.listener.directoryRegister(csvF.isDirectory()?csvF.getPath():csvF.getParent());
 		System.out.println("The input is: " + input);
 		ArrayList<File> csvFiles = new ArrayList<File>();
 		if (csvF.isDirectory())

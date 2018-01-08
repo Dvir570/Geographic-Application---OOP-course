@@ -1,4 +1,4 @@
-package src;
+package Tests;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import BuisnessLogic.ResultFile;
+import BuisnessLogic.WiFi;
 
 public class ResultFileTest {
 	ResultFile rf= new ResultFile("input files\\result.csv");

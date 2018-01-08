@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import src.AlgorithmI;
-import src.AvgMacPoint;
-import src.Database;
+import Algorithms.AlgorithmI;
+import Algorithms.AvgMacPoint;
+import BuisnessLogic.Database;
 
 public class AlgorithmIServer {
 	

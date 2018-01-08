@@ -1,10 +1,13 @@
-package src;
+package Tests;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
+
+import Algorithms.AvgMacPoint;
+import BuisnessLogic.WiFi;
 
 public class AvgMacPointTest {
 

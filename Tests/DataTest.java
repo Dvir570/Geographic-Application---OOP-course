@@ -1,10 +1,13 @@
-package src;
+package Tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Test;
+
+import Algorithms.Data;
+import BuisnessLogic.WiFi;
 
 public class DataTest {
 

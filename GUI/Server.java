@@ -14,7 +14,9 @@ import java.io.File;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
-import src.*;
+import Algorithms.AvgMacPoint;
+import Algorithms.AvgSamplePoint;
+import BuisnessLogic.*;
 
 /**
  * A web-server that serve GeoApp application
@@ -194,7 +196,6 @@ public class Server {
 		});
 
 		server.createContext("/numOfRecords", request -> {
-			System.out.println("sdghjhgfd");
 			String output = Database.database.size() + "";
 			request.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
 			request.getResponseHeaders().set("Content-Type", "text/plain");
