@@ -222,7 +222,18 @@
 
 	});
 })(jQuery);
+function loadlink(){
+    $.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+			$("#numOfRecords").empty().append(output)
+	});
+	$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+			$("#numOfRouters").empty().append(output)
+	});
+}
 
+setInterval(function(){
+    loadlink() // this will run after every 5 seconds
+}, 5000);
 function buildFilter(){
 	var filter = "";
 	var filter1Type = $("#filterType1 option:selected").text();

@@ -221,6 +221,19 @@
 	});
 
 })(jQuery);
+function loadlink(){
+    $.ajax({"url": encodeURI("/numOfRecords?")}).then(function(output) {
+			$("#numOfRecords").empty().append(output)
+	});
+	$.ajax({"url": encodeURI("/numOfRouters?")}).then(function(output) {
+			$("#numOfRouters").empty().append(output)
+	});
+}
+
+setInterval(function(){
+    loadlink() // this will run after every 5 seconds
+}, 5000);
+
 var map;
 var src = 'https://127.0.0.1:8001/home/result.kml';
 function initMap() {
