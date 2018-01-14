@@ -10,9 +10,9 @@ this file will open browser on the general page of GeoApp.
 ### Map of the site ###
 
 #### Update by Wiggle Wifi (general page) ####
-This page is allowing to upload a Wigle Wifi's product file to the current database.
+This page is allowing to upload a Wiggle Wifi's product file to the current database.
   1. Menu
-  2. DB clear, DB save csv, DB save kml buttons.
+  2. DB clear, DB save csv and DB save kml buttons.
   3. Update database via upload a Wiggle Wifi file, or a directory with some of Wiggle Wifi files.
   4. Details:
       a. number of records.
@@ -30,7 +30,7 @@ This page is allowing to upload a Wigle Wifi's product file to the current datab
 #### Update by DB ####
 This page is allowing to upload a database file (with 46 columns) to the current database.
   1. Menu
-  2. DB clear, DB save csv, DB save kml buttons.
+  2. DB clear, DB save csv and DB save kml buttons.
   3. Update database via upload a csv file. The file should be the one with 46 columns.
   4. Details:
       a. number of records.
@@ -51,7 +51,7 @@ The appreciate become established from database.
 input: a mac address.
 output: an appreciate location of the router.
   1. Menu
-  2. DB clear, DB save csv, DB save kml buttons.
+  2. DB clear, DB save csv and DB save kml buttons.
   3. Algurithm I.
   4. Map display.
   5. Get in touch.
@@ -62,7 +62,7 @@ The appreciate become established from database.
 input: string of specific sampling or up to three mac addresses and signals.
 output: an appreciate location of specific sampling.
   1. Menu
-  2. DB clear, DB save csv, DB save kml buttons.
+  2. DB clear, DB save csv and DB save kml buttons.
   3. Algurithm II.
   4. Map display.
   5. Get in touch.
