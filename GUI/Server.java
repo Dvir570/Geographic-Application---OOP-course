@@ -260,6 +260,7 @@ public class Server {
 		System.out.println("WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port
 				+ "/home/updateDBbyWiggle.html");
 		server.start();
+		Sql.test_ex4_db();
 	}
 
 	private static void filterDB(HttpExchange request) {
