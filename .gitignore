@@ -2,7 +2,7 @@
 *.class
 
 #Build path file
-*.classpath
+.classpath
 
 # Log file
 *.log
