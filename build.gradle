@@ -1,0 +1,17 @@
+apply plugin: "java"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.0'
+	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.1'
+}
+
+task hello(type: JavaExec) {
+    main = "GUI.Server"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+build.dependsOn(hello)

@@ -90,6 +90,7 @@ public class Sql {
 //		return max_id;
 //	}
 
+	@SuppressWarnings("resource")
 	public static int test_ex4_db() {
 		Statement st = null;
 		ResultSet rs = null;

@@ -7,13 +7,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/com.mysql.jdbc_5.1.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/http-20070405.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/JavaAPIforKml-2.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/jaxb-api-2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/jaxb-impl-2.1.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/jsr173_api-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/dvir/Documents/Ariel University/Eclipse Workspace/GeoApp/jar files/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/http-20070405.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/JavaAPIforKml-2.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jaxb-api-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jaxb-impl-2.1.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/jsr173_api-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Samuel/eclipse-workspace/GeoApp/jar files/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
