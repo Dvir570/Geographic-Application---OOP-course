@@ -1,12 +1,12 @@
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.BuisnessLogic.DisplayMap;
-import src.BuisnessLogic.ResultFile;
-import src.BuisnessLogic.Row;
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.DisplayMap;
+import BuisnessLogic.ResultFile;
+import BuisnessLogic.Row;
+import BuisnessLogic.WiFi;
 
 public class DisplayMapTest {
 	DisplayMap dm = new DisplayMap();

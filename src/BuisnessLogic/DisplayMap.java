@@ -1,4 +1,4 @@
-package src.BuisnessLogic;
+package BuisnessLogic;
 
 import java.text.ParseException;
 import java.text.DateFormat;

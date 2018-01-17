@@ -1,4 +1,4 @@
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import src.Algorithms.AvgSamplePoint;
-import src.Algorithms.Data;
-import src.BuisnessLogic.WiFi;
+import Algorithms.AvgSamplePoint;
+import Algorithms.Data;
+import BuisnessLogic.WiFi;
 
 public class AvgSamplePointTest {
 

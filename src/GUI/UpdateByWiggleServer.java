@@ -1,4 +1,4 @@
-package src.GUI;
+package GUI;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import src.BuisnessLogic.*;
+import BuisnessLogic.*;
 
 class UpdateByWiggleServer {
 

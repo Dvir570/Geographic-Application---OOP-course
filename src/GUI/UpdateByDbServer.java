@@ -1,4 +1,4 @@
-package src.GUI;
+package GUI;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import src.BuisnessLogic.Database;
-import src.BuisnessLogic.IOfiles;
-import src.BuisnessLogic.Row;
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.Database;
+import BuisnessLogic.IOfiles;
+import BuisnessLogic.Row;
+import BuisnessLogic.WiFi;
 
 public class UpdateByDbServer {
 	public static void dbUpdate(HttpExchange request) throws IOException {

@@ -1,4 +1,4 @@
-package src.BuisnessLogic;
+package BuisnessLogic;
 
 /**
  * present a wifi we found.

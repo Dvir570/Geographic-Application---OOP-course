@@ -1,4 +1,4 @@
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import src.BuisnessLogic.KML;
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.KML;
+import BuisnessLogic.WiFi;
 import de.micromata.opengis.kml.v_2_2_0.Feature;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
 

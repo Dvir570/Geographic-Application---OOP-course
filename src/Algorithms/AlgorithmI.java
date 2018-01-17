@@ -1,12 +1,12 @@
-package src.Algorithms;
+package Algorithms;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
-import src.BuisnessLogic.Row;
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.Row;
+import BuisnessLogic.WiFi;
 
 public class AlgorithmI {
 

@@ -1,4 +1,4 @@
-package src.GUI;
+package GUI;
 
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -14,9 +14,9 @@ import java.io.File;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
-import src.Algorithms.AvgMacPoint;
-import src.Algorithms.AvgSamplePoint;
-import src.BuisnessLogic.*;
+import Algorithms.AvgMacPoint;
+import Algorithms.AvgSamplePoint;
+import BuisnessLogic.*;
 
 /**
  * A web-server that serve GeoApp application

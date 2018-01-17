@@ -1,8 +1,8 @@
-package src.Algorithms;
+package Algorithms;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.WiFi;
 
 /**
  * present part of line in the DB(CSVS) for algo2 to calculate the value pi 

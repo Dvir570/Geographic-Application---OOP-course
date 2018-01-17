@@ -1,4 +1,4 @@
-package src.BuisnessLogic;
+package BuisnessLogic;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import src.GUI.Server;
+import GUI.Server;
 
 /**
  * class that responsible about the result.csv file (ex2).

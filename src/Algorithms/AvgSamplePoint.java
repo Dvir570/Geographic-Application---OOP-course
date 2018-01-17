@@ -1,9 +1,9 @@
-package src.Algorithms;
+package Algorithms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.WiFi;
 
 public class AvgSamplePoint {
 	private double avgLon=0;

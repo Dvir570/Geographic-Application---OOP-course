@@ -1,4 +1,4 @@
-package src.Tests;
+package Tests;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import src.Algorithms.AvgMacPoint;
-import src.BuisnessLogic.WiFi;
+import Algorithms.AvgMacPoint;
+import BuisnessLogic.WiFi;
 
 public class AvgMacPointTest {
 

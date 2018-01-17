@@ -1,4 +1,4 @@
-package src.BuisnessLogic;
+package BuisnessLogic;
 
 
 import java.io.File;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import src.GUI.Server;
+import GUI.Server;
 
 public class Database {
 	public static Set<Row> database = new HashSet<Row>();

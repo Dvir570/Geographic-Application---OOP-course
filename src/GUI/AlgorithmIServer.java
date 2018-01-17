@@ -1,12 +1,12 @@
-package src.GUI;
+package GUI;
 
 import java.io.IOException;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import src.Algorithms.AlgorithmI;
-import src.Algorithms.AvgMacPoint;
-import src.BuisnessLogic.Database;
+import Algorithms.AlgorithmI;
+import Algorithms.AvgMacPoint;
+import BuisnessLogic.Database;
 
 public class AlgorithmIServer {
 	

@@ -1,9 +1,9 @@
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.WiFi;
 
 public class WiFiTest {
 

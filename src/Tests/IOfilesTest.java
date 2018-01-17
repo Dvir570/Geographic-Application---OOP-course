@@ -1,10 +1,10 @@
 
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import src.BuisnessLogic.IOfiles;
+import BuisnessLogic.IOfiles;
 
 public class IOfilesTest {
 	@Test

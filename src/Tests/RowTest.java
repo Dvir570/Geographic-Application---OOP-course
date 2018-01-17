@@ -1,4 +1,4 @@
-package src.Tests;
+package Tests;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import src.BuisnessLogic.Row;
-import src.BuisnessLogic.WiFi;
+import BuisnessLogic.Row;
+import BuisnessLogic.WiFi;
 
 public class RowTest {
 

@@ -1,4 +1,4 @@
-package src.BuisnessLogic;
+package BuisnessLogic;
 
 /** 
  * This is a very simple example representing how to work with MySQL 
