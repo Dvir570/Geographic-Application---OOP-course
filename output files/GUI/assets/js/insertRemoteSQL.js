@@ -66,7 +66,7 @@
 			var url = $("input#url").val()
 			var user = $("input#user").val()
 			var pass = $("input#password").val()
-			$.ajax({"url": encodeURI("/remoteSql?" +url+%+user+%+pass)}).then(function(output) {
+			$.ajax({"url": encodeURI("/remoteSql?" +url+"%"+user+"%"+pass)}).then(function(output) {
 					$("div#output").empty().append("<div>"+output+"</div>")
 					$("input#url").val("")
 					$("input#user").val("")
