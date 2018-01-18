@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests.KMLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:19" hostname="Dvir" time="1.886">
+<testsuite name="Tests.KMLTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:07" hostname="DESKTOP-KO2QAKP" time="1.937">
   <properties/>
-  <testcase name="testMakeKML" classname="Tests.KMLTest" time="1.886"/>
+  <testcase name="testMakeKML" classname="Tests.KMLTest" time="1.937"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

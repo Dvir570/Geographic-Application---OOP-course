@@ -32,11 +32,11 @@ public class Server {
 	
 	public static void main(String[] args) throws Exception {
 		listener = new Listener();
-		String ip = "5.29.193.52";
-		String url = "jdbc:mysql://" + ip + ":3306/oop_course_ariel";
-		String user = "oop1";
-		String password = "Lambda1();";
-		listener.sqlRegister(url, user, password);
+//		String ip = "5.29.193.52";
+//		String url = "jdbc:mysql://" + ip + ":3306/oop_course_ariel";
+//		String user = "oop1";
+//		String password = "Lambda1();";
+//		listener.sqlRegister(url, user, password);
 		listener.startListening();
 		int port = 8001;
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -83,6 +83,10 @@ public class Server {
 			}
 
 		});
+		server.createContext("/remoteSql", request -> {
+			InsertRemoteSql.insertConnection(request);
+		});
+
 		server.createContext("/home", request -> {
 			UpdateByDbServer.home(request);
 		});
