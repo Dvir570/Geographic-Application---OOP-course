@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="Tests.IOfilesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:35" hostname="Dvir" time="0.002">
+||||||| merged common ancestors
+<testsuite name="Tests.IOfilesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:19" hostname="Dvir" time="0.001">
+=======
+<testsuite name="Tests.IOfilesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:07" hostname="DESKTOP-KO2QAKP" time="0.002">
+>>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <properties/>
   <testcase name="testIOfiles" classname="Tests.IOfilesTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>

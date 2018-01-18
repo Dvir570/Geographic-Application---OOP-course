@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="Tests.DisplayMapTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:34" hostname="Dvir" time="0.025">
+||||||| merged common ancestors
+<testsuite name="Tests.DisplayMapTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:19" hostname="Dvir" time="0.026">
+=======
+<testsuite name="Tests.DisplayMapTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:07" hostname="DESKTOP-KO2QAKP" time="0.029">
+>>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <properties/>
+<<<<<<< HEAD
   <testcase name="testDisplayMap" classname="Tests.DisplayMapTest" time="0.0"/>
   <testcase name="testDisplayByTime" classname="Tests.DisplayMapTest" time="0.023"/>
+||||||| merged common ancestors
+  <testcase name="testDisplayMap" classname="Tests.DisplayMapTest" time="0.001"/>
+  <testcase name="testDisplayByTime" classname="Tests.DisplayMapTest" time="0.024"/>
+=======
+  <testcase name="testDisplayMap" classname="Tests.DisplayMapTest" time="0.0"/>
+  <testcase name="testDisplayByTime" classname="Tests.DisplayMapTest" time="0.027"/>
+>>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <testcase name="testDisplayByModel" classname="Tests.DisplayMapTest" time="0.0"/>
   <testcase name="testDisplayByPlace" classname="Tests.DisplayMapTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

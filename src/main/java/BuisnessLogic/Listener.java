@@ -112,31 +112,28 @@ public class Listener {
 		}
 	}
 
-	public void sqlRegister(String url, String user, String password) throws IOException {
-		ExecutorService service = Executors.newCachedThreadPool();
+	public boolean sqlRegister(String url, String user, String password) throws IOException {
 
-		service.submit(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Connection con = DriverManager.getConnection(url, user, password);
-					Statement st = con.createStatement();
-					st.setQueryTimeout(5);
-					ResultSet rs = st.executeQuery(
-							"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
-					if (rs.next()) {
-						synchronized (locker) {
-							remoteDatabases.put(con, rs.getString(1));
-						}
-						System.out.println("**** Update: " + rs.getString(1));
-					}
-					Sql.test_ex4_db(con);
-				} catch (SQLException ex) {
-					Logger lgr = Logger.getLogger(Sql.class.getName());
-					lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		try {
+			Connection con = DriverManager.getConnection(url, user, password);
+			Statement st = con.createStatement();
+			st.setQueryTimeout(5);
+			ResultSet rs = st.executeQuery(
+					"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+			if (rs.next()) {
+				synchronized (locker) {
+					remoteDatabases.put(con, rs.getString(1));
 				}
+				System.out.println("**** Update: " + rs.getString(1));
 			}
-		});
+			Sql.test_ex4_db(con);
+		} catch (SQLException ex) {
+			Logger lgr = Logger.getLogger(Sql.class.getName());
+			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+			return false;
+
+		}
+		return true;
 	}
 
 	@SuppressWarnings("unchecked")

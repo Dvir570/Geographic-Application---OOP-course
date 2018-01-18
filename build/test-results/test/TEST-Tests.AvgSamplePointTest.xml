@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="Tests.AvgSamplePointTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:34" hostname="Dvir" time="0.003">
+||||||| merged common ancestors
+<testsuite name="Tests.AvgSamplePointTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:19" hostname="Dvir" time="0.004">
+=======
+<testsuite name="Tests.AvgSamplePointTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:07" hostname="DESKTOP-KO2QAKP" time="0.005">
+>>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <properties/>
+<<<<<<< HEAD
   <testcase name="testAvgSamplePoint" classname="Tests.AvgSamplePointTest" time="0.001"/>
   <testcase name="testToString" classname="Tests.AvgSamplePointTest" time="0.0"/>
+||||||| merged common ancestors
+  <testcase name="testAvgSamplePoint" classname="Tests.AvgSamplePointTest" time="0.002"/>
+  <testcase name="testToString" classname="Tests.AvgSamplePointTest" time="0.001"/>
+=======
+  <testcase name="testAvgSamplePoint" classname="Tests.AvgSamplePointTest" time="0.003"/>
+  <testcase name="testToString" classname="Tests.AvgSamplePointTest" time="0.0"/>
+>>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <testcase name="testGetAvgAlt" classname="Tests.AvgSamplePointTest" time="0.0"/>
-  <testcase name="testGetAvgLat" classname="Tests.AvgSamplePointTest" time="0.0"/>
+  <testcase name="testGetAvgLat" classname="Tests.AvgSamplePointTest" time="0.001"/>
   <testcase name="testGetAvgLon" classname="Tests.AvgSamplePointTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
