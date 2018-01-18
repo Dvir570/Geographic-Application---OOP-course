@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="Tests.ResultFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:36" hostname="Dvir" time="0.007">
-||||||| merged common ancestors
-<testsuite name="Tests.ResultFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:21" hostname="Dvir" time="0.01">
-=======
-<testsuite name="Tests.ResultFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:09" hostname="DESKTOP-KO2QAKP" time="0.005">
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
+<testsuite name="Tests.ResultFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-01-18T18:15:25" hostname="Dvir" time="0.012">
   <properties/>
-<<<<<<< HEAD
-  <testcase name="testResultFile" classname="Tests.ResultFileTest" time="0.001"/>
-  <testcase name="testInsertRows" classname="Tests.ResultFileTest" time="0.005"/>
-||||||| merged common ancestors
-  <testcase name="testResultFile" classname="Tests.ResultFileTest" time="0.002"/>
-  <testcase name="testInsertRows" classname="Tests.ResultFileTest" time="0.007"/>
-=======
-  <testcase name="testResultFile" classname="Tests.ResultFileTest" time="0.001"/>
-  <testcase name="testInsertRows" classname="Tests.ResultFileTest" time="0.003"/>
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
+  <testcase name="testResultFile" classname="Tests.ResultFileTest" time="0.003"/>
+  <testcase name="testInsertRows" classname="Tests.ResultFileTest" time="0.008"/>
   <system-out><![CDATA[-10
 -11
 -12

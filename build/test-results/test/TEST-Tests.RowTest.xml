@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="Tests.RowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:36" hostname="Dvir" time="0.026">
-||||||| merged common ancestors
-<testsuite name="Tests.RowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:21" hostname="Dvir" time="0.038">
-=======
-<testsuite name="Tests.RowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:09" hostname="DESKTOP-KO2QAKP" time="0.03">
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
+<testsuite name="Tests.RowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-01-18T18:15:25" hostname="Dvir" time="0.037">
   <properties/>
-  <testcase name="testAdd" classname="Tests.RowTest" time="0.0"/>
-  <testcase name="testRow" classname="Tests.RowTest" time="0.001"/>
-  <testcase name="testSize" classname="Tests.RowTest" time="0.0"/>
-<<<<<<< HEAD
-  <testcase name="testGetWiFi" classname="Tests.RowTest" time="0.002"/>
-  <testcase name="testGetRow" classname="Tests.RowTest" time="0.001"/>
-  <testcase name="testRowArrayListOfFile" classname="Tests.RowTest" time="0.021"/>
-  <testcase name="testIsEmpty" classname="Tests.RowTest" time="0.0"/>
-||||||| merged common ancestors
+  <testcase name="testAdd" classname="Tests.RowTest" time="0.001"/>
+  <testcase name="testRow" classname="Tests.RowTest" time="0.0"/>
+  <testcase name="testSize" classname="Tests.RowTest" time="0.001"/>
   <testcase name="testGetWiFi" classname="Tests.RowTest" time="0.001"/>
-  <testcase name="testGetRow" classname="Tests.RowTest" time="0.001"/>
-  <testcase name="testRowArrayListOfFile" classname="Tests.RowTest" time="0.028"/>
-  <testcase name="testIsEmpty" classname="Tests.RowTest" time="0.001"/>
-=======
-  <testcase name="testGetWiFi" classname="Tests.RowTest" time="0.0"/>
   <testcase name="testGetRow" classname="Tests.RowTest" time="0.0"/>
-  <testcase name="testRowArrayListOfFile" classname="Tests.RowTest" time="0.028"/>
-  <testcase name="testIsEmpty" classname="Tests.RowTest" time="0.001"/>
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
+  <testcase name="testRowArrayListOfFile" classname="Tests.RowTest" time="0.03"/>
+  <testcase name="testIsEmpty" classname="Tests.RowTest" time="0.0"/>
   <testcase name="testSetRow" classname="Tests.RowTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

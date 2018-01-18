@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:36" hostname="Dvir" time="0.002">
-||||||| merged common ancestors
-<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:21" hostname="Dvir" time="0.004">
-=======
-<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T14:05:09" hostname="DESKTOP-KO2QAKP" time="0.003">
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
+<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T18:15:25" hostname="Dvir" time="0.003">
   <properties/>
   <testcase name="testGetModel" classname="Tests.WiFiTest" time="0.001"/>
   <testcase name="testWiFi" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetFreq" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetSSID" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetTime" classname="Tests.WiFiTest" time="0.0"/>
-  <testcase name="testGetType" classname="Tests.WiFiTest" time="0.0"/>
+  <testcase name="testGetType" classname="Tests.WiFiTest" time="0.001"/>
   <testcase name="testWiFiStringString" classname="Tests.WiFiTest" time="0.0"/>
-<<<<<<< HEAD
   <testcase name="testGetAlt" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetLat" classname="Tests.WiFiTest" time="0.0"/>
-||||||| merged common ancestors
-  <testcase name="testGetAlt" classname="Tests.WiFiTest" time="0.0"/>
-  <testcase name="testGetLat" classname="Tests.WiFiTest" time="0.001"/>
-=======
-  <testcase name="testGetAlt" classname="Tests.WiFiTest" time="0.001"/>
-  <testcase name="testGetLat" classname="Tests.WiFiTest" time="0.0"/>
->>>>>>> 4f5e494119c7ee7bc6ff2c7fc62e49168dd70eb4
   <testcase name="testGetLon" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetMac" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetSignal" classname="Tests.WiFiTest" time="0.0"/>
