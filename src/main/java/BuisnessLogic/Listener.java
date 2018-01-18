@@ -18,14 +18,14 @@ public class Listener {
 	private WatchService watchServise;
 	private Map<WatchKey, Path> keys;
 	private ArrayList<String> paths;
-	private Map<Connection, String> remoteDatabases;
+	private ArrayList<RemoteTable> remoteTables;
 	Object locker;
 
 	public Listener() throws IOException {
 		this.locker = new Object();
 		this.watchServise = FileSystems.getDefault().newWatchService();
 		this.keys = new ConcurrentHashMap<>();
-		this.remoteDatabases = new ConcurrentHashMap<>();
+		this.remoteTables = new ArrayList<RemoteTable>();
 		paths = new ArrayList<String>();
 	}
 
@@ -37,15 +37,15 @@ public class Listener {
 			public void run() {
 				while (Thread.interrupted() == false) {
 					try {
-						for (Connection con : remoteDatabases.keySet()) {
-							Statement st = con.createStatement();
+						for (int i = 0; i<remoteTables.size();i++) {
+							Statement st = remoteTables.get(i).getConnection().createStatement();
 							ResultSet newRs = st.executeQuery(
-									"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+									"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = '"+remoteTables.get(i).getDatabaseName()+"' AND TABLE_NAME = '"+remoteTables.get(i).getTableName()+"'");
 							if (newRs.next()) {
-								if (!newRs.getString(1).equals(remoteDatabases.get(con))) {
-									remoteDatabases.replace(con, remoteDatabases.get(con), newRs.getString(1));
+								if (!newRs.getString(1).equals(remoteTables.get(i).getLastUpdate())) {
+									remoteTables.get(i).setLastUpdate(newRs.getString(1));
 									synchronized (locker) {
-										Database.resetDatabase(paths, remoteDatabases);
+										Database.resetDatabase(paths, remoteTables);
 									}
 								}
 							}
@@ -84,7 +84,7 @@ public class Listener {
 									if (f.isDirectory())
 										paths.remove(path.toFile().getPath());
 								}
-								Database.resetDatabase(paths, remoteDatabases);
+								Database.resetDatabase(paths, remoteTables);
 							}
 						}
 						if (key.reset() == false) {
@@ -112,33 +112,34 @@ public class Listener {
 		}
 	}
 
-	public boolean sqlRegister(String url, String user, String password) throws IOException {
-
+	public boolean sqlRegister(String url, String user, String password, String database, String table) throws IOException {
+		RemoteTable rt = new RemoteTable(url, user, password, database, table);
 		try {
-			Connection con = DriverManager.getConnection(url, user, password);
-			Statement st = con.createStatement();
+			rt.setConnection(DriverManager.getConnection(url, user, password));
+			Statement st = rt.getConnection().createStatement();
 			st.setQueryTimeout(5);
 			ResultSet rs = st.executeQuery(
-					"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = 'oop_course_ariel' AND TABLE_NAME = 'ex4_db'");
+					"SELECT UPDATE_TIME FROM information_schema.tables WHERE TABLE_SCHEMA = '"+database+"' AND TABLE_NAME = '"+table+"'");
 			if (rs.next()) {
-				synchronized (locker) {
-					remoteDatabases.put(con, rs.getString(1));
-				}
+				rt.setLastUpdate(rs.getString(1));
 				System.out.println("**** Update: " + rs.getString(1));
 			}
-			ExecutorService service = Executors.newCachedThreadPool();
-			service.submit(new Runnable() {
-				@Override
-				public void run() {
-					Sql.test_ex4_db(con);
-				}
-			});
-		} catch (SQLException ex) {
-			Logger lgr = Logger.getLogger(Sql.class.getName());
-			lgr.log(Level.SEVERE, ex.getMessage(), ex);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
-
 		}
+		synchronized (locker) {
+			remoteTables.add(rt);
+		}
+		
+		ExecutorService service = Executors.newCachedThreadPool();
+		service.submit(new Runnable() {
+			@Override
+			public void run() {
+				rt.importRemoteTable();
+			}
+		});
 		return true;
 	}
 

@@ -42,13 +42,15 @@
 			<section id="banner">
 				<div class="content">
 					<h1>Insert a Remote SQL</h1>
-					<p>You need to enter URL, user and password of a remote SQL table.<br />The table would be inserted to your database.</p>
+					<p>You need to enter url, user, password, name of the remote SQL database and the table name.<br />The table would be inserted to your database.</p>
 					<ul class="actions">
 						<li><form id="formDBcsv" enctype="multipart/form-data" method="post" action="#">
 								<div id="connectionInfo">
 										<input id="url" type="text" placeholder="url" />
 										<input id="user" type="text" placeholder="user" />
 										<input id="password" type="text" placeholder="password" />
+										<input id="database" type="text" placeholder="database" />
+										<input id="table" type="text" placeholder="table" />
 								</div>
 								<button type="submit" value="Upload" id="uploadRemoteSQL">UPLOAD</button>
 							</form>

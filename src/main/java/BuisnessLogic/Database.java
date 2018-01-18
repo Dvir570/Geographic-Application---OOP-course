@@ -22,7 +22,7 @@ public class Database {
 	 * @param paths
 	 *            of source csv files
 	 */
-	public static void resetDatabase(ArrayList<String> paths, Map<Connection, String> remoteDatabases) {
+	public static void resetDatabase(ArrayList<String> paths, ArrayList<RemoteTable> remoteTables) {
 		database.clear();
 		ResultFile.result.clear();
 		Row allWifis = new Row();
@@ -59,8 +59,8 @@ public class Database {
 		result.rowsGroupByTimeModel(allWifis.getWifis());
 		result.top10fromAnyGroup();
 		database.addAll(ResultFile.result);
-		for(Connection con : remoteDatabases.keySet())
-			Sql.test_ex4_db(con);
+		for(int i = 0;i<remoteTables.size();i++)
+			remoteTables.get(i).importRemoteTable();
 	}
 
 	private static boolean isDBfile(IOfiles io) {

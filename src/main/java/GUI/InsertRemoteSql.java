@@ -18,13 +18,13 @@ public class InsertRemoteSql {
 			public void run() {
 				String input = request.getRequestURI().getQuery();
 				String output = "";
-				String[] inputArray = new String[3];
+				String[] inputArray = new String[5];
 				inputArray = input.split("%");
-				if (inputArray[1].equals("") || inputArray[1].equals("") || inputArray[2].equals(""))
+				if (inputArray[0].equals("") || inputArray[1].equals("") || inputArray[2].equals("")|| inputArray[3].equals("")|| inputArray[4].equals(""))
 					output = "Empty fields";
 				else
 					try {
-						if (Server.listener.sqlRegister(inputArray[0], inputArray[1], inputArray[2]))
+						if (Server.listener.sqlRegister(inputArray[0], inputArray[1], inputArray[2], inputArray[3], inputArray[4]))
 							output = "Connection success";
 						else
 							output = "Connection faild";
