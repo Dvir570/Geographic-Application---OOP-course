@@ -8,6 +8,7 @@
 	<head>
 		<title>GeoApp</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
@@ -40,12 +41,16 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="content">
-					<h1>Update DB format File</h1>
-					<p>You need to copy the path of the file and paste it in the textbox.<br />This file should be the one with 46 columns.</p>
+					<h1>Insert a Remote SQL</h1>
+					<p>You need to enter URL, user and password of a remote SQL table.<br />The table would be inserted to your database.</p>
 					<ul class="actions">
 						<li><form id="formDBcsv" enctype="multipart/form-data" method="post" action="#">
-								<input id="DBfileUpload" type="text" accept=".csv" placeholder="Enter a path to csv file" />
-								<button type="submit" value="Upload file" id="UpdateDBcsv">UPLOAD FILE</button>
+								<div id="connectionInfo">
+										<input id="url" type="text" placeholder="url" />
+										<input id="user" type="text" placeholder="user" />
+										<input id="password" type="text" placeholder="password" />
+								</div>
+								<button type="submit" value="Upload" id="uploadRemoteSQL">UPLOAD</button>
 							</form>
 						</li>
 						<div id="output" class="validation"> </div>
@@ -160,9 +165,10 @@
 			<script src="assets/js/jquery.scrolly.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
-			<script src="assets/js/updateDBbyDB.js"></script>
+			<script src="assets/js/insertRemoteSQL.js"></script>
 			<script async defer
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhqdvX2Q-IW5XiQBAByVa5uQK1LNhJqOM&callback=initMap">
 			</script>
+
 	</body>
 </html>

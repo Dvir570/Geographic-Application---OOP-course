@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:21" hostname="Dvir" time="0.004">
+<testsuite name="Tests.WiFiTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:49:36" hostname="Dvir" time="0.002">
   <properties/>
-  <testcase name="testGetModel" classname="Tests.WiFiTest" time="0.0"/>
+  <testcase name="testGetModel" classname="Tests.WiFiTest" time="0.001"/>
   <testcase name="testWiFi" classname="Tests.WiFiTest" time="0.0"/>
-  <testcase name="testGetFreq" classname="Tests.WiFiTest" time="0.001"/>
-  <testcase name="testGetSSID" classname="Tests.WiFiTest" time="0.001"/>
+  <testcase name="testGetFreq" classname="Tests.WiFiTest" time="0.0"/>
+  <testcase name="testGetSSID" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetTime" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetType" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testWiFiStringString" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetAlt" classname="Tests.WiFiTest" time="0.0"/>
-  <testcase name="testGetLat" classname="Tests.WiFiTest" time="0.001"/>
+  <testcase name="testGetLat" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetLon" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetMac" classname="Tests.WiFiTest" time="0.0"/>
   <testcase name="testGetSignal" classname="Tests.WiFiTest" time="0.0"/>
