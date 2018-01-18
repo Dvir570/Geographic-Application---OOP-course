@@ -32,6 +32,11 @@ public class Server {
 	
 	public static void main(String[] args) throws Exception {
 		listener = new Listener();
+		String ip = "5.29.193.52";
+		String url = "jdbc:mysql://" + ip + ":3306/oop_course_ariel";
+		String user = "oop1";
+		String password = "Lambda1();";
+		listener.sqlRegister(url, user, password);
 		listener.startListening();
 		int port = 8001;
 		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
@@ -260,7 +265,6 @@ public class Server {
 		System.out.println("WebServer is up. " + "To enter the web, go to http://127.0.0.1:" + port
 				+ "/home/updateDBbyWiggle.html");
 		server.start();
-		Sql.test_ex4_db();
 	}
 
 	private static void filterDB(HttpExchange request) {

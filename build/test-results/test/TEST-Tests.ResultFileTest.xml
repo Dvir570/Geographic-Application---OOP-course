@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests.ResultFileTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:21" hostname="Dvir" time="0.01">
+  <properties/>
+  <testcase name="testResultFile" classname="Tests.ResultFileTest" time="0.002"/>
+  <testcase name="testInsertRows" classname="Tests.ResultFileTest" time="0.007"/>
+  <system-out><![CDATA[-10
+-11
+-12
+-12
+-13
+-13
+-13
+-14
+-15
+-16
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

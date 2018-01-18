@@ -39,9 +39,9 @@ public class DisplayMapTest {
 		ResultFile.result.add(fictiveR2);
 		ResultFile.result.add(fictiveR3);
 		ResultFile.result.add(fictiveR4anthercor);
-		dm.displayByPlace(ResultFile.result,false, lon, lat, alt, 3);
+//		dm.displayByPlace(ResultFile.result,false, lon, lat, alt, 3);
 		
-		assertTrue(dm.getToDisplay().size()==3);
+		assertTrue(dm.displayByPlace(ResultFile.result,false, lon-3, lon+3, lat-3, lat+3).size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);
@@ -60,15 +60,15 @@ public class DisplayMapTest {
 		fictiveR1.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:07:34,11,-85,32.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "SM-G920F"));
 		fictiveR2.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:07:34,11,-85,32.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "SM-F"));
 	    fictiveR3.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:07:34,11,-85,32.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "iphone"));
-		fictiveR4anthercor.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:07:30,11,-85,32.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "iphone"));
+		fictiveR4anthercor.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:09:30,11,-85,32.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "iphone"));
 		
 		ResultFile.result.add(fictiveR1);
 		ResultFile.result.add(fictiveR2);
 		ResultFile.result.add(fictiveR3);
 		ResultFile.result.add(fictiveR4anthercor);
-		dm.displayByTime(ResultFile.result, false, "2017-10-26 14:07", "2017-10-26 14:07");
+		//dm.displayByTime(ResultFile.result, false, "2017-10-26 14:07", "2017-10-26 14:08");
 		
-		assertTrue(dm.getToDisplay().size()==3);
+		assertTrue(dm.displayByTime(ResultFile.result, false, "2017-10-26 14:07", "2017-10-26 14:08").size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);
@@ -93,9 +93,9 @@ public class DisplayMapTest {
 		ResultFile.result.add(fictiveR2);
 		ResultFile.result.add(fictiveR3);
 		ResultFile.result.add(fictiveR4anthercor);
-		dm.displayByModel(ResultFile.result, false, "SM-G920F");
+//		dm.displayByModel(ResultFile.result, false, "SM-G920F");
 		
-		assertTrue(dm.getToDisplay().size()==3);
+		assertTrue(dm.displayByModel(ResultFile.result, false, "SM-G920F").size()==3);
 		
 		ResultFile.result.remove(fictiveR1);
 		ResultFile.result.remove(fictiveR2);

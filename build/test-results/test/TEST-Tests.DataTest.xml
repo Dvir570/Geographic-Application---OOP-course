@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests.DataTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-01-18T13:04:19" hostname="Dvir" time="0.001">
+  <properties/>
+  <testcase name="testGetWifis" classname="Tests.DataTest" time="0.0"/>
+  <testcase name="testGetPi" classname="Tests.DataTest" time="0.0"/>
+  <testcase name="testData" classname="Tests.DataTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

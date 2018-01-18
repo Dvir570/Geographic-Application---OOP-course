@@ -23,7 +23,7 @@ public class RowTest {
 
 	@Test
 	public void testRowArrayListOfFile() {
-		File f = new File("src\\Wiggle WIFI\\test.csv");
+		File f = new File("input files\\Wiggle WIFI\\WigleWifi_20171027162905.csv");
 		ArrayList<File> af = new ArrayList<File>();
 		af.add(f);
 		Row r = new Row(af);

@@ -1,16 +1,52 @@
-apply plugin: "java"
+apply plugin: 'java-library'
+
+apply plugin: 'eclipse'
+
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+	// https://mvnrepository.com/artifact/javax.activation/activation
+	compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.5'
+
+	// https://mvnrepository.com/artifact/com.sun.net.httpserver/http
+	testCompile group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
+
+	// https://mvnrepository.com/artifact/de.micromata.jak/JavaAPIforKml
+	// Java API for KML
 	compile group: 'de.micromata.jak', name: 'JavaAPIforKml', version: '2.2.0'
+
+	// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
 	compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.1'
+
+	// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+	compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.1.17'
+
+	// https://mvnrepository.com/artifact/javax.xml.bind/jsr173_api
+	compile group: 'javax.xml.bind', name: 'jsr173_api', version: '1.0'
+
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+
+	// This dependency is exported to consumers, that is to say found on their compile classpath.
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:23.0'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+
 }
 
 task hello(type: JavaExec) {
-    main = "GUI.Server"
+    main = "GUI.Server.java"
     classpath = sourceSets.main.runtimeClasspath
 }
 
@@ -18,10 +54,9 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Implementation-Version': '1.0',
-                'Main-Class': 'GUI.Server'
+                'Main-Class': 'GUI.Server.java'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
-build.dependsOn(hello)

@@ -23,13 +23,12 @@ public class KMLTest {
 		toDisplay.add(new WiFi("24:c9:a1:36:52:f8,Ariel_University,[ESS],2017-10-26 14:07:34,11,-85,5.10432894787016,35.20499025104117,688.1184746940897,16,WIFI", "SM-G920F"));
 		
 		KML prekml = new KML();//before creating the real file
-		prekml.makeKML(toDisplay, "output files\\result.kml");
+		String src="output files\\result.kml";
+		prekml.makeKML(toDisplay, src);
 		
-		/////result
-		String src="output files\\placemarks.kml";
 		File f = new File(src);
 		assertTrue(f.exists());//check if the file exists
-		Kml kml = Kml.unmarshal(new File("output files\\placemarks.kml"));
+		Kml kml = Kml.unmarshal(new File(src));
 		Feature feature=kml.getFeature();
 		assertNotNull(feature);//check if the file isnot empty 
 		

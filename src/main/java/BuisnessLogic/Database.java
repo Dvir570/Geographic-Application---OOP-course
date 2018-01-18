@@ -2,11 +2,12 @@ package BuisnessLogic;
 
 
 import java.io.File;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
-import GUI.Server;
 
 public class Database {
 	public static Set<Row> database = new HashSet<Row>();
@@ -21,7 +22,7 @@ public class Database {
 	 * @param paths
 	 *            of source csv files
 	 */
-	public static void resetDatabase(ArrayList<String> paths) {
+	public static void resetDatabase(ArrayList<String> paths, Map<Connection, String> remoteDatabases) {
 		database.clear();
 		ResultFile.result.clear();
 		Row allWifis = new Row();
@@ -58,6 +59,8 @@ public class Database {
 		result.rowsGroupByTimeModel(allWifis.getWifis());
 		result.top10fromAnyGroup();
 		database.addAll(ResultFile.result);
+		for(Connection con : remoteDatabases.keySet())
+			Sql.test_ex4_db(con);
 	}
 
 	private static boolean isDBfile(IOfiles io) {
