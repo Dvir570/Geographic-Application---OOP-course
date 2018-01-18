@@ -126,7 +126,13 @@ public class Listener {
 				}
 				System.out.println("**** Update: " + rs.getString(1));
 			}
-			Sql.test_ex4_db(con);
+			ExecutorService service = Executors.newCachedThreadPool();
+			service.submit(new Runnable() {
+				@Override
+				public void run() {
+					Sql.test_ex4_db(con);
+				}
+			});
 		} catch (SQLException ex) {
 			Logger lgr = Logger.getLogger(Sql.class.getName());
 			lgr.log(Level.SEVERE, ex.getMessage(), ex);

@@ -33,7 +33,7 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		listener = new Listener();
 //		String ip = "5.29.193.52";
-//		String url = "jdbc:mysql://" + ip + ":3306/oop_course_ariel";
+//		String url = "jdbc:mysql://5.29.193.52:3306/oop_course_ariel";
 //		String user = "oop1";
 //		String password = "Lambda1();";
 //		listener.sqlRegister(url, user, password);
