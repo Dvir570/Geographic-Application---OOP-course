@@ -44,6 +44,24 @@ This page is allowing to upload a database file (with 46 columns) to the current
       e. restore database.
   6. Map display.
   7. Get in touch.
+  
+#### Insert a Remote SQL ####
+This page is allowing to insert a remote database table (with 46 columns minus 2*10 columns, two columns for each WIFI scan - this is because we don't care about ssid and frequency of the WIFI scan) to the current database.
+  1. Menu
+  2. DB clear, DB save csv and DB save kml buttons.
+  3. Update database via insert a remote table. You need to enter url, user, password, name of the remote SQL database and the table name.
+  4. Details:
+      a. number of records.
+      b. number of routers.
+      c. filter details (if there is no filter on then it will be empty field).
+  5. Filters:
+      a. set a new filter.
+      b. upload a filter from txt file.
+      c. apply filter on the current database.
+      d. save the filter to txt file.
+      e. restore database.
+  6. Map display.
+  7. Get in touch.
 
 #### Algorithm I ####
 This algorithm will return you an appreciate location of the router.
