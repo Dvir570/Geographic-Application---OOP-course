@@ -22,6 +22,10 @@
 			}
 			var mac = $("#macAddress").val();
 			$.ajax({"url": encodeURI("/algorithmI?" + mac)}).then(function(output) {
+				var coord = output.split(",");
+					avgLon = parseFloat(coord[0]);
+					avgLat = parseFloat(coord[1]);
+					initMap();
 					$("div#output").empty().append(output)
 			});
 		})
@@ -103,17 +107,15 @@
 
 })(jQuery);
 var map;
-var src = 'https://127.0.0.1:8001/home/result.kml';
+var avgLon = 0, avgLat = 0;
 function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-		  center: new google.maps.LatLng(-19.257753, 146.823688),
-		  zoom: 2,
-		  mapTypeId: 'terrain'
-		});
-
-		var kmlLayer = new google.maps.KmlLayer(src, {
-		  suppressInfoWindows: true,
-		  preserveViewport: false,
-		  map: map
-		});
+        var uluru = {lat: avgLon, lng: avgLat};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
 }
