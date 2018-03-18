@@ -27,8 +27,8 @@ We can choose in the program either to filter the networks' samples list by a sp
 This product has many features one of them is the ability to show mappable data by reading KML files that had been uploaded to it.
 https://serc.carleton.edu/sp/library/google_earth/what.html
 ```
-The program gives two another options:
-Algorithm 1: Appreciate locations for every Mac from the database.
+The program gives two another options:<br/>
+Algorithm 1: Appreciate locations for every Mac from the database.<br/>
 Algorithm 2: Appreciate Create the user locations for every sample's scan using a database and other merged CSV file with no coordinates specified in it. The samples' scans are taken from the second file.
 
 ## Instractions for runing program ##
