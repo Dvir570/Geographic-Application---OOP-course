@@ -4,6 +4,9 @@ Editors:
   Dvir Barzilay &
   Shmuel Shimoni
  
+Program is a project for Ariel University's Object Oriented course.
+Also the project supporter in Gradle.
+
 # About the project: #
 The program merges CSV files from exported android app called "WiGLE WiFi Wardriving" into one file – taking Wi-Fi networks only and arranging them by time and place. 
 For every timestamp it takes the top 10 networks with the strongest signals and arranges them in an ascending order. 
@@ -25,8 +28,8 @@ This product has many features one of them is the ability to show mappable data 
 https://serc.carleton.edu/sp/library/google_earth/what.html
 ```
 The program gives two another options:
-Create a new CSV file with all the strongest locations for every Mac from a merged CSV file.
-Create a new CSV file with all the user locations for every sample's scan using a merged CSV file as database and other merged CSV file with no coordinates specified in it. The samples' scans are taken from the second file.
+Algorithm 1: Appreciate locations for every Mac from the database.
+Algorithm 2: Appreciate Create the user locations for every sample's scan using a database and other merged CSV file with no coordinates specified in it. The samples' scans are taken from the second file.
 
 ## Instractions for runing program ##
 In order to run this application you need to double click on GeoApp.jar file,
