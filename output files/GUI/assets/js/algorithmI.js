@@ -109,7 +109,7 @@
 var map;
 var avgLon = 0, avgLat = 0;
 function initMap() {
-        var uluru = {lat: avgLon, lng: avgLat};
+        var uluru = {lat: avgLat, lng: avgLon };
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 7,
           center: uluru
