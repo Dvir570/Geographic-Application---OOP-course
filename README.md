@@ -7,6 +7,8 @@ Editors:
 Program is a project for Ariel University's Object Oriented course.
 Also the project supporter in Gradle.
 
+![alt text](https://github.com/Dvir570/Geographic-Application---OOP-course/blob/master/docs/algorithm%20I%20prtSc.jpg)
+
 # About the project: #
 The program merges CSV files from exported android app called "WiGLE WiFi Wardriving" into one file – taking Wi-Fi networks only and arranging them by time and place. 
 For every timestamp it takes the top 10 networks with the strongest signals and arranges them in an ascending order. 
